@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/01 18:13:31 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/09 17:53:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int counter;
 # define PRINTLD(x) printf("%ld\n", x);
 # define PRINTS(x) printf("%s\n", x);
 
-t_data	*treat_three(t_data *stack_a, int a, int b, int c);
-void	free_data(t_data **data);
 void	show_nums(t_data *data, char c);
+
+void	free_data(t_data **data);
 void	rrr(t_data **a, t_data **b);
 void	rrab(t_data **data, char c);
 void	rr(t_data **a, t_data **b);
@@ -63,7 +63,7 @@ void	rab(t_data **data, char c);
 void	pb(t_data **a, t_data **b);
 void	pa(t_data **a, t_data **b);
 void	ss(t_data **stack_a, t_data **stack_b);
-t_data	*sab(t_data *data, char c);
+void	sab(t_data **data, char c);
 int		check_errors(int ac, char **av);
 
 #endif

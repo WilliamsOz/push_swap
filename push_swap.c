@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/01 18:54:16 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:56:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	show_nums(t_data *data, char c)
 		printf("------------PILE %c-------------\n", c);
 		while (data != NULL)
 		{
-			printf("nombre:\t%d  :  %d\n", i, data->nbr);
+			printf("%d | pos : %d\n", data->nbr, data->position);
 			data = data->next;
 			i++;
 		}
@@ -72,28 +72,56 @@ void	show_nums(t_data *data, char c)
 	}
 }
 
-t_data	*treat_five(t_data *stack_a)
+//
+
+t_data	*init_position(t_data *stack_a)
 {
-	
+	t_data	*tmp;
+
+	tmp = stack_a;
+	while (tmp != NULL)
+	{
+		tmp->position = -1;
+		tmp = tmp->next;
+	}
 	return (stack_a);
 }
 
-t_data	*how_many_numbers(t_data *stack_a, int ac)
+t_data	*get_position(t_data *stack_a, int numbers, int count)
 {
-	t_data	*stack_b;
+	t_data	*tmp;
+	t_data	*keep;
 
-	stack_b = NULL;
-	if (ac == 2)
-		rab(&stack_a, 'a');
-	else if (ac <= 3)
-		stack_a = treat_three(stack_a, 0, 0, 0);
-	else if (ac <= 5)
-		stack_a = treat_five(stack_a);
-	// else if (ac <= 100)
-	// 	stack_a = treat_hundred(stack_a);
-	// else
-	// 	stack_a = treat_more(stack_a);
-	SA
+	while (count < numbers)
+	{
+		tmp = stack_a;
+		while (tmp->position != -1)
+			tmp = tmp->next;
+		keep = tmp;
+		while (tmp != NULL)
+		{
+			if (tmp->position == -1 && tmp->nbr < keep->nbr)
+				keep = tmp;
+			tmp = tmp->next;
+		}
+		keep->position = count;
+		count++;
+	}
+	return (stack_a);
+}
+
+t_data	*treat_data(t_data *stack_a, int numbers)
+{
+	if (lk_ascending_order_check(stack_a) == 1)
+		free_data(&stack_a);
+	else if (numbers == 2)
+		sab(&stack_a, 'a');
+	else
+	{
+		stack_a = init_position(stack_a);
+		stack_a = get_position(stack_a, numbers, 0);
+		SA
+	}
 	return (stack_a);
 }
 
@@ -120,13 +148,9 @@ void	get_data(int ac, char **av, int count)
 		new->next = NULL;
 		tmp->next = new;
 	}
-	if (lk_ascending_order_check(stack_a) == 1)
-		free_data(&stack_a);
-	else
-	{
-		stack_a = how_many_numbers(stack_a, ac - 1);
-		free_data(&stack_a);
-	}
+	if (lk_ascending_order_check(stack_a) != 1)
+		stack_a = treat_data(stack_a, ac -1);
+	free_data(&stack_a);
 }
 
 int		main(int ac, char **av)
