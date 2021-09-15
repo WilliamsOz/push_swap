@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/14 16:56:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:58:03 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,53 +74,26 @@ void	show_nums(t_data *data, char c)
 
 //
 
-t_data	*init_position(t_data *stack_a)
+t_data	*sort_stack_a(t_data *stack_a, t_data *pivot)
 {
-	t_data	*tmp;
-
-	tmp = stack_a;
-	while (tmp != NULL)
-	{
-		tmp->position = -1;
-		tmp = tmp->next;
-	}
-	return (stack_a);
-}
-
-t_data	*get_position(t_data *stack_a, int numbers, int count)
-{
-	t_data	*tmp;
-	t_data	*keep;
-
-	while (count < numbers)
-	{
-		tmp = stack_a;
-		while (tmp->position != -1)
-			tmp = tmp->next;
-		keep = tmp;
-		while (tmp != NULL)
-		{
-			if (tmp->position == -1 && tmp->nbr < keep->nbr)
-				keep = tmp;
-			tmp = tmp->next;
-		}
-		keep->position = count;
-		count++;
-	}
+	
 	return (stack_a);
 }
 
 t_data	*treat_data(t_data *stack_a, int numbers)
 {
+	t_data	*pivot;
+
 	if (lk_ascending_order_check(stack_a) == 1)
 		free_data(&stack_a);
 	else if (numbers == 2)
 		sab(&stack_a, 'a');
 	else
 	{
-		stack_a = init_position(stack_a);
-		stack_a = get_position(stack_a, numbers, 0);
-		SA
+		stack_a = init_position(stack_a, numbers, 0);
+		pivot = NULL;
+		pivot = get_pivot(stack_a, pivot, numbers -1);
+		stack_a = sort_stack_a(stack_a, pivot);
 	}
 	return (stack_a);
 }
@@ -174,8 +147,8 @@ Faire l'algo pour 3 entiers entre 2 et 3 operation
 Faire l'algo pour 5 entiers max 12
 
 Faire l'algo pour 100 entiers bareme 1 a 5 ;
--700op : 5
--900op : 4
+-700 : 5
+-900 : 4
 -1100 : 3
 -1300 : 2
 -1500 ; 1
