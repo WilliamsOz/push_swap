@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/15 11:58:03 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/18 15:43:34 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ void	show_nums(t_data *data, char c)
 		printf("------------PILE %c-------------\n", c);
 		while (data != NULL)
 		{
-			printf("%d | pos : %d\n", data->nbr, data->position);
+			KYEL
+			printf("pos : %d", data->position);
+			KSTOP
+			KGRN
+			printf("| nbr = %d\n", data->nbr);
 			data = data->next;
 			i++;
 		}
@@ -61,7 +65,11 @@ void	show_nums(t_data *data, char c)
 		printf("------------PILE %c-------------\n", c);
 		while (data != NULL)
 		{
-			printf("nombre:\t%d  :  %d\n", i, data->nbr);
+			KYEL
+			printf("pos : %d", data->position);
+			KSTOP
+			KGRN
+			printf("| nbr = %d\n", data->nbr);
 			data = data->next;
 			i++;
 		}
@@ -74,10 +82,47 @@ void	show_nums(t_data *data, char c)
 
 //
 
-t_data	*sort_stack_a(t_data *stack_a, t_data *pivot)
+int		lk_only_less_then_pivot_check(t_data *lk, int pivot)
 {
-	
-	return (stack_a);
+	t_data	*tmp;
+
+	tmp = lk;
+	while (tmp != NULL)
+	{
+		if (tmp->nbr < pivot)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+t_data	*sort_stacks(t_data *a, t_data *b, t_data *pivot)
+{
+	SA
+	SB
+	printf("nombre de coup = %d\n", counter);
+	return (a);
+}
+
+t_data	*divide_stack(t_data *a, t_data *pivot)
+{
+	t_data	*b;
+	t_data	*tmp;
+
+	b = NULL;
+	tmp = a;
+	while (tmp != NULL)
+	{
+		tmp = a;
+		if (tmp->nbr < pivot->nbr)
+			pb(&a, &b);
+		else
+			rab(&a, 'a');
+		if (lk_only_less_then_pivot_check(a, pivot->nbr) == 1)
+			tmp = NULL;
+	}
+	a = sort_stacks(a, b, pivot);
+	return (a);
 }
 
 t_data	*treat_data(t_data *stack_a, int numbers)
@@ -93,7 +138,7 @@ t_data	*treat_data(t_data *stack_a, int numbers)
 		stack_a = init_position(stack_a, numbers, 0);
 		pivot = NULL;
 		pivot = get_pivot(stack_a, pivot, numbers -1);
-		stack_a = sort_stack_a(stack_a, pivot);
+		stack_a = divide_stack(stack_a, pivot);
 	}
 	return (stack_a);
 }
@@ -160,5 +205,5 @@ Faire l'algo pour 500 entiers bareme 1 a 5 ;
 -10 000 : 2
 -11 500 : 1
 
-Attention dans le sujet il ne faut pas traiter au cas par cas
+//? Attention dans le sujet il ne faut pas traiter au cas par cas
 */

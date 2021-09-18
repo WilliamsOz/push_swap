@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/15 11:56:21 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/18 13:54:13 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int counter;
 //     return 0;
 // }
 
-# define SA show_nums(stack_a, 'A');
-# define SB show_nums(stack_b, 'B');
+# define SA show_nums(a, 'A');
+# define SB show_nums(b, 'B');
 # define DEBUG printf("ICI\n");
 # define PRINTD(x) printf("%d\n", x);
 # define PRINTC(x) printf("%c\n", x);
