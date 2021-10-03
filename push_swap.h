@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/03 09:26:12 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/03 16:44:36 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int counter;
 
 void	show_nums(t_data *data, char c);
 
+t_data	*sort_three_digit(t_data *a, int d_one, int d_two, int d_three);
+t_data	*sort_four_digit(t_data *a, t_data *b, int digits, int count);
+t_data	*sort_five_digit(t_data *a, t_data *b, int numbers);
 t_data	*get_pivot(t_data *stack_a, t_data *pivot, int numbers);
 t_data	*init_position(t_data *stack_a, int numbers, int count);
 void	free_data(t_data **data);

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/03 11:00:55 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/03 17:58:38 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,87 +82,101 @@ void	show_nums(t_data *data, char c)
 
 //
 
-t_data	*sort_three_digit(t_data *a)
+void	divide_stack(t_data **a, t_data **b, t_data *pv, int count)
 {
-	int	d_one;
-	int	d_two;
-	int	d_three;
+	t_data	*tmp_a;
+	t_data	*tmp_b;
+	int		ind;
 
-	d_one = a->nbr;
-	d_two = a->next->nbr;
-	d_three = a->next->next->nbr;
-	if (d_one > d_two && d_two > d_three)
+	ind = 0;
+	tmp_a = (*a);
+	tmp_b = (*b);
+	if (count % 2 == 0)
+		ind = 1;
+	count /= 2;
+	while (count > 0)
 	{
-		sab(&a, 'a');
-		rrab(&a, 'a');
+		if ((tmp_a->nbr < pv->nbr) || (tmp_a->nbr == pv->nbr && ind == 1))
+		{
+			pb(&tmp_a, &tmp_b);
+			count--;
+		}
+		else
+			rab(&tmp_a, 'a');
 	}
-	else if (d_one < d_two && d_three < d_one)
-		rrab(&a, 'a');
-	else if (d_two > d_three && d_three > d_one)
-	{
-		rrab(&a, 'a');
-		sab(&a, 'a');
-	}
-	else if (d_one > d_two && d_three > d_one)
-		sab(&a, 'a');
-	else if (d_one > d_three && d_three > d_two)
-		rab(&a, 'a');
+	(*a) = tmp_a;
+	(*b) = tmp_b;
+}
+
+t_data	*get_med(t_data *stack, int len)
+{
+	t_data	*med;
+
+	med = stack;
+	len--;
+	while (med->pos != len)
+		med = med->next;
+	PRINTD(med->pos)
+	PRINTD(med->nbr)
+	return (med);
+}
+
+t_data	*sort_stacks(t_data *a, t_data *b, t_data *med_a, t_data *med_b)
+{
+
+	// commencer a trier avec les premiere mediane
+	// faire un algo qui va trouver les prochaine mediane
+	// continuer a trier, puis ainsi de suite
+
+}
+
+t_data	*prepare_stacks(t_data *a, t_data *b, t_data *pv, int digits)
+{
+	t_data	*med_a;
+	t_data	*med_b;
+	int		len_stack;
+
+	med_a = a;
+	med_b = b;
+	divide_stack(&a, &b, pv, digits);
+	len_stack = ft_lstsize(a);
+	a = init_position(a, len_stack, 0);
+	if (len_stack % 2 == 1)
+		len_stack++;
+	med_a = get_med(a, len_stack / 2);
+	SA
+	len_stack = ft_lstsize(b);
+	b = init_position(b, len_stack, 0);
+	if (len_stack % 2 == 1)
+		len_stack++;
+	med_b = get_med(b , len_stack / 2);
+	a = sort_stacks(a, b, med_a, med_b);
 	return (a);
 }
 
-t_data	*find_pos(t_data *a, int numbers, int position, int count)
-{
-	t_data	*tmp;
-
-	tmp = a;
-	while (tmp->pos != position)
-	{
-		tmp = tmp->next;
-		count++;
-	}
-	if (count > numbers / 2)
-		while(a->pos != position)
-			rrab(&a, 'a');
-	else
-		while (a->pos != position)
-			rab(&a, 'a');
-	return (a);
-}
-
-t_data	*sort_five_digit(t_data *a, t_data *b, int numbers)
-{
-	a = init_position(a, numbers, 0);
-	a = find_pos(a, numbers, 0, 0);
-	pb(&a, &b);
-	a = find_pos(a, numbers, 1, 0);
-	pb(&a, &b);
-	a = sort_three_digit(a);
-	pa(&a, &b);
-	pa(&a, &b);
-	return (a);
-}
-
-t_data	*treat_data(t_data *a, int numbers)
+t_data	*treat_data(t_data *a, int digits)
 {
 	t_data	*b;
-	// t_data	*pivot;
+	t_data	*pivot;
 
 	b = NULL;
 	if (lk_ascending_order_check(a) == 1)
 		free_data(&a);
-	else if (numbers == 2)
+	else if (digits == 2)
 		sab(&a, 'a');
-	else if (numbers == 3)
-		a = sort_three_digit(a);
-	else if (numbers == 5)
-		a = sort_five_digit(a, b, numbers);
-	// else
-	// {
-	// 	a = init_position(a, numbers, 0);
-	// 	pivot = NULL;
-	// 	pivot = get_pivot(a, pivot, numbers -1);
-	// 	a = divide_stack(a, pivot);
-	// }
+	else if (digits == 3)
+		a = sort_three_digit(a, 0, 0, 0);
+	else if (digits == 4)
+		a = sort_four_digit(a, b, digits, 0);
+	else if (digits == 5)
+		a = sort_five_digit(a, b, digits);
+	else
+	{
+		a = init_position(a, digits, 0);
+		pivot = NULL;
+		pivot = get_pivot(a, pivot, digits -1);
+		a = prepare_stacks(a, b, pivot, digits);
+	}
 	return (a);
 }
 
@@ -207,13 +221,6 @@ int		main(int ac, char **av)
 }
 
 /*
-OK Verifier l'algo du check_errors
-EC Separer en plusieurs algo en fonction du nb d'arg
-
-Faire l'algo pour 3 entiers entre 2 et 3 operation
-
-Faire l'algo pour 5 entiers max 12
-
 Faire l'algo pour 100 entiers bareme 1 a 5 ;
 -700 : 5
 -900 : 4
@@ -227,6 +234,4 @@ Faire l'algo pour 500 entiers bareme 1 a 5 ;
 -8500 : 3
 -10 000 : 2
 -11 500 : 1
-
-//? Attention dans le sujet il ne faut pas traiter au cas par cas
 */
