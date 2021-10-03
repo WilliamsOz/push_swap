@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/18 15:43:34 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/03 11:00:55 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	show_nums(t_data *data, char c)
 		while (data != NULL)
 		{
 			KYEL
-			printf("pos : %d", data->position);
+			printf("pos : %d", data->pos);
 			KSTOP
 			KGRN
 			printf("| nbr = %d\n", data->nbr);
@@ -66,7 +66,7 @@ void	show_nums(t_data *data, char c)
 		while (data != NULL)
 		{
 			KYEL
-			printf("pos : %d", data->position);
+			printf("pos : %d", data->pos);
 			KSTOP
 			KGRN
 			printf("| nbr = %d\n", data->nbr);
@@ -82,81 +82,104 @@ void	show_nums(t_data *data, char c)
 
 //
 
-int		lk_only_less_then_pivot_check(t_data *lk, int pivot)
+t_data	*sort_three_digit(t_data *a)
 {
-	t_data	*tmp;
+	int	d_one;
+	int	d_two;
+	int	d_three;
 
-	tmp = lk;
-	while (tmp != NULL)
+	d_one = a->nbr;
+	d_two = a->next->nbr;
+	d_three = a->next->next->nbr;
+	if (d_one > d_two && d_two > d_three)
 	{
-		if (tmp->nbr < pivot)
-			return (0);
-		tmp = tmp->next;
+		sab(&a, 'a');
+		rrab(&a, 'a');
 	}
-	return (1);
-}
-
-t_data	*sort_stacks(t_data *a, t_data *b, t_data *pivot)
-{
-	SA
-	SB
-	printf("nombre de coup = %d\n", counter);
+	else if (d_one < d_two && d_three < d_one)
+		rrab(&a, 'a');
+	else if (d_two > d_three && d_three > d_one)
+	{
+		rrab(&a, 'a');
+		sab(&a, 'a');
+	}
+	else if (d_one > d_two && d_three > d_one)
+		sab(&a, 'a');
+	else if (d_one > d_three && d_three > d_two)
+		rab(&a, 'a');
 	return (a);
 }
 
-t_data	*divide_stack(t_data *a, t_data *pivot)
+t_data	*find_pos(t_data *a, int numbers, int position, int count)
+{
+	t_data	*tmp;
+
+	tmp = a;
+	while (tmp->pos != position)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	if (count > numbers / 2)
+		while(a->pos != position)
+			rrab(&a, 'a');
+	else
+		while (a->pos != position)
+			rab(&a, 'a');
+	return (a);
+}
+
+t_data	*sort_five_digit(t_data *a, t_data *b, int numbers)
+{
+	a = init_position(a, numbers, 0);
+	a = find_pos(a, numbers, 0, 0);
+	pb(&a, &b);
+	a = find_pos(a, numbers, 1, 0);
+	pb(&a, &b);
+	a = sort_three_digit(a);
+	pa(&a, &b);
+	pa(&a, &b);
+	return (a);
+}
+
+t_data	*treat_data(t_data *a, int numbers)
 {
 	t_data	*b;
-	t_data	*tmp;
+	// t_data	*pivot;
 
 	b = NULL;
-	tmp = a;
-	while (tmp != NULL)
-	{
-		tmp = a;
-		if (tmp->nbr < pivot->nbr)
-			pb(&a, &b);
-		else
-			rab(&a, 'a');
-		if (lk_only_less_then_pivot_check(a, pivot->nbr) == 1)
-			tmp = NULL;
-	}
-	a = sort_stacks(a, b, pivot);
-	return (a);
-}
-
-t_data	*treat_data(t_data *stack_a, int numbers)
-{
-	t_data	*pivot;
-
-	if (lk_ascending_order_check(stack_a) == 1)
-		free_data(&stack_a);
+	if (lk_ascending_order_check(a) == 1)
+		free_data(&a);
 	else if (numbers == 2)
-		sab(&stack_a, 'a');
-	else
-	{
-		stack_a = init_position(stack_a, numbers, 0);
-		pivot = NULL;
-		pivot = get_pivot(stack_a, pivot, numbers -1);
-		stack_a = divide_stack(stack_a, pivot);
-	}
-	return (stack_a);
+		sab(&a, 'a');
+	else if (numbers == 3)
+		a = sort_three_digit(a);
+	else if (numbers == 5)
+		a = sort_five_digit(a, b, numbers);
+	// else
+	// {
+	// 	a = init_position(a, numbers, 0);
+	// 	pivot = NULL;
+	// 	pivot = get_pivot(a, pivot, numbers -1);
+	// 	a = divide_stack(a, pivot);
+	// }
+	return (a);
 }
 
 void	get_data(int ac, char **av, int count)
 {
-	t_data	*stack_a;
+	t_data	*a;
 	t_data	*new;
 	t_data	*tmp;
 
-	stack_a = (t_data*)malloc(sizeof(t_data));
-	stack_a->next = NULL;
-	stack_a->nbr = ft_atoi(av[count]);
-	if (stack_a == NULL)
+	a = (t_data*)malloc(sizeof(t_data));
+	a->next = NULL;
+	a->nbr = ft_atoi(av[count]);
+	if (a == NULL)
 		exit (EXIT_FAILURE);
 	while (++count < ac)
 	{
-		tmp = stack_a;
+		tmp = a;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		new = (t_data*)malloc(sizeof(t_data));
@@ -166,9 +189,9 @@ void	get_data(int ac, char **av, int count)
 		new->next = NULL;
 		tmp->next = new;
 	}
-	if (lk_ascending_order_check(stack_a) != 1)
-		stack_a = treat_data(stack_a, ac -1);
-	free_data(&stack_a);
+	if (lk_ascending_order_check(a) != 1)
+		a = treat_data(a, ac -1);
+	free_data(&a);
 }
 
 int		main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/09/14 16:03:18 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:24:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_data
 {
 	struct s_data	*next;
 	int				nbr;
-	int				position;
+	int				pos;
 }				t_data;
 
 int					ft_isdigit(int c);
