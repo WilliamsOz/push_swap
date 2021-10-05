@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:36:11 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/03 09:46:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/05 11:25:06 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,33 @@ t_data	*get_pivot(t_data *stack_a, t_data *pivot, int numbers)
 		tmp = tmp->next;
 	pivot = tmp;
 	return (pivot);
+}
+
+t_data	*init_ind(t_data *data)
+{
+	t_data	*tmp;
+
+	tmp = data;
+	while (tmp->next != NULL)
+	{
+		tmp->ind = 0;
+		tmp = tmp->next;
+	}
+	return(data);
+}
+
+int		get_max_pos(t_data *a)
+{
+	t_data	*tmp;
+	int		max_pos;
+
+	tmp = a;
+	max_pos = tmp->pos;
+	while (tmp->next != NULL)
+	{
+		if (max_pos < tmp->pos)
+			max_pos = tmp->pos;
+		tmp = tmp->next;
+	}
+	return (max_pos);
 }

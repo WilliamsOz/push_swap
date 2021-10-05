@@ -6,14 +6,14 @@
 #    By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/10 14:45:54 by user42            #+#    #+#              #
-#    Updated: 2021/09/15 11:38:28 by wiozsert         ###   ########.fr        #
+#    Updated: 2021/10/05 10:37:31 by wiozsert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 FLAGS = -Wall -Wextra -Werror
-FILESC = ft_atoi.c ft_list_size.c lk_ascending_order_checker.c ft_isdigit.c
-FILESO = ft_atoi.o ft_list_size.o lk_ascending_order_checker.o ft_isdigit.o
+FILESC = ft_atoi.c ft_list_size.c lk_ascending_order_check.c ft_isdigit.c
+FILESO = ft_atoi.o ft_list_size.o lk_ascending_order_check.o ft_isdigit.o
 
 all : $(NAME)
 
