@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:36:11 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/05 11:25:06 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:52:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,4 @@ t_data	*init_ind(t_data *data)
 		tmp = tmp->next;
 	}
 	return(data);
-}
-
-int		get_max_pos(t_data *a)
-{
-	t_data	*tmp;
-	int		max_pos;
-
-	tmp = a;
-	max_pos = tmp->pos;
-	while (tmp->next != NULL)
-	{
-		if (max_pos < tmp->pos)
-			max_pos = tmp->pos;
-		tmp = tmp->next;
-	}
-	return (max_pos);
 }
