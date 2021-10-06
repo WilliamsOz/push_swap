@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/05 17:39:20 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/06 17:33:33 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,186 +82,95 @@ void	show_nums(t_data *data, char c)
 
 //
 
-void	divide_stack(t_data **a, t_data **b, t_data *pv, int count)
+void	divide_stack(t_data **a, t_data **b, t_keep keep)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
-	int		ind;
 
-	ind = 0;
 	tmp_a = (*a);
 	tmp_b = (*b);
-	if (count % 2 == 0)
-		ind = 1;
-	count /= 2;
-	while (count > 0)
+	while (ft_lstsize(tmp_a) != 3)
 	{
-		if ((tmp_a->nbr < pv->nbr) || (tmp_a->nbr == pv->nbr && ind == 1))
-		{
+		if (tmp_a->pos != keep.first && tmp_a->pos != keep.mid &&
+			tmp_a->pos != keep.end)
 			pb(&tmp_a, &tmp_b);
-			count--;
-		}
 		else
-			rab(&tmp_a, 'a');
+			rrab(&tmp_a, 'a');
 	}
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
 
-t_data	*get_med(t_data *stack, int len)
-{
-	t_data	*med;
-
-	med = stack;
-	len--;
-	while (med->pos != len)
-		med = med->next;
-	return (med);
-}
-
-void	find_digit(t_data **a, t_data **b, t_data *med_a, t_data *med_b)
-{
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	while ((tmp_a->pos > med_a->pos && tmp_b->pos < med_b->pos) ||
-		(tmp_a->ind == -1 && tmp_b->ind == -1))
-		rr(&tmp_a, &tmp_b);
-	while (tmp_a->pos > med_a->pos || tmp_a->ind == -1)
-		rab(&tmp_a, 'a');
-	while (tmp_b->pos < med_b->pos || tmp_b->ind == -1)
-		rab(&tmp_b, 'b');
-	tmp_a->ind = -1;
-	tmp_b->ind = -1;
-	(*a) = tmp_a;
-	(*b) = tmp_b;
-}
-
-void	move_digit(t_data **a, t_data **b, t_data *med_a, t_data *med_b)
-{
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	while (tmp_a->next != med_a && tmp_b->next != med_b)
-	{
-		ss(&tmp_a, &tmp_b);
-		rr(&tmp_a, &tmp_b);
-	}
-	while (tmp_a->next != med_a)
-	{
-		sab(&tmp_a, 'a');
-		rab(&tmp_a, 'a');
-	}
-	while (tmp_b->next != med_b)
-	{
-		sab(&tmp_b, 'b');
-		rab(&tmp_b, 'b');
-	}
-	(*a) = tmp_a;
-	(*b) = tmp_b;
-}
-
-int		is_med_a_sorted(t_data *a, t_data *med_a, int count)
+int		rotate(t_data *a, t_data *b)
 {
 	t_data	*tmp;
+	int		count;
 
 	tmp = a;
-	while (tmp != med_a)
+	count = 0;
+	while (b->pos < tmp->pos && b->pos > tmp->next->pos)
 	{
 		count++;
 		tmp = tmp->next;
 	}
-	if (count == med_a->pos)
-		return (1);
-	return (0);
+	return (count);
 }
 
-int		is_med_b_sorted(t_data *b, t_data *med_b, int count)
+int		r_rotate(t_data *a, t_data *b)
 {
 	t_data	*tmp;
+	t_data	*keep;
+	int		count;
 
-	tmp = b;
+	tmp = a;
+	count = 0;
 	while (tmp->next != NULL)
-	{
-		if (count < tmp->pos)
-			count = tmp->pos;
 		tmp = tmp->next;
-	}
-	tmp = b;
-	while (tmp != med_b)
+	keep = tmp;
+	tmp = a;
+	while (tmp->next != keep)
+		tmp = tmp->next;
+	while (b->pos > keep->pos && b->pos < tmp->pos)
 	{
-		count--;
-		tmp= tmp->next;
+		
 	}
-	if (count == med_b->pos)
-		return (1);
-	return (0);
+	return (count);
 }
 
-int		is_meds_sorted(t_data *a, t_data *b, t_data *med_a, t_data *med_b)
+void	sort_stacks(t_data **a, t_data **b)
 {
-	if (is_med_a_sorted(a, med_a, 1) == 0 && is_med_b_sorted(b, med_b, 0) == 0)
-		return (0);
-	return (1);
+	t_data	*tmp_a;
+	t_data	*tmp_b;
+	t_bt bt;
+
+	tmp_a = (*a);
+	tmp_b = (*b);
+	// while (b != NULL)
+	// {
+		bt.rr = rotate(tmp_a, tmp_b);
+		bt.rrr = r_rotate(tmp_a, tmp_b);
+		// bt.rarrb = rarrb();
+		// bt.rrarb = rrarb();
+	// }
 }
 
-t_data	*sort_stacks(t_data *a, t_data *b, t_data *med_a, t_data *med_b)
+t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 {
-	(void)med_a;
-	(void)med_b;
-	if (is_sorted(a) == 1 && is_sorted(b) == 1)
-		return (a);
-	else
-	{
-		SA
-		SB
-		// find_digit(&a, &b, med_a, med_b);
-		// move_digit(&a, &b, med_a, med_b);
-		// if (is_meds_sorted(a, b, med_a, med_b) == 0)
-			// sort_stacks(a, b, med_a, med_b);
-		// else if (is_next_med_a(a, med_a) == 1)
-			// med_a = find_next_med_a(a, med_a);
-		// else if (is_next_med_b(b, med_b) == 1)
-			// med_b = find_next_med_b(b, med_b);
-	}
+	t_keep	keep;
+
+	a = init_position(a, digits, 1);
+	keep.first = 1;
+	keep.mid = ft_lstsize(a) / 2;
+	keep.end = ft_lstsize(a);
+	divide_stack(&a, &b, keep);
+	sort_stacks(&a, &b);
 	PRINTD(counter)
-	return (a);
-}
-
-t_data	*prepare_stacks(t_data *a, t_data *b, t_data *pv, int digits)
-{
-	t_data	*med_a;
-	t_data	*med_b;
-	int		len_stack;
-
-	med_a = a;
-	med_b = b;
-	divide_stack(&a, &b, pv, digits);
-	len_stack = ft_lstsize(a);
-	a = init_position(a, len_stack, 0);
-	if (len_stack % 2 == 1)
-		len_stack++;
-	med_a = get_med(a, len_stack / 2);
-	len_stack = ft_lstsize(b);
-	b = init_position(b, len_stack, 0);
-	if (len_stack % 2 == 1)
-		len_stack++;
-	med_b = get_med(b , len_stack / 2);
-	// a = sort_stacks(a, b, med_a, med_b);
-	// a = init_ind(a);
-	// b = init_ind(b);
-	a = bt_sort(a, b);
 	return (a);
 }
 
 t_data	*treat_data(t_data *a, int digits)
 {
 	t_data	*b;
-	t_data	*pivot;
 
 	b = NULL;
 	if (is_sorted(a) == 1)
@@ -274,13 +183,10 @@ t_data	*treat_data(t_data *a, int digits)
 		a = sort_four_digit(a, b, digits, 0);
 	else if (digits == 5)
 		a = sort_five_digit(a, b, digits);
-	else
-	{
-		a = init_position(a, digits, 0);
-		pivot = NULL;
-		pivot = get_pivot(a, pivot, digits -1);
-		a = prepare_stacks(a, b, pivot, digits);
-	}
+	else if (digits < 250)
+		a = prepare_stacks(a, b, digits);
+	// else if (digits > 250)
+		// a = prepare_stacks(a, b, digits);
 	return (a);
 }
 

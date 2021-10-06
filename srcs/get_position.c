@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:36:11 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/05 13:52:00 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/06 15:37:26 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_data	*get_position(t_data *stack_a, int numbers, int count)
 	t_data	*tmp;
 	t_data	*keep;
 
-	while (count < numbers)
+	while (count <= numbers)
 	{
 		tmp = stack_a;
 		while (tmp->pos != -1)
@@ -59,17 +59,4 @@ t_data	*get_pivot(t_data *stack_a, t_data *pivot, int numbers)
 		tmp = tmp->next;
 	pivot = tmp;
 	return (pivot);
-}
-
-t_data	*init_ind(t_data *data)
-{
-	t_data	*tmp;
-
-	tmp = data;
-	while (tmp->next != NULL)
-	{
-		tmp->ind = 0;
-		tmp = tmp->next;
-	}
-	return(data);
 }
