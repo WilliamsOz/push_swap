@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/11 17:06:39 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:04:56 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_keep
 typedef struct	s_check
 {
 	int				rotate_a;
+	int				rrotate_a;
 	int				rotate_b;
 	int				rr;
 }				t_check;

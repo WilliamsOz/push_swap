@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/11 19:01:51 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:09:45 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ t_data		*get_end(t_data *a)
 void		init_check(t_check *check)
 {
 	(*check).rotate_a = 0;
+	(*check).rrotate_a = 0;
 	(*check).rotate_b = 0;
 	(*check).rr = 0;
 }
@@ -153,21 +154,48 @@ void		do_rotate(t_data **a, t_data **b, t_check c)
 	(*b) = tmp_b;
 }
 
+t_check		rrotate_check(t_data *a, t_data *b, t_check c)
+{
+	// faire le check en reverse rotate
+	t_data	*end;
+	t_data	*keep;
+	t_data	*tmp;
+
+	tmp = a;
+	end = get_end(a);
+	while (b->pos < tmp->pos && b->pos < end->pos)
+	{
+		keep = end;
+		end = a;
+		while (end->next != keep)
+			end = end->next;
+		tmp = end;
+		c.rrotate_a += 1;
+	}
+	PRINTD(c.rrotate_a)
+	SA
+	SB
+	(void)c;
+	return (c);	
+}
+
 t_check		multiples_check(t_data *a, t_data *b, t_check c)
 {
 	c = rotate_check(a, b, c);
+	c = rrotate_check(a, b,c);
 	return (c);
 }
 
-void		best_move(t_data **a, t_data **b, t_check c)
+void		choose_best_move(t_data **a, t_data **b, t_check c)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 	
 	tmp_a = (*a);
 	tmp_b = (*b);
-	printf("\n\nccccccccccc : %d\n\n", c.rotate_a);
-	do_rotate(&tmp_a, &tmp_b, c);
+	(void)c;
+	// do_rotate(&tmp_a, &tmp_b, c);
+	// do_rrotate(&tmp_a, &tmp_b, c);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
@@ -188,7 +216,7 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		{
 			init_check(&c);
 			c = multiples_check(tmp_a, tmp_b, c);
-			best_move(&tmp_a, &tmp_b, c);
+			// choose_best_move(&tmp_a, &tmp_b, c);
 		}
 		(*a) = tmp_a;
 		(*b) = tmp_b;
