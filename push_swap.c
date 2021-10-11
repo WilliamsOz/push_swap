@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/11 14:46:48 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/11 19:01:51 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,96 +101,117 @@ void	divide_stack(t_data **a, t_data **b, t_keep keep)
 	(*b) = tmp_b;
 }
 
-t_rotate	init_rot(t_rotate rot)
+t_data		*get_end(t_data *a)
 {
-	rot.r_a = 0;
-	rot.r_b = 0;
-	rot.rr = 0;
-	rot.f = 0;
-	rot.s = 0;
-	rot.t = 0;
-	return (rot);
+	t_data	*tmp;
+
+	tmp = a;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }
 
-void	rot_first(t_data **a, t_data **b, t_rotate rot)
+void		init_check(t_check *check)
+{
+	(*check).rotate_a = 0;
+	(*check).rotate_b = 0;
+	(*check).rr = 0;
+}
+
+t_check		rotate_check(t_data *a, t_data *b, t_check c)
+{
+	t_data	*tmp;
+
+	tmp = a;
+	while (tmp != NULL && b->pos < tmp->pos)
+	{
+		c.rotate_a += 1;
+		tmp = tmp->next;
+	}
+	while (tmp != NULL && b->pos > tmp->pos)
+	{
+		c.rotate_a += 1;
+		tmp = tmp->next;
+	}
+	return (c);
+}
+
+void		do_rotate(t_data **a, t_data **b, t_check c)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	if (rot.f == 0)
-		pb(&tmp_a, &tmp_b);
-	else
+	while (c.rotate_a > 0)
 	{
-		while (rot.f >= 0)
-		{
-			rab(&tmp_a, 'a');
-			rot.f--;
-		}
-		pa(&tmp_a, &tmp_b);
+		rab(&tmp_a, 'a');
+		c.rotate_a--;
 	}
-	(*a) = tmp_a;	
+	pa(&tmp_a, &tmp_b);
+	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
 
-t_rotate	check_first(t_data *a, t_data *b, t_rotate rot)
+t_check		multiples_check(t_data *a, t_data *b, t_check c)
+{
+	c = rotate_check(a, b, c);
+	return (c);
+}
+
+void		best_move(t_data **a, t_data **b, t_check c)
+{
+	t_data	*tmp_a;
+	t_data	*tmp_b;
+	
+	tmp_a = (*a);
+	tmp_b = (*b);
+	printf("\n\nccccccccccc : %d\n\n", c.rotate_a);
+	do_rotate(&tmp_a, &tmp_b, c);
+	(*a) = tmp_a;
+	(*b) = tmp_b;
+}
+
+void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 {
 	t_data	*end;
-	t_data	*tmp_a;
-
-	tmp_a = a;
-	end = a;
-	while (end->next != NULL)
-		end = end->next;
-	if (b->pos > end->pos && b->pos < a->pos)
-		rot.f = 0;
-	else
+	t_check	c;
+	
+	// show_nums(tmp_a, 'a');
+	// show_nums(tmp_b, 'b');
+	while (ft_lstsize(*b) > 0)
 	{
-		while (!(b->pos > tmp_a->pos && b->pos < tmp_a->next->pos))
+		end = get_end(tmp_a);
+		if (tmp_b->pos > end->pos && tmp_b->pos < tmp_a->pos)
+			pa(&tmp_a, &tmp_b);
+		else
 		{
-			tmp_a = tmp_a->next;
-			rot.f++;
+			init_check(&c);
+			c = multiples_check(tmp_a, tmp_b, c);
+			best_move(&tmp_a, &tmp_b, c);
 		}
+		(*a) = tmp_a;
+		(*b) = tmp_b;
 	}
-	return (rot);
-}
-
-t_rotate	rotate(t_data *a, t_data *b, t_rotate rot)
-{
-	rot = init_rot(rot);
-	rot = check_first(a, b, rot);
-	rot_first(&a, &b, rot);
-	SA
-	SB
-	return (rot);
-}
-
-void	sort_stacks(t_data *a, t_data *b)
-{
-	t_rotate	rot;
-
-	// while (b != NULL)
-	// {
-		rot.f = 0;
-		show_nums(a, 'a');
-		show_nums(b, 'b');
-		rot = rotate(a, b, rot);
-		// do_rotate(&a, &b);
-	// }
+	show_nums(*a, 'a');
+	show_nums(*b, 'b');
 	PRINTD(counter)
 }
 
 t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 {
 	t_keep	keep;
+	t_data	*tmp_a;
+	t_data	*tmp_b;
 
 	a = init_position(a, digits, 1);
 	keep.first = 1;
 	keep.mid = ft_lstsize(a) / 2;
 	keep.end = ft_lstsize(a);
 	divide_stack(&a, &b, keep);
-	sort_stacks(a, b);
+	tmp_a = a;
+	tmp_b = b;
+	sort_stacks(&a, &b, tmp_a, tmp_b);
 	return (a);
 }
 
