@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/06 17:33:33 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/11 14:46:48 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,57 +101,84 @@ void	divide_stack(t_data **a, t_data **b, t_keep keep)
 	(*b) = tmp_b;
 }
 
-int		rotate(t_data *a, t_data *b)
+t_rotate	init_rot(t_rotate rot)
 {
-	t_data	*tmp;
-	int		count;
-
-	tmp = a;
-	count = 0;
-	while (b->pos < tmp->pos && b->pos > tmp->next->pos)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	return (count);
+	rot.r_a = 0;
+	rot.r_b = 0;
+	rot.rr = 0;
+	rot.f = 0;
+	rot.s = 0;
+	rot.t = 0;
+	return (rot);
 }
 
-int		r_rotate(t_data *a, t_data *b)
-{
-	t_data	*tmp;
-	t_data	*keep;
-	int		count;
-
-	tmp = a;
-	count = 0;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	keep = tmp;
-	tmp = a;
-	while (tmp->next != keep)
-		tmp = tmp->next;
-	while (b->pos > keep->pos && b->pos < tmp->pos)
-	{
-		
-	}
-	return (count);
-}
-
-void	sort_stacks(t_data **a, t_data **b)
+void	rot_first(t_data **a, t_data **b, t_rotate rot)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
-	t_bt bt;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
+	if (rot.f == 0)
+		pb(&tmp_a, &tmp_b);
+	else
+	{
+		while (rot.f >= 0)
+		{
+			rab(&tmp_a, 'a');
+			rot.f--;
+		}
+		pa(&tmp_a, &tmp_b);
+	}
+	(*a) = tmp_a;	
+	(*b) = tmp_b;
+}
+
+t_rotate	check_first(t_data *a, t_data *b, t_rotate rot)
+{
+	t_data	*end;
+	t_data	*tmp_a;
+
+	tmp_a = a;
+	end = a;
+	while (end->next != NULL)
+		end = end->next;
+	if (b->pos > end->pos && b->pos < a->pos)
+		rot.f = 0;
+	else
+	{
+		while (!(b->pos > tmp_a->pos && b->pos < tmp_a->next->pos))
+		{
+			tmp_a = tmp_a->next;
+			rot.f++;
+		}
+	}
+	return (rot);
+}
+
+t_rotate	rotate(t_data *a, t_data *b, t_rotate rot)
+{
+	rot = init_rot(rot);
+	rot = check_first(a, b, rot);
+	rot_first(&a, &b, rot);
+	SA
+	SB
+	return (rot);
+}
+
+void	sort_stacks(t_data *a, t_data *b)
+{
+	t_rotate	rot;
+
 	// while (b != NULL)
 	// {
-		bt.rr = rotate(tmp_a, tmp_b);
-		bt.rrr = r_rotate(tmp_a, tmp_b);
-		// bt.rarrb = rarrb();
-		// bt.rrarb = rrarb();
+		rot.f = 0;
+		show_nums(a, 'a');
+		show_nums(b, 'b');
+		rot = rotate(a, b, rot);
+		// do_rotate(&a, &b);
 	// }
+	PRINTD(counter)
 }
 
 t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
@@ -163,8 +190,7 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	keep.mid = ft_lstsize(a) / 2;
 	keep.end = ft_lstsize(a);
 	divide_stack(&a, &b, keep);
-	sort_stacks(&a, &b);
-	PRINTD(counter)
+	sort_stacks(a, b);
 	return (a);
 }
 
@@ -231,10 +257,6 @@ int		main(int ac, char **av)
 }
 
 /*
-
-// commencer a trier avec les premiere mediane
-// faire un algo qui va trouver les prochaine mediane
-// continuer a trier, puis ainsi de suite
 
 Faire l'algo pour 100 entiers bareme 1 a 5 ;
 -700 : 5

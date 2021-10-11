@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/06 15:47:27 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/11 14:24:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,18 @@ typedef struct s_keep
 	int				end;
 }				t_keep;
 
-typedef struct s_bt
+typedef struct s_rotate
 {
 	int				rr;
-	int				rrr;
-	int				rarrb;
-	int				rrarb;
-}				t_bt;
+	int				f;
+	int				s;
+	int				t;
+	int				r_a;
+	int				r_b;
+	// int				rrr;
+	// int				rarrb;
+	// int				rrarb;
+}				t_rotate;
 
 int					ft_isdigit(int c);
 int					is_sorted(t_data *stack_a);
