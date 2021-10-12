@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 11:11:46 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:59:57 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,5 @@ void	init_check(t_check *check)
 {
 	(*check).rotate_a = 0;
 	(*check).rrotate_a = 0;
-	(*check).rotate_b = 0;
-	(*check).rr = 0;
-}
-
-int	is_a_correct(t_data *a)
-{
-	int	f;
-	int	s;
-	int	t;
-
-	f = a->pos;
-	s = a->next->pos;
-	t = a->next->next->pos;
-	if ((s > f && s > t) || (t > f && t > s) || (f > s && f > t))
-		return (0);
-	return (1);
+	(*check).swap_a = 0;
 }

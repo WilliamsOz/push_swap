@@ -1,50 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_rotate_algorithm.c                               :+:      :+:    :+:   */
+/*   swap_algorithm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:45:19 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 14:03:56 by wiozsert         ###   ########.fr       */
+/*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
+/*   Updated: 2021/10/12 16:03:01 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_check	rrotate_check(t_data *a, t_data *b, t_check c)
-{
-	t_data	*end;
-	t_data	*keep;
-	t_data	*tmp;
-
-	tmp = a;
-	end = get_end(a);
-	while (b->pos > tmp->pos || b->pos < end->pos)
-	{
-		c.rrotate_a++;
-		keep = end;
-		end = a;
-		while (end->next != keep)
-			end = end->next;
-		tmp = keep;
-	}
-	return (c);
-}
-
-void	do_rrotate(t_data **a, t_data **b, t_check c)
+void		do_swap(t_data **a, t_data **b)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	while (c.rrotate_a > 0)
-	{
-		rrab(&tmp_a, 'a');
-		c.rrotate_a--;
-	}
 	pa(&tmp_a, &tmp_b);
+	sab(&tmp_a, 'a');
 	(*a) = tmp_a;
 	(*b) = tmp_b;
+}
+
+t_check		swap_check(t_data *a, t_data *b, t_check c)
+{
+	if (b->pos > a->pos && b->pos < a->next->pos)
+		c.swap_a = 2;
+	else
+		c.swap_a = -1;
+	return (c);
 }

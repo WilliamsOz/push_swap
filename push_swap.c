@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 11:55:28 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:03:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,15 @@ void	show_nums(t_data *data, char c)
 
 //
 
-t_check		multiples_check(t_data *a, t_data *b, t_check c)
+t_check		multiples_check(t_data *a, t_data *b, t_check c, int min)
 {
+	min = c.rotate_a;
+	if (c.rrotate_a < min)
+		min = c.rrotate_a;
 	c = rotate_check(a, b, c);
 	c = rrotate_check(a, b,c);
-	// double_rotate check
-	// double_rrotate check
+	c = swap_check(a, b, c);
+	// c = next_nbr_check(a, b, c);
 	return (c);
 }
 
@@ -98,16 +101,41 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 	
 	tmp_a = (*a);
 	tmp_b = (*b);
-	if (c.rotate_a <= c.rrotate_a)
+	if (c.swap_a == 2)
+		do_swap(&tmp_a, &tmp_b);
+	else if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
-	else
+	else if (c.rrotate_a < c.rotate_a)
 		do_rrotate(&tmp_a, &tmp_b, c);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
-	show_nums(*a, 'a');
-	show_nums(*b, 'b');
-	PRINTD(c.rotate_a)
-	PRINTD(c.rrotate_a)
+}
+
+t_data		*finish_sorting(t_data *a, int size_of_list)
+{
+	t_data	*tmp;
+	int	count;
+
+	count = 0;
+	tmp = a;
+	while (tmp->pos != 1)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	if (count > size_of_list / 2)
+		while (count > 0)
+		{
+			rrab(&a, 'a');
+			count--;
+		}
+	else
+		while (count > 0)
+		{
+			rab(&a, 'a');
+			count--;
+		}
+	return (a);
 }
 
 void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
@@ -123,13 +151,13 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		else
 		{
 			init_check(&c);
-			c = multiples_check(tmp_a, tmp_b, c);
+			c = multiples_check(tmp_a, tmp_b, c, 0);
 			choose_best_move(&tmp_a, &tmp_b, c);
 		}
 		(*a) = tmp_a;
 		(*b) = tmp_b;
 	}
-	PRINTD(counter)
+	(*a) = finish_sorting(tmp_a, ft_lstsize(*a));
 }
 
 t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
@@ -143,11 +171,26 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	keep.mid = ft_lstsize(a) / 2;
 	keep.end = ft_lstsize(a);
 	divide_stack(&a, &b, keep, digits);
-	if (is_a_correct(a) == 0)
-		sab(&a, 'a');
+	if (is_sorted(a) == 0)
+		a = sort_three_digit(a, 0, 0, 0);
 	tmp_a = a;
 	tmp_b = b;
 	sort_stacks(&a, &b, tmp_a, tmp_b);
+	SA
+	SB
+	PRINTD(counter)
+	if (is_sorted(a) == 0)
+	{
+		KRED
+		printf("\nLISTE NON TRIEE\n");
+		KSTOP
+	}
+	else
+	{
+		KGRN
+		printf("\nLISTE TRIEE\n");
+		KSTOP
+	}
 	return (a);
 }
 
@@ -204,7 +247,7 @@ void	get_data(int ac, char **av, int count)
 int		main(int ac, char **av)
 {
 	counter = 0;
-	if (ac < 3)
+		if (ac < 3)
 		return (0);
 	else if (check_errors(ac, av) == -1)
 		write(1, "Error\n", 6);
