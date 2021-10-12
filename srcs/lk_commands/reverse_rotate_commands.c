@@ -6,28 +6,28 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:25:14 by user42            #+#    #+#             */
-/*   Updated: 2021/06/14 17:15:15 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:55:17 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_data   *reverse_rotate(t_data *data)
+static t_data	*reverse_rotate(t_data *data)
 {
 	t_data	*tmp;
 	t_data	*keep;
 
 	if (data != NULL)
 	{
-        tmp = data;
-        while (tmp->next != NULL)
-            tmp = tmp->next;
-        keep = data;
-        while (keep->next != tmp)
-            keep = keep->next;
-        tmp->next = data;
-        keep->next = NULL;
-        data = tmp;
+		tmp = data;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		keep = data;
+		while (keep->next != tmp)
+			keep = keep->next;
+		tmp->next = data;
+		keep->next = NULL;
+		data = tmp;
 	}
 	return (data);
 }

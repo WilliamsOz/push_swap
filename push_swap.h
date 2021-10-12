@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/05 11:25:05 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:50:28 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ int counter;
 
 void	show_nums(t_data *data, char c);
 
+int		is_a_correct(t_data *a);
+t_data	*pre_sort_b(t_data *b, int digits);
+void	divide_stack(t_data **a, t_data **b, t_keep keep, int digits);
+t_data	*get_end(t_data *a);
+void	init_check(t_check *check);
+void	do_rrotate(t_data **a, t_data **b, t_check c);
+t_check	rrotate_check(t_data *a, t_data *b, t_check c);
+void	do_rotate(t_data **a, t_data **b, t_check c);
+t_check	rotate_check(t_data *a, t_data *b, t_check c);
 t_data	*sort_three_digit(t_data *a, int d_one, int d_two, int d_three);
 t_data	*sort_four_digit(t_data *a, t_data *b, int digits, int count);
 t_data	*sort_five_digit(t_data *a, t_data *b, int numbers);

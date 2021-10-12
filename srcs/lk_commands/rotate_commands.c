@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:05:40 by user42            #+#    #+#             */
-/*   Updated: 2021/06/15 11:35:36 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:55:36 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_data   *rotate(t_data *data)
+static t_data	*rotate(t_data *data)
 {
 	t_data	*tmp;
 	t_data	*last;

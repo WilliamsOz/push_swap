@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   three_or_five.c                                    :+:      :+:    :+:   */
+/*   three_four_five.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 13:05:57 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/03 16:43:47 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:54:02 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static t_data	*find_pos(t_data *a, int numbers, int position, int count)
 		count++;
 	}
 	if (count > numbers / 2)
-		while(a->pos != position)
+		while (a->pos != position)
 			rrab(&a, 'a');
 	else
 		while (a->pos != position)

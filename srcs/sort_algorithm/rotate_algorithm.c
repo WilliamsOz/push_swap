@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_commands.c                                    :+:      :+:    :+:   */
+/*   rotate_algorithm.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 18:01:52 by user42            #+#    #+#             */
-/*   Updated: 2021/10/12 10:54:30 by wiozsert         ###   ########.fr       */
+/*   Created: 2021/10/12 10:41:48 by wiozsert          #+#    #+#             */
+/*   Updated: 2021/10/12 10:53:27 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	pa(t_data **a, t_data **b)
+t_check	rotate_check(t_data *a, t_data *b, t_check c)
 {
 	t_data	*tmp;
 
-	if (*b != NULL)
+	tmp = a;
+	while (tmp != NULL && b->pos < tmp->pos)
 	{
-		tmp = (*b)->next;
-		(*b)->next = (*a);
-		(*a) = (*b);
-		(*b) = tmp;
+		c.rotate_a += 1;
+		tmp = tmp->next;
 	}
-	write(1, "pa\n", 3);
-	counter++;
+	while (tmp != NULL && b->pos > tmp->pos)
+	{
+		c.rotate_a += 1;
+		tmp = tmp->next;
+	}
+	return (c);
 }
 
-void	pb(t_data **a, t_data **b)
+void	do_rotate(t_data **a, t_data **b, t_check c)
 {
-	t_data	*tmp;
+	t_data	*tmp_a;
+	t_data	*tmp_b;
 
-	if (*a != NULL)
+	tmp_a = (*a);
+	tmp_b = (*b);
+	while (c.rotate_a > 0)
 	{
-		tmp = (*a)->next;
-		(*a)->next = (*b);
-		(*b) = (*a);
-		(*a) = tmp;
+		rab(&tmp_a, 'a');
+		c.rotate_a--;
 	}
-	write(1, "pb\n", 3);
-	counter++;
+	pa(&tmp_a, &tmp_b);
+	(*a) = tmp_a;
+	(*b) = tmp_b;
 }
