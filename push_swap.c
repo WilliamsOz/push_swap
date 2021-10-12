@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 10:58:50 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:55:28 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_check		multiples_check(t_data *a, t_data *b, t_check c)
 {
 	c = rotate_check(a, b, c);
 	c = rrotate_check(a, b,c);
+	// double_rotate check
+	// double_rrotate check
 	return (c);
 }
 
@@ -96,8 +98,6 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 	
 	tmp_a = (*a);
 	tmp_b = (*b);
-	PRINTD(c.rotate_a)
-	PRINTD(c.rrotate_a)
 	if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
 	else
@@ -106,6 +106,8 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 	(*b) = tmp_b;
 	show_nums(*a, 'a');
 	show_nums(*b, 'b');
+	PRINTD(c.rotate_a)
+	PRINTD(c.rrotate_a)
 }
 
 void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
