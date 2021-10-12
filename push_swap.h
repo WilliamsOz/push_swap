@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 16:00:02 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:07:57 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "./libft/libft.h"
 
 int counter;
+int xd;
 	
 #define KNRM  printf("\033[0;30m");
 #define KRED  printf("\033[0;31m");
@@ -55,6 +56,7 @@ int counter;
 
 void	show_nums(t_data *data, char c);
 
+t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	do_swap(t_data **a, t_data **b);
 t_check	swap_check(t_data *a, t_data *b, t_check c);
 t_data	*pre_sort_b(t_data *b, int digits);

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 16:03:46 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:18:01 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,106 @@ void	show_nums(t_data *data, char c)
 
 //
 
-t_check		multiples_check(t_data *a, t_data *b, t_check c, int min)
+t_check		get_d_rr(t_check c)
 {
-	min = c.rotate_a;
-	if (c.rrotate_a < min)
-		min = c.rrotate_a;
+	int tmp_da;
+	int	tmp_db;
+
+	tmp_da = c.d_a;
+	tmp_db = c.d_b;
+	while (tmp_da > 0 && tmp_db > 0)
+	{
+		c.d_rr++;
+		tmp_da--;
+		tmp_db--;
+	}
+	c.d_rr = c.d_rr + tmp_da + tmp_db;
+	return (c);
+}
+
+void		do_drotate(t_data **a, t_data **b, t_check c)
+{
+	xd++;
+	t_data	*tmp_a;
+	t_data	*tmp_b;
+	
+	tmp_a = (*a);
+	tmp_b = (*b);
+	c.d_rr = 0;
+	show_nums((*a), 'a');
+	show_nums((*b), 'b');
+	while (c.d_a > 0 && c.d_b > 0)
+	{
+		c.d_rr++;
+		c.d_a--;
+		c.d_b--;
+	}
+	while (c.d_rr > 0)
+	{
+		rr(&tmp_a, &tmp_b);
+		c.d_rr--;
+	}
+	while (c.d_a > 0)
+	{
+		rab(&tmp_a, 'a');
+		c.d_a--;
+	}
+	while (c.d_b > 0)
+	{
+		rab(&tmp_b, 'b');
+		c.d_b--;
+	}
+	pa(&tmp_a, &tmp_b);
+	(*a) = tmp_a;
+	(*b) = tmp_b;
+	if (xd == 40)
+		exit (EXIT_FAILURE);
+}
+
+/* ameliorer la fonction pour aller checker toute les autres
+possibilite de placer le nombre le plus vite dans la pile b
+*/
+t_check		double_rotate_check(t_data *a, t_data *b, t_check c, int count)
+{
+	t_data	*end;
+	int	save;
+
+	end = get_end(a);
+	b = b->next;
+	save = count;
+	c.d_b++;
+	while (save > 0 && a != NULL && b != NULL)
+	{
+		while (count > 0 && (b->pos < end->pos || b->pos > a->pos))
+		{
+			c.d_a++;
+			end = a;
+			a = a->next;
+		}
+		if (count == 0 && save > 0)
+		{
+			c.d_a = 0;
+			c = double_rotate_check(a, b, c, save -1);
+		}
+		if (count > 0)
+		{
+			c.d_rotate = 1;
+			return (c);
+		}
+	}
+	return (c);
+}
+
+t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
+{
 	c = rotate_check(a, b, c);
 	c = rrotate_check(a, b,c);
 	c = swap_check(a, b, c);
+	count = c.rotate_a;
+	if (c.rrotate_a < count)
+		count = c.rrotate_a;
+	if (c.swap_a == -1 && count > 2)
+		c = double_rotate_check(a, b, c, count - 1);
 	// c = next_nbr_check(a, b, c);
 	return (c);
 }
@@ -98,10 +190,21 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
-	
+
 	tmp_a = (*a);
 	tmp_b = (*b);
-	if (c.swap_a == 2)
+	if (c.d_rotate == 1)
+		c = get_d_rr(c);
+	if (c.d_rotate == 1 && c.d_rr < c.rotate_a && c.d_rr < c.rrotate_a)
+	{
+		// PRINTD(c.d_a)
+		// PRINTD(c.d_b)
+		// PRINTD(c.d_rr)
+		// PRINTD(c.rotate_a)
+		// PRINTD(c.rrotate_a)
+		do_drotate(&tmp_a, &tmp_b, c);
+	}
+	else if (c.swap_a == 2)
 		do_swap(&tmp_a, &tmp_b);
 	else if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
@@ -109,33 +212,6 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 		do_rrotate(&tmp_a, &tmp_b, c);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
-}
-
-t_data		*finish_sorting(t_data *a, int size_of_list)
-{
-	t_data	*tmp;
-	int	count;
-
-	count = 0;
-	tmp = a;
-	while (tmp->pos != 1)
-	{
-		tmp = tmp->next;
-		count++;
-	}
-	if (count > size_of_list / 2)
-		while (count > 0)
-		{
-			rrab(&a, 'a');
-			count--;
-		}
-	else
-		while (count > 0)
-		{
-			rab(&a, 'a');
-			count--;
-		}
-	return (a);
 }
 
 void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
@@ -157,7 +233,9 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*a) = tmp_a;
 		(*b) = tmp_b;
 	}
-	(*a) = finish_sorting(tmp_a, ft_lstsize(*a));
+	show_nums((*a), 'a');
+	show_nums((*b), 'b');
+	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
 }
 
 t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
@@ -247,7 +325,8 @@ void	get_data(int ac, char **av, int count)
 int		main(int ac, char **av)
 {
 	counter = 0;
-		if (ac < 3)
+	xd = 0;
+	if (ac < 3)
 		return (0);
 	else if (check_errors(ac, av) == -1)
 		write(1, "Error\n", 6);

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 15:59:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:34:43 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,29 @@ void	init_check(t_check *check)
 	(*check).rotate_a = 0;
 	(*check).rrotate_a = 0;
 	(*check).swap_a = 0;
+	(*check).d_rotate = 0;
+	(*check).d_a = 0;
+	(*check).d_b = 0;
+	(*check).d_rr = 0;
+}
+
+t_data	*finish_sorting(t_data *a, int size_of_list, int count)
+{
+	t_data	*tmp;
+
+	tmp = a;
+	if (is_sorted(a) == 1)
+		return (a);
+	while (tmp->pos != 1)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	if (count > (size_of_list / 2))
+		while (a->pos != 1)
+			rrab(&a, 'a');
+	else
+		while (a->pos != 1)
+			rab(&a, 'a');
+	return (a);
 }
