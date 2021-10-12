@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/11 20:04:56 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:58:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
 	struct s_data	*next;
 	int				nbr;
 	int				pos;
 }				t_data;
 
-typedef struct	s_keep
+typedef struct s_keep
 {
 	int				first;
 	int				mid;
 	int				end;
 }				t_keep;
 
-typedef struct	s_check
+typedef struct s_check
 {
 	int				rotate_a;
 	int				rrotate_a;
