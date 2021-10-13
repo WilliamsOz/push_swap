@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 19:34:43 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:16:05 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	divide_stack(t_data **a, t_data **b, t_keep keep, int digits)
 				tmp_b = pre_sort_b(tmp_b, digits);
 		}
 		else
-			rrab(&tmp_a, 'a');
+			rab(&tmp_a, 'a');
 	}
 	(*a) = tmp_a;
 	(*b) = tmp_b;

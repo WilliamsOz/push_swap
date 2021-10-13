@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 20:07:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:20:49 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ int xd;
 
 void	show_nums(t_data *data, char c);
 
+t_check	get_d_rr(t_check c);
+void	do_drotate(t_data **a, t_data **b, t_check c);
+t_check	d_rotate_check(t_data *a, t_data *b, t_check c, int count);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	do_swap(t_data **a, t_data **b);
 t_check	swap_check(t_data *a, t_data *b, t_check c);

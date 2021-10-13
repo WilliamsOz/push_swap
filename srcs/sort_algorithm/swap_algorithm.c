@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 16:03:01 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:24:06 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void		do_swap(t_data **a, t_data **b)
+void	do_swap(t_data **a, t_data **b)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -25,7 +25,7 @@ void		do_swap(t_data **a, t_data **b)
 	(*b) = tmp_b;
 }
 
-t_check		swap_check(t_data *a, t_data *b, t_check c)
+t_check	swap_check(t_data *a, t_data *b, t_check c)
 {
 	if (b->pos > a->pos && b->pos < a->next->pos)
 		c.swap_a = 2;
