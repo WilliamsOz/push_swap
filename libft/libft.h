@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/12 17:23:32 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:46:20 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ typedef struct s_check
 	int				d_rotate;
 	int				d_a;
 	int				d_b;
-	int				d_rr;
+	int				d_r;
+	int				d_rrotate;
+	int				d_rra;
+	int				d_rrb;
+	int				d_rrr;
 }				t_check;
 
 int					ft_isdigit(int c);
