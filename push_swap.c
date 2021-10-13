@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/13 13:28:43 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:30:52 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,125 +80,21 @@ void	show_nums(t_data *data, char c)
 	}
 }
 
-//
+// faire la fonction pour le reverse rotate en a et en b
+// faire la fonction pour le rotate en a et reverse rotate en b
 
-void	do_drrotate(t_data **a, t_data **b, t_check c)
+t_check		sort_for_best_move(t_check c)
 {
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	c.d_rrr = 0;
-	show_nums(*a, 'a');
-	show_nums(*b, 'b');
-	while (c.d_rra > 0 && c.d_rrb > 0)
-	{
-		c.d_rrr++;
-		c.d_rra--;
-		c.d_rrb--;
-	}
-	while (c.d_rrr-- > 0)
-		rrr(&tmp_a, &tmp_b);
-	while (c.d_rra-- > 0)
-		rrab(&tmp_a, 'a');
-	while (c.d_rrb-- > 0)
-		rrab(&tmp_b, 'b');
-	pa(&tmp_a, &tmp_b);
-	(*a) = tmp_a;
-	(*b) = tmp_b;
-	show_nums(*a, 'a');
-	show_nums(*b, 'b');
-	exit (EXIT_FAILURE);
-}
-
-t_check		get_d_rr(t_check c)
-{
-	int	tmp_da;
-	int	tmp_db;
-
-	tmp_da = c.d_rra;
-	tmp_db = c.d_rrb;
-	while (tmp_da > 0 && tmp_db > 0)
-	{
-		c.d_rrr++;
-		tmp_da--;
-		tmp_db--;
-	}
-	c.d_rrr = c.d_rrr + tmp_da + tmp_db;
-	return (c);
-}
-
-t_data		*get_pos_b(t_data *b, t_data *tmp_b, t_check *c)
-{
-	t_data	*tmp;
-
-	if ((*c).d_rrb == 0)
-	{
-		(*c).d_rrb += 1;
-		tmp = get_end(b);
-	}
-	else
-	{
-		(*c).d_rrb += 1;
-		tmp = b;
-		while (tmp->next != tmp_b)
-			tmp = tmp->next;
-	}
-	return (tmp);
-}
-
-t_check		d_rrotate_check(t_data *a, t_data *b, t_check c, int count)
-{
-	t_data	*end;
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-	int		save;
-
-	tmp_a = a;
-	save = count;
-	tmp_b = NULL;
-	tmp_b = get_pos_b(b, tmp_b, &c);
-	end = get_end(a);
-	c.d_rra = 0;
-	while (save > 0 && tmp_a != NULL && b != NULL)
-	{
-		while (b->pos < end->pos || b->pos > tmp_a->pos)
-		{
-			c.d_rra++;
-			tmp_a = a;
-			while (tmp_a->next != end)
-				tmp_a = tmp_a->next;
-			end = tmp_a;
-			tmp_a = end->next;
-		}
-		if (count == 0 && save > 0)
-			c = d_rrotate_check(a, b, c, save - 1);
-		if (count > 0)
-		{
-			c.d_rrotate = 1;
-			return (c);
-		}
-	}
-	return (c);
-}
-
-t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
-{
-	c = rotate_check(a, b, c);
-	c = rrotate_check(a, b,c);
-	c = swap_check(a, b, c);
-	count = c.rotate_a;
-	if (c.rrotate_a < count)
-		count = c.rrotate_a;
-	if (c.swap_a == -1 && count > 2)
-	{
-		c = d_rotate_check(a, b, c, count - 1);
-	}
-	if (c.swap_a == -1 && count > 2)
-	{
-		c = d_rrotate_check(a, b, c, count - 1);
-	}
+	if (c.d_r == 1)
+		c = get_d_r(c);
+	if (c.d_rrarb == 1)
+		c.rrarb = c.rra + c.rb;
+	if (c.d_r == 1 && c.d_r < c.rotate_a && c.d_r < c.rrotate_a
+		&& c.d_r <= c.rrarb)
+		c.d_rotate = 1;
+	else if (c.d_rrarb == 1 && c.rrarb < c.rotate_a
+		&& c.rrarb < c.rrotate_a && c.rrarb < c.d_r)
+		c.d_rrarb = 1;
 	return (c);
 }
 
@@ -209,16 +105,11 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
+	c = sort_for_best_move(c);
 	if (c.d_rotate == 1)
-		c = get_d_r(c);
-	if (c.d_rrotate == 1)
-		c = get_d_rr(c);
-	if (c.d_rotate == 1 && c.d_r < c.rotate_a && c.d_r < c.rrotate_a
-		&& c.d_r <= c.d_rrr)
 		do_drotate(&tmp_a, &tmp_b, c);
-	else if (c.d_rrotate == 1 && c.d_rrr < c.rotate_a && c.d_rrr < c.rrotate_a 
-		&& c.d_rrr < c.d_r)
-		do_drrotate(&tmp_a, &tmp_b, c);
+	else if (c.d_rrarb == 1)
+		do_rrarb(&tmp_a, &tmp_b, c);
 	else if (c.swap_a == 2)
 		do_swap(&tmp_a, &tmp_b);
 	else if (c.rotate_a <= c.rrotate_a)
@@ -227,6 +118,21 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 		do_rrotate(&tmp_a, &tmp_b, c);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
+}
+
+t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
+{
+	c = rotate_check(a, b, c);
+	c = rrotate_check(a, b, c);
+	c = swap_check(a, b, c);
+	count = c.rotate_a;
+	if (c.rrotate_a < count)
+		count = c.rrotate_a;
+	if (c.swap_a == -1 && count > 2)
+		c = d_rotate_check(a, b->next, c, count - 1);
+	if (c.swap_a == -1 && count > 2)
+		c = rrarb_check(a, b->next, c, count - 1);
+	return (c);
 }
 
 void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
@@ -248,8 +154,6 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*a) = tmp_a;
 		(*b) = tmp_b;
 	}
-	// show_nums((*a), 'a');
-	// show_nums((*b), 'b');
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
 }
 
@@ -266,7 +170,6 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	divide_stack(&a, &b, keep, digits);
 	if (is_sorted(a) == 0)
 		a = sort_three_digit(a, 0, 0, 0);
-	// SB
 	tmp_a = a;
 	tmp_b = b;
 	sort_stacks(&a, &b, tmp_a, tmp_b);
@@ -276,13 +179,13 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	if (is_sorted(a) == 0)
 	{
 		KRED
-		printf("\nLISTE NON TRIEE\n");
+		printf("\nLISTE NON TRIEE : |%d|\n", ft_lstsize(a));
 		KSTOP
 	}
 	else
 	{
 		KGRN
-		printf("\nLISTE TRIEE\n");
+		printf("\nLISTE TRIEE : |%d|\n", ft_lstsize(a));
 		KSTOP
 	}
 	return (a);

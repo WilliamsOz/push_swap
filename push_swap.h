@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/13 13:28:35 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:07:44 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int xd;
 
 void	show_nums(t_data *data, char c);
 
+t_check	rrarb_check(t_data *a, t_data *b, t_check c, int count);
+void	do_rrarb(t_data **a, t_data **b, t_check c);
+t_check	get_rrarb(t_check c);
+t_data	*get_new_end(t_data *end, t_data *a);
+t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c);
 t_check	get_d_r(t_check c);
 void	do_drotate(t_data **a, t_data **b, t_check c);
 t_check	d_rotate_check(t_data *a, t_data *b, t_check c, int count);
