@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 13:05:57 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/12 10:54:02 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 11:54:37 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../../push_swap.h"
 
 t_data	*sort_three_digit(t_data *a, int d_one, int d_two, int d_three)
 {

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/13 17:32:44 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 11:57:47 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,20 @@ void	show_nums(t_data *data, char c)
 // faire la fonction pour le reverse rotate en a et en b
 // faire la fonction pour le rotate en a et reverse rotate en b
 
-t_check		sort_for_best_move(t_check c)
-{
-	if (c.d_r == 1)
-		c = get_d_r(c);
-	if (c.d_rrarb == 1)
-		c.rrarb = c.rra + c.rb;
-	if (c.d_r == 1 && c.d_r < c.rotate_a && c.d_r < c.rrotate_a
-		&& c.d_r <= c.rrarb)
-		c.d_rotate = 1;
-	else if (c.d_rrarb == 1 && c.rrarb < c.rotate_a
-		&& c.rrarb < c.rrotate_a && c.rrarb < c.d_r)
-		c.d_rrarb = 1;
-	return (c);
-}
+// t_check		sort_for_best_move(t_check c)
+// {
+	// if (c.d_r == 1)
+		// c = get_d_r(c);
+	// if (c.d_rrarb == 1)
+		// c.rrarb = c.rra + c.rb;
+	// if (c.d_r == 1 && c.d_r < c.rotate_a && c.d_r < c.rrotate_a
+		// && c.d_r <= c.rrarb)
+		// c.d_rotate = 1;
+	// else if (c.d_rrarb == 1 && c.rrarb < c.rotate_a
+		// && c.rrarb < c.rrotate_a && c.rrarb < c.d_r)
+		// c.d_rrarb = 1;
+	// return (c);
+// }
 
 void		choose_best_move(t_data **a, t_data **b, t_check c)
 {
@@ -105,7 +105,7 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	c = sort_for_best_move(c);
+	// c = sort_for_best_move(c);
 	if (c.d_rotate == 1)
 		do_drotate(&tmp_a, &tmp_b, c);
 	else if (c.d_rrarb == 1)
