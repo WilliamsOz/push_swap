@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 17:29:53 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:57:23 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,12 +212,36 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	return (a);
 }
 
+// FOR > 250
+
 int	check_pos(int nbr, int digits)
 {
 	if (nbr == 1 || nbr == digits || nbr == (digits / 2) ||
 		nbr == ((digits / 2) / 2) || nbr == ((digits / 2) * 1.5))
 		return (1);
 	return (0);
+}
+
+t_data	*pre_sort_a(t_data *a)
+{
+	t_data	*tmp;
+	tmp = a;
+
+	SA
+	while (tmp != NULL)
+	{
+		if (a->pos < a->next->pos)
+		{
+			sab(&a, 'a');
+			tmp = a;
+		}
+		else
+		{
+			tmp = tmp->next;
+			rab(&a, 'a');
+		}
+	}
+	return (a);
 }
 
 t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
@@ -242,8 +266,9 @@ t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
 			count--;
 		}
 	}
-	SA
-	SB	
+	a = pre_sort_a(a);
+	// a = sort_big_stacks(a, b);
+	PRINTD(counter)
 	return (a);
 }
 
