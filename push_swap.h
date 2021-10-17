@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/13 17:07:44 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:01:03 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,24 @@ int xd;
 
 void	show_nums(t_data *data, char c);
 
+t_check	rarb_cmp(t_check c);
+t_check	rrarrb_cmp(t_check c);
+t_check	rrarb_cmp(t_check c);
+t_check	rarrb_cmp(t_check c);
+void	do_rarrb(t_data **a, t_data **b, t_check c);
+t_check	get_rarrb(t_check c);
+t_check	rarrb_check(t_data *a, t_data *b, t_check c, int count);
+void	do_rrarrb(t_data **a, t_data **b, t_check c);
+t_check	rrarrb_check(t_data *a, t_data *b, t_check c, int count);
+t_check	get_rrarrb(t_check c);
 t_check	rrarb_check(t_data *a, t_data *b, t_check c, int count);
 void	do_rrarb(t_data **a, t_data **b, t_check c);
 t_check	get_rrarb(t_check c);
 t_data	*get_new_end(t_data *end, t_data *a);
 t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c);
-t_check	get_d_r(t_check c);
-void	do_drotate(t_data **a, t_data **b, t_check c);
-t_check	d_rotate_check(t_data *a, t_data *b, t_check c, int count);
+t_check	get_rarb(t_check c);
+void	do_rarb(t_data **a, t_data **b, t_check c);
+t_check	rarb_check(t_data *a, t_data *b, t_check c, int count);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	do_swap(t_data **a, t_data **b);
 t_check	swap_check(t_data *a, t_data *b, t_check c);

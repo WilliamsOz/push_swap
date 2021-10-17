@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 11:57:47 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:52:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,22 @@ void	show_nums(t_data *data, char c)
 	}
 }
 
-// faire la fonction pour le reverse rotate en a et en b
-// faire la fonction pour le rotate en a et reverse rotate en b
-
-// t_check		sort_for_best_move(t_check c)
-// {
-	// if (c.d_r == 1)
-		// c = get_d_r(c);
-	// if (c.d_rrarb == 1)
-		// c.rrarb = c.rra + c.rb;
-	// if (c.d_r == 1 && c.d_r < c.rotate_a && c.d_r < c.rrotate_a
-		// && c.d_r <= c.rrarb)
-		// c.d_rotate = 1;
-	// else if (c.d_rrarb == 1 && c.rrarb < c.rotate_a
-		// && c.rrarb < c.rrotate_a && c.rrarb < c.d_r)
-		// c.d_rrarb = 1;
-	// return (c);
-// }
+t_check		sort_best_move(t_check c)
+{
+	if (c.do_rarb == 1)
+		c = get_rarb(c);
+	if (c.do_rrarb == 1)
+		c.rrarb = c.rb + c.rra;
+	if (c.do_rrarrb == 1)
+		c = get_rrarrb(c);
+	if (c.do_rarrb == 1)
+		c = get_rarrb(c);
+	c = rarb_cmp(c);
+	c = rrarrb_cmp(c);
+	c = rrarb_cmp(c);
+	c = rarrb_cmp(c);
+	return (c);
+}
 
 void		choose_best_move(t_data **a, t_data **b, t_check c)
 {
@@ -105,13 +104,17 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	// c = sort_for_best_move(c);
-	if (c.d_rotate == 1)
-		do_drotate(&tmp_a, &tmp_b, c);
-	else if (c.d_rrarb == 1)
-		do_rrarb(&tmp_a, &tmp_b, c);
-	else if (c.swap_a == 2)
+	c = sort_best_move(c);
+	if (c.swap_a == 2)
 		do_swap(&tmp_a, &tmp_b);
+	else if (c.do_rarb == 1)
+		do_rarb(&tmp_a, &tmp_b, c);
+	else if (c.do_rrarb == 1)
+		do_rrarb(&tmp_a, &tmp_b, c);
+	else if (c.do_rrarrb == 1)
+		do_rrarrb(&tmp_a, &tmp_b, c);
+	else if (c.do_rarrb == 1)
+		do_rarrb(&tmp_a, &tmp_b, c);
 	else if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
 	else if (c.rrotate_a < c.rotate_a)
@@ -128,10 +131,18 @@ t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
 	count = c.rotate_a;
 	if (c.rrotate_a < count)
 		count = c.rrotate_a;
-	if (c.swap_a == -1 && count > 2)
-		c = d_rotate_check(a, b->next, c, count - 1);
-	if (c.swap_a == -1 && count > 2)
+	c.count = count;
+	if (c.swap_a == -1 && count > 0)
+		c = rarb_check(a, b->next, c, count - 1);
+	c.count = count;
+	if (c.swap_a == -1 && count > 0)
+		c = rrarrb_check(a, b, c, count - 1);
+	c.count = count;
+	if (c.swap_a == -1 && count > 0)
 		c = rrarb_check(a, b->next, c, count - 1);
+	c.count = count;
+	if (c.swap_a == -1 && count > 0)
+		c = rarrb_check(a, b->next, c, count - 1);
 	return (c);
 }
 
@@ -156,6 +167,8 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
 }
+
+#include <libc.h>
 
 t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 {

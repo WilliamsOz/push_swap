@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/13 17:20:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:29:57 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,22 @@ typedef struct s_check
 	int				rotate_a;
 	int				rrotate_a;
 	int				swap_a;
-	int				d_rrarb;
+	int				do_rarb;
+	int				rarb;
+	int				r_a;
+	int				r_b;
+	int				do_rrarrb;
+	int				rrarrb;
+	int				rr_rra;
+	int				rr_rrb;
+	int				do_rrarb;
 	int				rrarb;
 	int				rra;
 	int				rb;
-	int				d_rotate;
-	int				d_a;
-	int				d_b;
-	int				d_r;
+	int				do_rarrb;
+	int				rarrb;
+	int				ra;
+	int				rrb;
 	int				count;
 }				t_check;
 

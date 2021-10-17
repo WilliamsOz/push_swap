@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 11:54:23 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:14:01 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	do_rrarb(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	c.rrarb = 0;
 	while (c.rra-- > 0)
 		rrab(&tmp_a, 'a');
 	while (c.rb-- > 0)
@@ -73,7 +72,6 @@ t_check	rrarb_check(t_data *a, t_data *b, t_check c, int count)
 
 	end = get_end(a);
 	tmp_a = a;
-	c.count = count;
 	while (c.count > 0 && a != NULL && b != NULL)
 	{
 		while (count > 0 && a != NULL && b != NULL
@@ -86,7 +84,7 @@ t_check	rrarb_check(t_data *a, t_data *b, t_check c, int count)
 		}
 		if (count > 0)
 		{
-			c.d_rrarb = 1;
+			c.do_rrarb = 1;
 			return (c);
 		}
 		c = apply_modif(c);
