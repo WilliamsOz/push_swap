@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 16:52:00 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/17 17:29:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ t_check		sort_best_move(t_check c)
 		c = get_rrarrb(c);
 	if (c.do_rarrb == 1)
 		c = get_rarrb(c);
+	PRINTD(c.rotate_a)
+	PRINTD(c.rrotate_a)
+	PRINTD(c.rarb)
+	PRINTD(c.rrarb)
+	PRINTD(c.rrarrb)
+	PRINTD(c.rarrb)
 	c = rarb_cmp(c);
 	c = rrarrb_cmp(c);
 	c = rrarb_cmp(c);
@@ -126,6 +132,8 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
 {
 	c = rotate_check(a, b, c);
+	if (c.rotate_a == 27)
+		exit (EXIT_FAILURE);
 	c = rrotate_check(a, b, c);
 	c = swap_check(a, b, c);
 	count = c.rotate_a;
@@ -204,6 +212,41 @@ t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
 	return (a);
 }
 
+int	check_pos(int nbr, int digits)
+{
+	if (nbr == 1 || nbr == digits || nbr == (digits / 2) ||
+		nbr == ((digits / 2) / 2) || nbr == ((digits / 2) * 1.5))
+		return (1);
+	return (0);
+}
+
+t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
+{
+	t_data	*tmp;
+	int		count;
+
+	count = digits - 5;
+	tmp = a;
+	a = init_position(a, digits, 1);
+	while (count > 0)
+	{
+		tmp = a;
+		if (check_pos(tmp->pos, digits) == 1)
+		{
+			rrab(&a, 'a');
+			tmp = tmp->next;
+		}
+		else
+		{
+			pb(&a, &b);
+			count--;
+		}
+	}
+	SA
+	SB	
+	return (a);
+}
+
 t_data	*treat_data(t_data *a, int digits)
 {
 	t_data	*b;
@@ -221,8 +264,8 @@ t_data	*treat_data(t_data *a, int digits)
 		a = sort_five_digit(a, b, digits);
 	else if (digits < 250)
 		a = prepare_stacks(a, b, digits);
-	// else if (digits > 250)
-		// a = prepare_stacks(a, b, digits);
+	else if (digits > 250)
+		a = prepare_big_stacks(a, b, digits);
 	return (a);
 }
 
