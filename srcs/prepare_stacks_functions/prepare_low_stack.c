@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:37:24 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:43:01 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:23:33 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	divide_stack(t_data **a, t_data **b, t_keep keep, int digits)
 			&& tmp_a->pos != keep.end)
 		{
 			pb(&tmp_a, &tmp_b);
-			if (ft_lstsize(tmp_b) > 1 && digits < 250)
+			if (ft_lstsize(tmp_b) > 1)
 				tmp_b = pre_sort_b(tmp_b, digits);
 		}
 		else

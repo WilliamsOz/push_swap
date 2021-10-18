@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:51:16 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:48:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 14:59:03 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_data	*pre_sort_a(t_data *a, t_data *b, int l_digits, int f_digits)
 
 static t_data	*pre_sort_b(t_data *b, int digits)
 {
-	digits /= 2;
+	digits = (digits / 2) - 1;
 	if (b->pos < digits)
 		rab(&b, 'b');
 	return (b);

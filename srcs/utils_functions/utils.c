@@ -6,11 +6,21 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 11:59:05 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:29:13 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
+
+t_data	*get_new_end(t_data *end, t_data *a)
+{
+	t_data	*new_end;
+
+	new_end = a;
+	while (new_end->next != end)
+		new_end = new_end->next;
+	return (new_end);
+}
 
 t_data	*get_end(t_data *stack)
 {
@@ -48,6 +58,10 @@ void	init_check(t_check *check)
 	(*check).rarrb = 0;
 	(*check).ra = 0;
 	(*check).rrb = 1;
+	(*check).do_rr = 0;
+	(*check).o_rr = 0;
+	(*check).do_rrr = 0;
+	(*check).o_rrr = 0;
 	(*check).count = 0;
 }
 

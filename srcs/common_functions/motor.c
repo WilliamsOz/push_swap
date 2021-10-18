@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:48:07 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:53:20 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,12 @@ t_check		sort_best_move(t_check c)
 		c = get_rrarrb(c);
 	if (c.do_rarrb == 1)
 		c = get_rarrb(c);
-	PRINTD(c.rotate_a)
-	PRINTD(c.rrotate_a)
-	PRINTD(c.rarb)
-	PRINTD(c.rrarb)
-	PRINTD(c.rrarrb)
-	PRINTD(c.rarrb)
 	c = rarb_cmp(c);
 	c = rrarrb_cmp(c);
 	c = rrarb_cmp(c);
 	c = rarrb_cmp(c);
-	printf("\ncc\n");
-	PRINTD(c.do_rarb)
-	PRINTD(c.do_rrarb)
-	PRINTD(c.do_rrarrb)
-	PRINTD(c.do_rarrb)
+	c = rr_cmp(c);
+	c = rrr_cmp(c);
 	return (c);
 }
 
@@ -47,7 +38,6 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	c = sort_best_move(c);
 	if (c.swap_a == 2)
 		do_swap(&tmp_a, &tmp_b);
 	else if (c.do_rarb == 1)
@@ -58,6 +48,10 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 		do_rrarb(&tmp_a, &tmp_b, c);
 	else if (c.do_rarrb == 1)
 		do_rarrb(&tmp_a, &tmp_b, c);
+	else if (c.do_rr == 1)
+		do_rr(&tmp_a, &tmp_b, c);
+	else if (c.do_rrr == 1)
+		do_rrr(&tmp_a, &tmp_b, c);
 	else if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
 	else if (c.rrotate_a < c.rotate_a)
@@ -75,17 +69,15 @@ t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
 	if (c.rrotate_a < count)
 		count = c.rrotate_a;
 	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rarb_check(a, b->next, c, count - 1);
+	c = rarb_check(a, b->next, c, count - 1);
 	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rrarrb_check(a, b, c, count - 1);
+	c = rrarrb_check(a, b, c, count - 1);
 	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rrarb_check(a, b->next, c, count - 1);
+	c = rrarb_check(a, b->next, c, count - 1);
 	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rarrb_check(a, b->next, c, count - 1);
+	c = rarrb_check(a, b->next, c, count - 1);
+	c = o_rr_check(a, b, c, count);
+	c = o_rrr_check(a, b, c, count);
 	return (c);
 }
 
@@ -103,12 +95,14 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		{
 			init_check(&c);
 			c = multiples_check(tmp_a, tmp_b, c, 0);
+			c = sort_best_move(c);
 			choose_best_move(&tmp_a, &tmp_b, c);
 		}
 		(*a) = tmp_a;
 		(*b) = tmp_b;
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
+	PRINTD(xd)
 	//DELETE
 	// show_nums(*a, 'a');
 	// show_nums(*b, 'b');

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:54:32 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:30:35 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_check	rarrb_cmp(t_check c);
 t_check	get_rarrb(t_check c);
 t_check	rrarb_cmp(t_check c);
 t_check	get_rrarb(t_check c);
+t_check	rrr_cmp(t_check c);
+t_check	rr_cmp(t_check c);
 t_check	rrarrb_cmp(t_check c);
 t_check	get_rrarrb(t_check c);
 t_check	rarb_cmp(t_check c);
@@ -69,6 +71,10 @@ void	do_rrarrb(t_data **a, t_data **b, t_check c);
 t_check	rrarrb_check(t_data *a, t_data *b, t_check c, int count);
 void	do_rarb(t_data **a, t_data **b, t_check c);
 t_check	rarb_check(t_data *a, t_data *b, t_check c, int count);
+void	do_rrr(t_data **a, t_data **b, t_check c);
+t_check	o_rrr_check(t_data *a, t_data *b, t_check c, int count);
+void	do_rr(t_data **a, t_data **b, t_check c);
+t_check	o_rr_check(t_data *a, t_data *b, t_check c, int count);
 void	do_rrotate(t_data **a, t_data **b, t_check c);
 t_check	rrotate_check(t_data *a, t_data *b, t_check c);
 void	do_rotate(t_data **a, t_data **b, t_check c);

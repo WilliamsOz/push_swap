@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 11:50:22 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:20:28 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,6 @@ t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c)
 			tmp = tmp->next;
 	}
 	return (tmp);
-}
-
-t_data	*get_new_end(t_data *end, t_data *a)
-{
-	t_data	*new_end;
-
-	new_end = a;
-	while (new_end->next != end)
-		new_end = new_end->next;
-	return (new_end);
 }
 
 static t_check	apply_modif(t_check c)
