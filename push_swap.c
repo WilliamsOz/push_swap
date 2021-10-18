@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:40:05 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:56:42 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,9 @@ void	get_data(int ac, char **av, int count)
 	}
 	if (is_sorted(a) != 1)
 		a = treat_data(a, ac -1);
-	//DEL
+	// DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 	gucci(a);
-	// DEL
+	// DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 	free_data(&a);
 }
 

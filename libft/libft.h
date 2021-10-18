@@ -6,16 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/18 12:19:22 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:54:44 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define SORTED 1
-# define NOT_SORTED 0
 
-# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:36:11 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 11:35:48 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:44:12 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,4 @@ t_data	*init_position(t_data *stack_a, int numbers, int count)
 	}
 	stack_a = get_position(stack_a, numbers, count);
 	return (stack_a);
-}
-
-t_data	*get_pivot(t_data *stack_a, t_data *pivot, int numbers)
-{
-	t_data	*tmp;
-
-	numbers /= 2;
-	tmp = stack_a;
-	while (tmp->pos != numbers)
-		tmp = tmp->next;
-	pivot = tmp;
-	return (pivot);
 }

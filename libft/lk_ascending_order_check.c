@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 20:16:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/17 17:53:07 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:53:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	is_sorted(t_data *stack_a)
 	{
 		tmp = keep->next;
 		if (tmp->nbr < keep->nbr)
-			return (NOT_SORTED);
+			return (0);
 		else
 			keep = keep->next;
 	}
-	return (SORTED);
+	return (1);
 }
