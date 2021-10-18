@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 16:01:03 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:24:55 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 int counter;
 int xd;
 	
+#define KORG  printf("\033[31;1m");
 #define KNRM  printf("\033[0;30m");
 #define KRED  printf("\033[0;31m");
 #define KGRN  printf("\033[0;32m");
@@ -32,19 +33,7 @@ int xd;
 #define KWHT  printf("\033[0;37m");
 #define KSTOP printf("\033[0m");
 
-// int main()
-// {
-//     printf("%sred\n", KRED);
-//     printf("%sgreen\n", KGRN);
-//     printf("%syellow\n", KYEL);
-//     printf("%sblue\n", KBLU);
-//     printf("%smagenta\n", KMAG);
-//     printf("%scyan\n", KCYN);
-//     printf("%swhite\n", KWHT);
-//     printf("%snormal\n", KNRM);
 
-//     return 0;
-// }
 
 # define SA show_nums(a, 'A');
 # define SB show_nums(b, 'B');
@@ -56,6 +45,9 @@ int xd;
 
 void	show_nums(t_data *data, char c);
 
+t_data	*sort_big_stacks(t_data *a, t_data *b);
+t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits);
+t_data	*prepare_low_stacks(t_data *a, t_data *b, int digits);
 t_check	rarb_cmp(t_check c);
 t_check	rrarrb_cmp(t_check c);
 t_check	rrarb_cmp(t_check c);
@@ -77,8 +69,6 @@ t_check	rarb_check(t_data *a, t_data *b, t_check c, int count);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	do_swap(t_data **a, t_data **b);
 t_check	swap_check(t_data *a, t_data *b, t_check c);
-t_data	*pre_sort_b(t_data *b, int digits);
-void	divide_stack(t_data **a, t_data **b, t_keep keep, int digits);
 t_data	*get_end(t_data *a);
 void	init_check(t_check *check);
 void	do_rrotate(t_data **a, t_data **b, t_check c);
@@ -92,6 +82,10 @@ t_data	*get_pivot(t_data *stack_a, t_data *pivot, int numbers);
 int		get_max_pos(t_data *a);
 t_data	*init_ind(t_data *data);
 t_data	*init_position(t_data *stack_a, int numbers, int count);
+t_check	sort_best_move(t_check c);
+void	choose_best_move(t_data **a, t_data **b, t_check c);
+t_check	multiples_check(t_data *a, t_data *b, t_check c, int count);
+void	sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b);
 void	free_data(t_data **data);
 void	rrr(t_data **a, t_data **b);
 void	rrab(t_data **data, char c);

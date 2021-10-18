@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:45:19 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 10:06:22 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:52:42 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../push_swap.h"
+#include "../../push_swap.h"
 
 t_check	rrotate_check(t_data *a, t_data *b, t_check c)
 {

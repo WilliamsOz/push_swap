@@ -6,24 +6,89 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 10:21:18 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:40:05 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_data(t_data **data)
+void	gucci(t_data *a)
 {
-	t_data	*tmp;
-
-	if (*data != NULL)
+	if (is_sorted(a) == 1)
 	{
-		while ((*data) != NULL)
+		KGRN
+		printf("Stack is sorted [len of stack :%d]\n", ft_lstsize(a));
+		KSTOP
+		if  (ft_lstsize(a) < 250)
 		{
-			tmp = *data;
-			*data = (*data)->next;
-			free(tmp);
+			if (counter < 700)
+				KGRN
+			else if (counter < 900)
+				KMAG
+			else if (counter < 1100)
+				KORG
+			else if (counter < 1300)
+				KYEL
+			else if (counter < 1500)
+				KWHT
+			else
+				KRED
 		}
+		else
+		{
+			if (counter < 5500)
+				KGRN
+			else if (counter < 7000)
+				KBLU
+			else if (counter < 8500)
+				KORG
+			else if (counter < 10000)
+				KYEL
+			else if (counter < 11500)
+				KWHT
+			else
+				KRED
+		}
+		printf("|%d|\n", counter);
+		KSTOP
+	}
+	else
+	{
+		KRED
+		printf("Stack is not sorted [len of stack :%d]\n", ft_lstsize(a));
+		KSTOP
+		if  (ft_lstsize(a) < 250)
+		{
+			if (counter < 700)
+				KGRN
+			else if (counter < 900)
+				KMAG
+			else if (counter < 1100)
+				KORG
+			else if (counter < 1300)
+				KYEL
+			else if (counter < 1500)
+				KWHT
+			else
+				KRED
+		}
+		else
+		{
+			if (counter < 5500)
+				KGRN
+			else if (counter < 7000)
+				KBLU
+			else if (counter < 8500)
+				KORG
+			else if (counter < 10000)
+				KYEL
+			else if (counter < 11500)
+				KWHT
+			else
+				KRED
+		}
+		printf("|%d|\n", counter);
+		KSTOP
 	}
 }
 
@@ -80,292 +145,19 @@ void	show_nums(t_data *data, char c)
 	}
 }
 
-t_check		sort_best_move(t_check c)
-{
-	if (c.do_rarb == 1)
-		c = get_rarb(c);
-	if (c.do_rrarb == 1)
-		c.rrarb = c.rb + c.rra;
-	if (c.do_rrarrb == 1)
-		c = get_rrarrb(c);
-	if (c.do_rarrb == 1)
-		c = get_rarrb(c);
-	PRINTD(c.rotate_a)
-	PRINTD(c.rrotate_a)
-	PRINTD(c.rarb)
-	PRINTD(c.rrarb)
-	PRINTD(c.rrarrb)
-	PRINTD(c.rarrb)
-	c = rarb_cmp(c);
-	c = rrarrb_cmp(c);
-	c = rrarb_cmp(c);
-	c = rarrb_cmp(c);
-	printf("\ncc\n");
-	PRINTD(c.do_rarb)
-	PRINTD(c.do_rrarb)
-	PRINTD(c.do_rrarrb)
-	PRINTD(c.do_rarrb)
-	return (c);
-}
-
-void		choose_best_move(t_data **a, t_data **b, t_check c)
-{
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	c = sort_best_move(c);
-	if (c.swap_a == 2)
-		do_swap(&tmp_a, &tmp_b);
-	else if (c.do_rarb == 1)
-		do_rarb(&tmp_a, &tmp_b, c);
-	else if (c.do_rrarb == 1)
-		do_rrarb(&tmp_a, &tmp_b, c);
-	else if (c.do_rrarrb == 1)
-		do_rrarrb(&tmp_a, &tmp_b, c);
-	else if (c.do_rarrb == 1)
-		do_rarrb(&tmp_a, &tmp_b, c);
-	else if (c.rotate_a <= c.rrotate_a)
-		do_rotate(&tmp_a, &tmp_b, c);
-	else if (c.rrotate_a < c.rotate_a)
-		do_rrotate(&tmp_a, &tmp_b, c);
-	(*a) = tmp_a;
-	(*b) = tmp_b;
-}
-
-t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
-{
-	c = rotate_check(a, b, c);
-	c = rrotate_check(a, b, c);
-	c = swap_check(a, b, c);
-	count = c.rotate_a;
-	if (c.rrotate_a < count)
-		count = c.rrotate_a;
-	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rarb_check(a, b->next, c, count - 1);
-	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rrarrb_check(a, b, c, count - 1);
-	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rrarb_check(a, b->next, c, count - 1);
-	c.count = count;
-	if (c.swap_a == -1 && count > 0)
-		c = rarrb_check(a, b->next, c, count - 1);
-	return (c);
-}
-
-void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
-{
-	t_data	*end;
-	t_check	c;
-	
-	while (ft_lstsize(*b) > 0)
-	{
-		end = get_end(*a);
-		if (tmp_b->pos < tmp_a->pos && tmp_b->pos > end->pos)
-			pa(&tmp_a, &tmp_b);
-		else
-		{
-			init_check(&c);
-			c = multiples_check(tmp_a, tmp_b, c, 0);
-			choose_best_move(&tmp_a, &tmp_b, c);
-		}
-		(*a) = tmp_a;
-		(*b) = tmp_b;
-	}
-	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
-}
-
-#include <libc.h>
-
-t_data	*prepare_stacks(t_data *a, t_data *b, int digits)
-{
-	t_keep	keep;
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	a = init_position(a, digits, 1);
-	keep.first = 1;
-	keep.mid = ft_lstsize(a) / 2;
-	keep.end = ft_lstsize(a);
-	divide_stack(&a, &b, keep, digits);
-	if (is_sorted(a) == 0)
-		a = sort_three_digit(a, 0, 0, 0);
-	tmp_a = a;
-	tmp_b = b;
-	sort_stacks(&a, &b, tmp_a, tmp_b);
-	// SA
-	// SB
-	PRINTD(counter)
-	if (is_sorted(a) == 0)
-	{
-		KRED
-		printf("\nLISTE NON TRIEE : |%d|\n", ft_lstsize(a));
-		KSTOP
-	}
-	else
-	{
-		KGRN
-		printf("\nLISTE TRIEE : |%d|\n", ft_lstsize(a));
-		KSTOP
-	}
-	return (a);
-}
-
-// FOR > 250
-
-int	check_pos(int nbr, int digits)
-{
-	if (nbr == 1 || nbr == digits || nbr == (digits / 2) ||
-		nbr == ((digits / 2) / 2) || nbr == ((digits / 2) * 1.5))
-		return (1);
-	return (0);
-}
-
-int		is_sorted_bs_a(t_data *a, int digits)
-{
-	t_data	*tmp;
-	t_data	*is_sorted;
-
-	tmp = a;
-	while (tmp->pos != 1)
-		tmp = tmp->next;
-	is_sorted = tmp;
-	tmp = a;
-	while (is_sorted->next != NULL)
-	{
-		if (is_sorted->pos > is_sorted->next->pos)
-			return (0);
-		is_sorted = is_sorted->next;
-	}
-	if (is_sorted->pos == digits && tmp->pos != 1)
-		return (0);
-	while (tmp->pos != 1)
-	{
-		if (tmp->pos > tmp->next->pos && tmp->next->pos != 1)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-t_data	*place_stack_a(t_data *a, int count)
+void	free_data(t_data **data)
 {
 	t_data	*tmp;
 
-	tmp = a;
-	while (tmp->pos != 375)
+	if (*data != NULL)
 	{
-		count++;
-		tmp = tmp->next;
-	}
-	if (count > 3)
-	{
-		while (count < 5)
+		while ((*data) != NULL)
 		{
-			rrab(&a, 'a');
-			count++;
+			tmp = *data;
+			*data = (*data)->next;
+			free(tmp);
 		}
 	}
-	else
-	{
-		while (count > 0)
-		{
-			rab(&a, 'a');
-			count--;
-		}
-	}
-	SA
-	return (a);
-}
-
-t_data	*pre_sort_bs_a(t_data *a, int digits)
-{
-	t_data	*tmp;
-
-	while (is_sorted_bs_a(a, digits) == 0)
-	{
-		tmp = a;
-		if (tmp->pos == digits && tmp->next->pos != 1)
-			rab(&a, 'a');
-		else if (tmp->pos > tmp->next->pos)
-		{
-			sab(&a, 'a');
-			rab(&a, 'a');
-		}
-		else
-			rab(&a, 'a');
-	}
-	a = place_stack_a(a, 0);
-	return (a);
-}
-
-t_data	*pre_sort_bs_b(t_data *b, int digits)
-{
-	digits /= 2;
-	if (b->pos < digits)
-		rab(&b, 'b');
-	return (b);
-}
-
-t_data	*sort_big_stacks(t_data *a, t_data *b)
-{
-	t_data *tmp_a;
-	t_data *tmp_b;
-	
-	tmp_a = a;
-	tmp_b = b;
-	sort_stacks(&a, &b, tmp_a, tmp_b);
-	PRINTD(counter)
-	if (is_sorted(a) == 0)
-	{
-		KRED
-		printf("\nLISTE NON TRIEE : |%d|\n", ft_lstsize(a));
-		KSTOP
-	}
-	else
-	{
-		KGRN
-		printf("\nLISTE TRIEE : |%d|\n", ft_lstsize(a));
-		KSTOP
-	}
-	return (a);
-}
-
-t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
-{
-	t_data	*tmp;
-	int		count;
-
-	count = digits - 5;
-	tmp = a;
-	a = init_position(a, digits, 1);
-	while (count > 0)
-	{
-		tmp = a;
-		if (check_pos(tmp->pos, digits) == 1)
-		{
-			rab(&a, 'a');
-			tmp = tmp->next;
-		}
-		else
-		{
-			pb(&a, &b);
-			if (ft_lstsize(b) > 2)
-				b = pre_sort_bs_b(b, digits);
-			count--;
-		}
-	}
-	a = pre_sort_bs_a(a, digits);
-	PRINTD(counter)
-	SA
-	// SB
-	exit (EXIT_FAILURE);
-	a = sort_big_stacks(a, b);
-	return (a);
 }
 
 t_data	*treat_data(t_data *a, int digits)
@@ -384,8 +176,8 @@ t_data	*treat_data(t_data *a, int digits)
 	else if (digits == 5)
 		a = sort_five_digit(a, b, digits);
 	else if (digits < 250)
-		a = prepare_stacks(a, b, digits);
-	else if (digits > 250)
+		a = prepare_low_stacks(a, b, digits);
+	else if (digits >= 250)
 		a = prepare_big_stacks(a, b, digits);
 	return (a);
 }
@@ -415,6 +207,9 @@ void	get_data(int ac, char **av, int count)
 	}
 	if (is_sorted(a) != 1)
 		a = treat_data(a, ac -1);
+	//DEL
+	gucci(a);
+	// DEL
 	free_data(&a);
 }
 

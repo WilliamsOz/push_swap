@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:36:11 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/06 15:37:26 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:35:48 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 static t_data	*get_position(t_data *stack_a, int numbers, int count)
 {

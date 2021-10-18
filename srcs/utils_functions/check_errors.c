@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:36:00 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/09/09 17:36:11 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:35:51 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 static long	latoi(char *str)
 {

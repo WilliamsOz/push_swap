@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 10:07:14 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:50:22 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../push_swap.h"
+#include "../../push_swap.h"
 
 void	do_rrarb(t_data **a, t_data **b, t_check c)
 {

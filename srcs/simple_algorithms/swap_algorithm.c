@@ -6,11 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 10:06:47 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:52:50 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../push_swap.h"
+#include "../../push_swap.h"
 
 void	do_swap(t_data **a, t_data **b)
 {
