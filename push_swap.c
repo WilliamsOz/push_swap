@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 12:56:42 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:59:07 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	gucci(t_data *a)
 	if (is_sorted(a) == 1)
 	{
 		KGRN
-		printf("Stack is sorted [len of stack :%d]\n", ft_lstsize(a));
+		printf("Stack is sorted [len of stack : %d]\n", ft_lstsize(a));
 		KSTOP
 		if  (ft_lstsize(a) < 250)
 		{
@@ -55,7 +55,7 @@ void	gucci(t_data *a)
 	else
 	{
 		KRED
-		printf("Stack is not sorted [len of stack :%d]\n", ft_lstsize(a));
+		printf("Stack is not sorted [len of stack : %d]\n", ft_lstsize(a));
 		KSTOP
 		if  (ft_lstsize(a) < 250)
 		{
@@ -212,6 +212,9 @@ void	get_data(int ac, char **av, int count)
 	// DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 	free_data(&a);
 }
+
+// Essayer de rajouter des chunk pour < 250 et > 250
+// Compprendre pourquoi il y a autant de move pour > 250
 
 int		main(int ac, char **av)
 {
