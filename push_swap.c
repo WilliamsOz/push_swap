@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/17 17:57:23 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:21:18 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ t_check		sort_best_move(t_check c)
 	c = rrarrb_cmp(c);
 	c = rrarb_cmp(c);
 	c = rarrb_cmp(c);
+	printf("\ncc\n");
+	PRINTD(c.do_rarb)
+	PRINTD(c.do_rrarb)
+	PRINTD(c.do_rrarrb)
+	PRINTD(c.do_rarrb)
 	return (c);
 }
 
@@ -132,8 +137,6 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
 {
 	c = rotate_check(a, b, c);
-	if (c.rotate_a == 27)
-		exit (EXIT_FAILURE);
 	c = rrotate_check(a, b, c);
 	c = swap_check(a, b, c);
 	count = c.rotate_a;
@@ -222,24 +225,112 @@ int	check_pos(int nbr, int digits)
 	return (0);
 }
 
-t_data	*pre_sort_a(t_data *a)
+int		is_sorted_bs_a(t_data *a, int digits)
 {
 	t_data	*tmp;
-	tmp = a;
+	t_data	*is_sorted;
 
-	SA
-	while (tmp != NULL)
+	tmp = a;
+	while (tmp->pos != 1)
+		tmp = tmp->next;
+	is_sorted = tmp;
+	tmp = a;
+	while (is_sorted->next != NULL)
 	{
-		if (a->pos < a->next->pos)
+		if (is_sorted->pos > is_sorted->next->pos)
+			return (0);
+		is_sorted = is_sorted->next;
+	}
+	if (is_sorted->pos == digits && tmp->pos != 1)
+		return (0);
+	while (tmp->pos != 1)
+	{
+		if (tmp->pos > tmp->next->pos && tmp->next->pos != 1)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+t_data	*place_stack_a(t_data *a, int count)
+{
+	t_data	*tmp;
+
+	tmp = a;
+	while (tmp->pos != 375)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	if (count > 3)
+	{
+		while (count < 5)
+		{
+			rrab(&a, 'a');
+			count++;
+		}
+	}
+	else
+	{
+		while (count > 0)
+		{
+			rab(&a, 'a');
+			count--;
+		}
+	}
+	SA
+	return (a);
+}
+
+t_data	*pre_sort_bs_a(t_data *a, int digits)
+{
+	t_data	*tmp;
+
+	while (is_sorted_bs_a(a, digits) == 0)
+	{
+		tmp = a;
+		if (tmp->pos == digits && tmp->next->pos != 1)
+			rab(&a, 'a');
+		else if (tmp->pos > tmp->next->pos)
 		{
 			sab(&a, 'a');
-			tmp = a;
-		}
-		else
-		{
-			tmp = tmp->next;
 			rab(&a, 'a');
 		}
+		else
+			rab(&a, 'a');
+	}
+	a = place_stack_a(a, 0);
+	return (a);
+}
+
+t_data	*pre_sort_bs_b(t_data *b, int digits)
+{
+	digits /= 2;
+	if (b->pos < digits)
+		rab(&b, 'b');
+	return (b);
+}
+
+t_data	*sort_big_stacks(t_data *a, t_data *b)
+{
+	t_data *tmp_a;
+	t_data *tmp_b;
+	
+	tmp_a = a;
+	tmp_b = b;
+	sort_stacks(&a, &b, tmp_a, tmp_b);
+	PRINTD(counter)
+	if (is_sorted(a) == 0)
+	{
+		KRED
+		printf("\nLISTE NON TRIEE : |%d|\n", ft_lstsize(a));
+		KSTOP
+	}
+	else
+	{
+		KGRN
+		printf("\nLISTE TRIEE : |%d|\n", ft_lstsize(a));
+		KSTOP
 	}
 	return (a);
 }
@@ -257,18 +348,23 @@ t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
 		tmp = a;
 		if (check_pos(tmp->pos, digits) == 1)
 		{
-			rrab(&a, 'a');
+			rab(&a, 'a');
 			tmp = tmp->next;
 		}
 		else
 		{
 			pb(&a, &b);
+			if (ft_lstsize(b) > 2)
+				b = pre_sort_bs_b(b, digits);
 			count--;
 		}
 	}
-	a = pre_sort_a(a);
-	// a = sort_big_stacks(a, b);
+	a = pre_sort_bs_a(a, digits);
 	PRINTD(counter)
+	SA
+	// SB
+	exit (EXIT_FAILURE);
+	a = sort_big_stacks(a, b);
 	return (a);
 }
 
