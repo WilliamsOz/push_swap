@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 17:53:20 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:54:32 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ t_check		sort_best_move(t_check c)
 {
 	if (c.do_rarb == 1)
 		c = get_rarb(c);
-	if (c.do_rrarb == 1)
-		c.rrarb = c.rb + c.rra;
 	if (c.do_rrarrb == 1)
 		c = get_rrarrb(c);
+	if (c.do_rrarb == 1)
+		c.rrarb = c.rb + c.rra;
 	if (c.do_rarrb == 1)
 		c = get_rarrb(c);
 	c = rarb_cmp(c);
@@ -59,7 +59,7 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
-
+ 
 t_check		multiples_check(t_data *a, t_data *b, t_check c, int count)
 {
 	c = rotate_check(a, b, c);

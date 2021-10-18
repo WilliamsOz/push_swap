@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 16:56:44 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:53:31 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	do_swap(t_data **a, t_data **b)
 {
-
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 

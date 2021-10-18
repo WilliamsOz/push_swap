@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:52:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 17:52:18 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:53:13 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_check		rr_cmp(t_check c)
 {
-	if (c.do_rr == 1 && c.o_rr >= c.swap_a && c.swap_a != -1)
+	if (c.do_rr == 1 && c.o_rr >= c.swap_a && c.swap_a == 2)
 		c.o_rr = 0;
 	if (c.do_rr == 1 && c.o_rr < c.rarb && c.do_rarb == 1)
 		c.do_rarb = 0;
@@ -70,7 +70,7 @@ t_check		o_rr_check(t_data *a, t_data *b, t_check c, int count)
 		a = a->next;
 		b = b->next;
 	}
-	if (count > 0 && b != NULL)
+	if (count > 0 && b != NULL && a != NULL)
 	{
 		c.do_rr = 1;
 		return (c);
