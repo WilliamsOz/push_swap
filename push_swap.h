@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 15:57:12 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:58:38 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ void	do_rrotate(t_data **a, t_data **b, t_check c);
 t_check	rrotate_check(t_data *a, t_data *b, t_check c);
 void	do_rotate(t_data **a, t_data **b, t_check c);
 t_check	rotate_check(t_data *a, t_data *b, t_check c);
-t_check	sort_best_move(t_check c);
+t_check	get_all_move(t_check c);
+void	sort_with_algo(t_data **a, t_data **b, t_check c);
 void	choose_best_move(t_data **a, t_data **b, t_check c);
 t_check	multiples_check(t_data *a, t_data *b, t_check c, int count);
 t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c);
 t_data	*get_new_end(t_data *end, t_data *a);
 t_data	*get_end(t_data *a);
+void	init_check_pt2(t_check **check);
 void	init_check(t_check *check);
 t_data	*init_position(t_data *stack_a, int numbers, int count);
 int		check_errors(int ac, char **av);

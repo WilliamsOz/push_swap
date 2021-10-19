@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/19 15:56:16 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:20:18 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_keep
 	int				end;
 }				t_keep;
 
-typedef struct	s_bskeep
+typedef struct s_bskeep
 {
 	int				d1;
 	int				d3;
@@ -42,7 +42,9 @@ typedef struct	s_bskeep
 
 typedef struct s_check
 {
+	int				do_rotate_a;
 	int				rotate_a;
+	int				do_rrotate_a;
 	int				rrotate_a;
 	int				swap_a;
 	int				do_rarb;
@@ -66,6 +68,7 @@ typedef struct s_check
 	int				do_rrr;
 	int				o_rrr;
 	int				count;
+	int				algo_are_optimal;
 }				t_check;
 
 int					ft_isdigit(int c);

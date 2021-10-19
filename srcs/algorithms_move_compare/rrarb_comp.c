@@ -6,18 +6,35 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 14:00:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 11:50:02 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 19:29:39 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_check	rrarb_swap_cmp(t_check c)
+static t_check	rrarb_basics_algo_cmp(t_check c)
 {
-	if (c.rrarb < c.swap_a)
-		c.swap_a = -1;
-	else if (c.swap_a <= c.rrarb)
-		c.do_rrarb = 0;
+	if (c.swap_a == 2)
+	{
+		if (c.rrarb < c.swap_a)
+			c.swap_a = -1;
+		else if (c.swap_a <= c.rrarb)
+			c.do_rrarb = 0;
+	}
+	if (c.do_rotate_a == 1)
+	{
+		if (c.rrarb < c.rotate_a)
+			c.do_rotate_a = 0;
+		else if (c.rrarb >= c.rotate_a)
+			c.do_rrarb = 0;
+	}
+	if (c.do_rrotate_a == 1)
+	{
+		if (c.rrarb < c.rrotate_a)
+			c.do_rrotate_a = 0;
+		else if (c.rrarb >= c.rrotate_a)
+			c.do_rrarb = 0;
+	}
 	return (c);
 }
 
@@ -50,8 +67,9 @@ static t_check	rrarb_rarrb_cmp(t_check c)
 
 t_check	rrarb_cmp(t_check c)
 {
-	if (c.do_rrarb == 1 && c.swap_a == 2)
-		c = rrarb_swap_cmp(c);
+	if (c.do_rrarb == 1 && (c.swap_a == 2 || c.do_rotate_a == 1
+		|| c.do_rrotate_a == 1))
+		c = rrarb_basics_algo_cmp(c);
 	if (c.do_rrarb == 1 && c.do_rarb == 1)
 		c = rrarb_rarb_cmp(c);
 	if (c.do_rrarb == 1 && c.do_rrarrb == 1)

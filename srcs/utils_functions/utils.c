@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 16:59:48 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:44:25 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,25 @@ t_data	*get_end(t_data *stack)
 	return (tmp);
 }
 
+void	init_check_pt2(t_check **check)
+{
+	(*(*check)).do_rarrb = 0;
+	(*(*check)).rarrb = 0;
+	(*(*check)).ra = 0;
+	(*(*check)).rrb = 1;
+	(*(*check)).do_rr = 0;
+	(*(*check)).o_rr = 0;
+	(*(*check)).do_rrr = 0;
+	(*(*check)).o_rrr = 0;
+	(*(*check)).count = 0;
+	(*(*check)).algo_are_optimal = 0;
+}
+
 void	init_check(t_check *check)
 {
+	(*check).do_rotate_a = 0;
 	(*check).rotate_a = 0;
+	(*check).do_rrotate_a = 0;
 	(*check).rrotate_a = 0;
 	(*check).swap_a = 0;
 	(*check).do_rarb = 0;
@@ -54,15 +70,7 @@ void	init_check(t_check *check)
 	(*check).rrarb = 0;
 	(*check).rra = 0;
 	(*check).rb = 1;
-	(*check).do_rarrb = 0;
-	(*check).rarrb = 0;
-	(*check).ra = 0;
-	(*check).rrb = 1;
-	(*check).do_rr = 0;
-	(*check).o_rr = 0;
-	(*check).do_rrr = 0;
-	(*check).o_rrr = 0;
-	(*check).count = 0;
+	init_check_pt2(&check);
 }
 
 t_data	*finish_sorting(t_data *a, int size_of_list, int count)

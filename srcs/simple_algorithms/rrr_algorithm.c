@@ -6,16 +6,14 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:22:49 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:53:25 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 19:40:24 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_check		rrr_cmp(t_check c)
+static t_check	rrr_complex_algo_cmp(t_check c)
 {
-	if (c.do_rrr == 1 && c.o_rrr >= c.swap_a && c.swap_a == 2)
-		c.o_rrr = 0;
 	if (c.do_rrr == 1 && c.o_rrr < c.rarb && c.do_rarb == 1)
 		c.do_rarb = 0;
 	else if (c.do_rrr == 1 && c.o_rrr > c.rarb && c.do_rarb == 1)
@@ -36,6 +34,42 @@ t_check		rrr_cmp(t_check c)
 		c.do_rr = 0;
 	else if (c.do_rrr == 1 && c.o_rrr > c.o_rr && c.o_rr == 1)
 		c.do_rrr = 0;
+	return (c);
+}
+
+static t_check	rrr_simple_algo_cmp(t_check c)
+{
+	if (c.swap_a == 2)
+	{
+		if (c.o_rrr < c.swap_a)
+			c.swap_a = -1;
+		else if (c.swap_a <= c.o_rrr)
+			c.do_rrr = 0;
+	}
+	else if (c.do_rotate_a == 1)
+	{
+		if (c.o_rrr < c.rotate_a)
+			c.do_rotate_a = 0;
+		else if (c.o_rrr >= c.rotate_a)
+			c.do_rrr = 0;
+	}
+	else if (c.do_rrotate_a == 1)
+	{
+		if (c.o_rrr < c.rrotate_a)
+			c.do_rrotate_a = 0;
+		else if (c.o_rrr >= c.rrotate_a)
+			c.do_rrr = 0;
+	}
+	return (c);
+}
+
+t_check		rrr_cmp(t_check c)
+{
+	if (c.do_rrr == 1)
+	{
+		c = rrr_simple_algo_cmp(c);
+		c = rrr_complex_algo_cmp(c);	
+	}
 	return (c);
 }
 
