@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:51:16 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:36:41 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:01:29 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ static t_data	*pre_sort_a(t_data *a, t_data *b, int l_digits, int f_digits)
 
 static t_data	*pre_sort_b(t_data *b, int digits)
 {
-	digits = (digits / 2) - 1;
-	if (b->pos < digits)
+	if (b->pos < digits * 0.5)
 		rab(&b, 'b');
+	if (b->next->pos < b->pos)
+		sab(&b, 'b');
 	return (b);
 }
 
@@ -85,6 +86,9 @@ t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
 		}
 	}
 	a = pre_sort_a(a, b, digits, digits);
+	// SB
+	// SA
+	// e
 	a = sort_big_stacks(a, b);
 	return (a);
 }

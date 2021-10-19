@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 17:30:35 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:57:12 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 //DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 int counter;
 int xd;
+
+#define e exit(EXIT_FAILURE);
 	
 #define KORG  printf("\033[31;1m");
 #define KNRM  printf("\033[0;30m");

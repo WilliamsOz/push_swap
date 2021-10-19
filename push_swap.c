@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:23:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:44:15 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,69 @@ void	gucci(t_data *a)
 		if  (ft_lstsize(a) < 250)
 		{
 			if (counter < 700)
+			{
 				KGRN
+				printf("|%d| 5 / 5\n", counter);
+			}
 			else if (counter < 900)
+			{
 				KMAG
+				printf("|%d| 4 / 5\n", counter);
+			}
 			else if (counter < 1100)
+			{
 				KORG
+				printf("|%d| 3 / 5\n", counter);
+			}
 			else if (counter < 1300)
+			{
 				KYEL
+				printf("|%d| 2 / 5\n", counter);
+			}
 			else if (counter < 1500)
+			{
 				KWHT
+				printf("|%d| 1 / 5\n", counter);
+			}
 			else
+			{
 				KRED
+				printf("|%d| 0 / 5\n", counter);
+			}
 		}
 		else
 		{
 			if (counter < 5500)
+			{
 				KGRN
+				printf("|%d| 5 / 5\n", counter);
+			}
 			else if (counter < 7000)
+			{
 				KBLU
+				printf("|%d| 4 / 5\n", counter);
+			}
 			else if (counter < 8500)
+			{
 				KORG
+				printf("|%d| 3 / 5\n", counter);
+			}
 			else if (counter < 10000)
+			{
 				KYEL
+				printf("|%d| 2 / 5\n", counter);
+			}
 			else if (counter < 11500)
+			{
 				KWHT
+				printf("|%d| 1 / 5\n", counter);
+			}
 			else
+			{
 				KRED
+				printf("|%d| 0 / 5\n", counter);
+			}
 		}
-		printf("|%d|\n", counter);
 		KSTOP
 	}
 	else
@@ -60,34 +95,69 @@ void	gucci(t_data *a)
 		if  (ft_lstsize(a) < 250)
 		{
 			if (counter < 700)
+			{
 				KGRN
+				printf("|%d| 5 / 5\n", counter);
+			}
 			else if (counter < 900)
+			{
 				KMAG
+				printf("|%d| 4 / 5\n", counter);
+			}
 			else if (counter < 1100)
+			{
 				KORG
+				printf("|%d| 3 / 5\n", counter);
+			}
 			else if (counter < 1300)
+			{
 				KYEL
+				printf("|%d| 2 / 5\n", counter);
+			}
 			else if (counter < 1500)
+			{
 				KWHT
+				printf("|%d| 1 / 5\n", counter);
+			}
 			else
+			{
 				KRED
+				printf("|%d| 0 / 5\n", counter);
+			}
 		}
 		else
 		{
 			if (counter < 5500)
+			{
 				KGRN
+				printf("|%d| 5 / 5\n", counter);
+			}
 			else if (counter < 7000)
+			{
 				KBLU
+				printf("|%d| 4 / 5\n", counter);
+			}
 			else if (counter < 8500)
+			{
 				KORG
+				printf("|%d| 3 / 5\n", counter);
+			}
 			else if (counter < 10000)
+			{
 				KYEL
+				printf("|%d| 2 / 5\n", counter);
+			}
 			else if (counter < 11500)
+			{
 				KWHT
+				printf("|%d| 1 / 5\n", counter);
+			}
 			else
+			{
 				KRED
+				printf("|%d| 0 / 5\n", counter);
+			}
 		}
-		printf("|%d|\n", counter);
 		KSTOP
 	}
 }

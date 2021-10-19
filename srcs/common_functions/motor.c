@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:54:32 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:08:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
+	if ((c.do_rarb == 1 && c.rarb > 5) || (c.do_rrarrb == 1 && c.rrarrb > 5)
+		|| (c.do_rrarb == 1 && c.rrarb > 5) || (c.do_rarrb == 1 && c.rarrb > 5) 
+		|| (c.do_rr == 1 && c.o_rr > 5) || (c.do_rrr == 1 && c.o_rrr > 5))
+		rab(&tmp_b, 'b');
+	else
+	{
 	if (c.swap_a == 2)
 		do_swap(&tmp_a, &tmp_b);
 	else if (c.do_rarb == 1)
@@ -55,7 +61,8 @@ void		choose_best_move(t_data **a, t_data **b, t_check c)
 	else if (c.rotate_a <= c.rrotate_a)
 		do_rotate(&tmp_a, &tmp_b, c);
 	else if (c.rrotate_a < c.rotate_a)
-		do_rrotate(&tmp_a, &tmp_b, c);
+		do_rrotate(&tmp_a, &tmp_b, c);	
+	}
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
@@ -102,10 +109,9 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*b) = tmp_b;
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
-	PRINTD(xd)
 	//DELETE
 	// show_nums(*a, 'a');
 	// show_nums(*b, 'b');
-	// exit (EXIT_FAILURE);
+	// e
 	//STOP
 }

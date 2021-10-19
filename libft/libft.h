@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/18 18:26:05 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:56:16 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ typedef struct s_keep
 	int				mid;
 	int				end;
 }				t_keep;
+
+typedef struct	s_bskeep
+{
+	int				d1;
+	int				d3;
+	int				d4;
+	int				d5;
+	int				d6;
+	int				d7;
+}				t_bskeep;
 
 typedef struct s_check
 {
