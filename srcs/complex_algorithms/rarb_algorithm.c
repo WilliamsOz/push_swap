@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:18:59 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 12:32:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:34:36 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_mem	rarb_check(t_data *a, t_data *b, t_check c, t_mem mem)
 	while (b != NULL)
 	{
 		tmp_a = a;
+		c.r_a = 0;
 		while (b != NULL && (b->pos < end->pos || b->pos > tmp_a->pos))
 		{
 			end = tmp_a;
@@ -80,7 +81,7 @@ t_mem	rarb_check(t_data *a, t_data *b, t_check c, t_mem mem)
 		}
 		if (b->pos > end->pos && b->pos < tmp_a->pos)
 			mem = memorise_rarb(c, mem, c.r_a, c.r_b);
-		c.r_a = 0;
+		b = b->next;
 		c.r_b++;
 	}
 	return (mem);
