@@ -6,91 +6,80 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:22:49 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 19:40:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:55:26 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_check	rrr_complex_algo_cmp(t_check c)
+// static t_check	rrr_complex_algo_cmp(t_check c)
+// {
+// 	if (c.do_rrr == 1 && c.o_rrr < c.rarb && c.do_rarb == 1)
+// 		c.do_rarb = 0;
+// 	else if (c.do_rrr == 1 && c.o_rrr > c.rarb && c.do_rarb == 1)
+// 		c.do_rrr = 0;
+// 	if (c.do_rrr == 1 && c.o_rrr < c.rrarrb && c.do_rrarrb == 1)
+// 		c.do_rrarrb = 0;
+// 	else if (c.do_rrr == 1 && c.o_rrr > c.rrarrb && c.do_rrarrb == 1)
+// 		c.do_rrr = 0;
+// 	if (c.do_rrr == 1 && c.o_rrr < c.rarrb && c.do_rarrb == 1)
+// 		c.do_rarrb = 0;
+// 	else if (c.do_rrr == 1 && c.o_rrr > c.rarrb && c.do_rarrb == 1)
+// 		c.do_rrr = 0;
+// 	if (c.do_rrr == 1 && c.o_rrr < c.rrarb && c.do_rrarb == 1)
+// 		c.do_rrarb = 0;
+// 	else if (c.do_rrr == 1 && c.o_rrr > c.rrarb && c.do_rrarb == 1)
+// 		c.do_rrr = 0;
+// 	if (c.do_rrr == 1 && c.o_rrr < c.o_rr && c.o_rr == 1)
+// 		c.do_rr = 0;
+// 	else if (c.do_rrr == 1 && c.o_rrr > c.o_rr && c.o_rr == 1)
+// 		c.do_rrr = 0;
+// 	return (c);
+// }
+
+static t_mem	rrr_simple_algo_cmp(t_mem mem)
 {
-	if (c.do_rrr == 1 && c.o_rrr < c.rarb && c.do_rarb == 1)
-		c.do_rarb = 0;
-	else if (c.do_rrr == 1 && c.o_rrr > c.rarb && c.do_rarb == 1)
-		c.do_rrr = 0;
-	if (c.do_rrr == 1 && c.o_rrr < c.rrarrb && c.do_rrarrb == 1)
-		c.do_rrarrb = 0;
-	else if (c.do_rrr == 1 && c.o_rrr > c.rrarrb && c.do_rrarrb == 1)
-		c.do_rrr = 0;
-	if (c.do_rrr == 1 && c.o_rrr < c.rarrb && c.do_rarrb == 1)
-		c.do_rarrb = 0;
-	else if (c.do_rrr == 1 && c.o_rrr > c.rarrb && c.do_rarrb == 1)
-		c.do_rrr = 0;
-	if (c.do_rrr == 1 && c.o_rrr < c.rrarb && c.do_rrarb == 1)
-		c.do_rrarb = 0;
-	else if (c.do_rrr == 1 && c.o_rrr > c.rrarb && c.do_rrarb == 1)
-		c.do_rrr = 0;
-	if (c.do_rrr == 1 && c.o_rrr < c.o_rr && c.o_rr == 1)
-		c.do_rr = 0;
-	else if (c.do_rrr == 1 && c.o_rrr > c.o_rr && c.o_rr == 1)
-		c.do_rrr = 0;
-	return (c);
+	if (mem.swap == 1)
+		mem.rrr = 0;
+	if (mem.rrr < mem.rotate_a)
+		mem.rotate_a = 0;
+	else if (mem.rrr >= mem.rotate_a)
+		mem.rrr = 0;
+	if (mem.rrr < mem.rrotate_a)
+		mem.rrotate_a = 0;
+	else if (mem.rrr >= mem.rrotate_a)
+		mem.rrr = 0;
+	return (mem);
 }
 
-static t_check	rrr_simple_algo_cmp(t_check c)
+t_mem	rrr_cmp(t_mem mem)
 {
-	if (c.swap_a == 2)
+	if (mem.rrr > 0)
 	{
-		if (c.o_rrr < c.swap_a)
-			c.swap_a = -1;
-		else if (c.swap_a <= c.o_rrr)
-			c.do_rrr = 0;
+		mem = rrr_simple_algo_cmp(mem);
+		// mem = rrr_complex_algo_cmp(mem);	
 	}
-	else if (c.do_rotate_a == 1)
-	{
-		if (c.o_rrr < c.rotate_a)
-			c.do_rotate_a = 0;
-		else if (c.o_rrr >= c.rotate_a)
-			c.do_rrr = 0;
-	}
-	else if (c.do_rrotate_a == 1)
-	{
-		if (c.o_rrr < c.rrotate_a)
-			c.do_rrotate_a = 0;
-		else if (c.o_rrr >= c.rrotate_a)
-			c.do_rrr = 0;
-	}
-	return (c);
+	return (mem);
 }
 
-t_check		rrr_cmp(t_check c)
-{
-	if (c.do_rrr == 1)
-	{
-		c = rrr_simple_algo_cmp(c);
-		c = rrr_complex_algo_cmp(c);	
-	}
-	return (c);
-}
-
-void	do_rrr(t_data **a, t_data **b, t_check c)
+void	do_rrr(t_data **a, t_data **b, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	while (c.o_rrr > 0)
+	while (mem.rrr > 0)
 	{
 		rrr(&tmp_a, &tmp_b);
-		c.o_rrr--;
+		mem.rrr--;
 	}
 	pa(&tmp_a, &tmp_b);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
 
-t_check		o_rrr_check(t_data *a, t_data *b, t_check c, int count)
+t_mem		o_rrr_check(t_data *a, t_data *b, t_check c, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -99,10 +88,10 @@ t_check		o_rrr_check(t_data *a, t_data *b, t_check c, int count)
 	tmp_a = a;
 	tmp_b = b;
 	end = get_end(a);
-	while (count > 0 && a->next != end && b->next != tmp_b
+	// while (a->next != end && b->next != tmp_b
+	while (a != end && b != tmp_b && end != NULL && tmp_b != NULL
 		&& (tmp_b->pos < end->pos || tmp_b->pos > tmp_a->pos))
 	{
-		count--;
 		c.o_rrr++;
 		tmp_a = end;
 		end = get_new_end(end, a);
@@ -111,10 +100,7 @@ t_check		o_rrr_check(t_data *a, t_data *b, t_check c, int count)
 		else
 			tmp_b = get_new_end(tmp_b, b);
 	}
-	if (count > 0 && tmp_b != b && end != a && b->next != tmp_b)
-	{
-		c.do_rrr = 1;
-		return (c);
-	}
-	return (c);
+	if (tmp_b->pos > end->pos && tmp_b->pos < tmp_a->pos)
+		mem.rrr = c.o_rrr;
+	return (mem);
 }

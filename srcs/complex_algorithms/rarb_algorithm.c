@@ -6,78 +6,82 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:18:59 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:54:00 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:32:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_check	get_rarb(t_check c)
-{
-	int	tmp_da;
-	int	tmp_db;
-
-	tmp_da = c.r_a;
-	tmp_db = c.r_b;
-	while (tmp_da > 0 && tmp_db > 0)
-	{
-		c.rarb++;
-		tmp_da--;
-		tmp_db--;
-	}
-	c.rarb = c.rarb + tmp_da + tmp_db;
-	return (c);
-}
-
-void	do_rarb(t_data **a, t_data **b, t_check c)
+void	do_rarb(t_data **a, t_data **b, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	c.rarb = 0;
-	while (c.r_a > 0 && c.r_b > 0)
+	show_nums(*a, 'a');
+	show_nums(*b, 'b');
+	while (mem.r_a > 0 && mem.r_b > 0)
 	{
-		c.rarb++;
-		c.r_a--;
-		c.r_b--;
-	}
-	while (c.rarb-- > 0)
+		mem.r_a--;
+		mem.r_b--;
 		rr(&tmp_a, &tmp_b);
-	while (c.r_a-- > 0)
+	}
+	while (mem.r_a-- > 0)
 		rab(&tmp_a, 'a');
-	while (c.r_b-- > 0)
+	while (mem.r_b-- > 0)
 		rab(&tmp_b, 'b');
 	pa(&tmp_a, &tmp_b);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
+	show_nums(*a, 'a');
+	show_nums(*b, 'b');
 }
 
-t_check	rarb_check(t_data *a, t_data *b, t_check c, int count)
+static t_mem	memorise_rarb(t_check c, t_mem mem, int tmp_ra, int tmp_rb)
 {
+	while (tmp_ra > 0 && tmp_rb > 0)
+	{
+		tmp_ra--;
+		tmp_rb--;
+		c.rarb++;
+	}
+	c.rarb = c.rarb + tmp_ra + tmp_rb;
+	if (mem.rarb == 0)
+	{
+		mem.do_rarb = 1;
+		mem.rarb = c.rarb;
+		mem.r_a = c.r_a;
+		mem.r_b = c.r_b;
+	}
+	else if (mem.rarb > c.rarb)
+	{
+		mem.rarb = c.rarb;
+		mem.r_a = c.r_a;
+		mem.r_b = c.r_b;
+	}
+	return (mem);
+}
+
+t_mem	rarb_check(t_data *a, t_data *b, t_check c, t_mem mem)
+{
+	t_data	*tmp_a;
 	t_data	*end;
 
 	end = get_end(a);
-	while (c.count > 0 && a != NULL && b != NULL)
+	while (b != NULL)
 	{
-		while (count > 0 && a != NULL && b != NULL
-			&& (b->pos < end->pos || b->pos > a->pos))
+		tmp_a = a;
+		while (b != NULL && (b->pos < end->pos || b->pos > tmp_a->pos))
 		{
-			count--;
-			end = a;
-			a = a->next;
+			end = tmp_a;
+			tmp_a = tmp_a->next;
 			c.r_a++;
 		}
-		if (count > 0)
-		{
-			c.do_rarb = 1;
-			return (c);
-		}
+		if (b->pos > end->pos && b->pos < tmp_a->pos)
+			mem = memorise_rarb(c, mem, c.r_a, c.r_b);
 		c.r_a = 0;
-		c.count--;
 		c.r_b++;
-		b = b->next;
 	}
-	return (c);
+	return (mem);
 }

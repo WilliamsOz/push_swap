@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/19 18:20:18 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:23:32 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ typedef struct s_data
 	struct s_data	*next;
 	int				nbr;
 	int				pos;
-}				t_data;
+}					t_data;
 
 typedef struct s_keep
 {
 	int				first;
 	int				mid;
 	int				end;
-}				t_keep;
+}					t_keep;
 
 typedef struct s_bskeep
 {
@@ -38,19 +38,21 @@ typedef struct s_bskeep
 	int				d5;
 	int				d6;
 	int				d7;
-}				t_bskeep;
+}					t_bskeep;
 
 typedef struct s_check
 {
-	int				do_rotate_a;
-	int				rotate_a;
-	int				do_rrotate_a;
-	int				rrotate_a;
 	int				swap_a;
-	int				do_rarb;
+	int				rotate_a;
+	int				rrotate_a;
+	int				o_rr;
+	int				o_rrr;
+
 	int				rarb;
 	int				r_a;
 	int				r_b;
+
+
 	int				do_rrarrb;
 	int				rrarrb;
 	int				rr_rra;
@@ -63,13 +65,26 @@ typedef struct s_check
 	int				rarrb;
 	int				ra;
 	int				rrb;
-	int				do_rr;
-	int				o_rr;
-	int				do_rrr;
-	int				o_rrr;
+
 	int				count;
 	int				algo_are_optimal;
-}				t_check;
+}					t_check;
+
+typedef struct s_mem
+{
+	int				swap;
+	int				rotate_a;
+	int				rrotate_a;
+	int				do_rr;
+	int				rr;
+	int				do_rrr;
+	int				rrr;
+	int				do_rarb;
+	int				rarb;
+	int				r_a;
+	int				r_b;
+
+}					t_mem;
 
 int					ft_isdigit(int c);
 int					is_sorted(t_data *stack_a);

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:53:31 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:12:07 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	do_swap(t_data **a, t_data **b)
 	(*b) = tmp_b;
 }
 
-t_check	swap_check(t_data *a, t_data *b, t_check c)
+t_mem	swap_check(t_data *a, t_data *b, t_mem mem)
 {
 	if (b->pos > a->pos && b->pos < a->next->pos)
-		c.swap_a = 2;
+		mem.swap = 1;
 	else
-		c.swap_a = -1;
-	return (c);
+		mem.swap = 0;
+	return (mem);
 }

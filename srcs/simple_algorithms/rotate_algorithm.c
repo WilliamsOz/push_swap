@@ -6,13 +6,30 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:48 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 19:09:47 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:16:57 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_check	rotate_check(t_data *a, t_data *b, t_check c)
+void	do_rotate(t_data **a, t_data **b, t_mem mem)
+{
+	t_data	*tmp_a;
+	t_data	*tmp_b;
+
+	tmp_a = (*a);
+	tmp_b = (*b);
+	while (mem.rotate_a > 0)
+	{
+		rab(&tmp_a, 'a');
+		mem.rotate_a--;
+	}
+	pa(&tmp_a, &tmp_b);
+	(*a) = tmp_a;
+	(*b) = tmp_b;
+}
+
+t_mem	rotate_check(t_data *a, t_data *b, t_check c, t_mem mem)
 {
 	t_data	*tmp;
 
@@ -27,22 +44,6 @@ t_check	rotate_check(t_data *a, t_data *b, t_check c)
 		c.rotate_a += 1;
 		tmp = tmp->next;
 	}
-	return (c);
-}
-
-void	do_rotate(t_data **a, t_data **b, t_check c)
-{
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	while (c.rotate_a > 0)
-	{
-		rab(&tmp_a, 'a');
-		c.rotate_a--;
-	}
-	pa(&tmp_a, &tmp_b);
-	(*a) = tmp_a;
-	(*b) = tmp_b;
+	mem.rotate_a = c.rotate_a;
+	return (mem);
 }

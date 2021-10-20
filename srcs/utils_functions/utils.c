@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 18:44:25 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:24:08 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_data	*get_new_end(t_data *end, t_data *a)
 	t_data	*new_end;
 
 	new_end = a;
+	if (a->next == end)
+		return (NULL);
 	while (new_end->next != end)
 		new_end = new_end->next;
 	return (new_end);
@@ -37,31 +39,33 @@ t_data	*get_end(t_data *stack)
 	return (tmp);
 }
 
-void	init_check_pt2(t_check **check)
+void	init_mem(t_mem *mem)
 {
-	(*(*check)).do_rarrb = 0;
-	(*(*check)).rarrb = 0;
-	(*(*check)).ra = 0;
-	(*(*check)).rrb = 1;
-	(*(*check)).do_rr = 0;
-	(*(*check)).o_rr = 0;
-	(*(*check)).do_rrr = 0;
-	(*(*check)).o_rrr = 0;
-	(*(*check)).count = 0;
-	(*(*check)).algo_are_optimal = 0;
+	(*mem).swap = 0;
+	(*mem).rotate_a = 0;
+	(*mem).rrotate_a = 0;
+	(*mem).do_rr = 0;
+	(*mem).rr = 0;
+	(*mem).do_rrr = 0;
+	(*mem).rrr = 0;
+	(*mem).do_rarb = 0;
+	(*mem).rarb = 0;
+	(*mem).r_a = 0;
+	(*mem).r_b = 1;
 }
 
 void	init_check(t_check *check)
 {
-	(*check).do_rotate_a = 0;
 	(*check).rotate_a = 0;
-	(*check).do_rrotate_a = 0;
 	(*check).rrotate_a = 0;
-	(*check).swap_a = 0;
-	(*check).do_rarb = 0;
+	(*check).o_rr = 0;
+	(*check).o_rrr = 0;
+
 	(*check).rarb = 0;
 	(*check).r_a = 0;
 	(*check).r_b = 1;
+
+
 	(*check).do_rrarrb = 0;
 	(*check).rrarrb = 0;
 	(*check).rr_rra = 0;
@@ -70,7 +74,12 @@ void	init_check(t_check *check)
 	(*check).rrarb = 0;
 	(*check).rra = 0;
 	(*check).rb = 1;
-	init_check_pt2(&check);
+	(*check).do_rarrb = 0;
+	(*check).rarrb = 0;
+	(*check).ra = 0;
+	(*check).rrb = 1;
+	(*check).count = 0;
+	(*check).algo_are_optimal = 0;
 }
 
 t_data	*finish_sorting(t_data *a, int size_of_list, int count)
