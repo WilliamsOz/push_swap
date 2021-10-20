@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:48 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 12:16:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:52:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	do_rotate(t_data **a, t_data **b, t_mem mem)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
+	show_nums(*a, 'a');
 	while (mem.rotate_a > 0)
 	{
 		rab(&tmp_a, 'a');
@@ -29,21 +30,16 @@ void	do_rotate(t_data **a, t_data **b, t_mem mem)
 	(*b) = tmp_b;
 }
 
-t_mem	rotate_check(t_data *a, t_data *b, t_check c, t_mem mem)
+t_mem	rotate_check(t_data *a, t_data *b, t_mem mem)
 {
-	t_data	*tmp;
+	t_data	*end;
 
-	tmp = a;
-	while (tmp != NULL && b->pos < tmp->pos)
+	end = get_end(a);
+	while (b->pos > a->pos || b->pos < end->pos)
 	{
-		c.rotate_a += 1;
-		tmp = tmp->next;
+		end = a;
+		a = a->next;
+		mem.rotate_a++;
 	}
-	while (tmp != NULL && b->pos > tmp->pos)
-	{
-		c.rotate_a += 1;
-		tmp = tmp->next;
-	}
-	mem.rotate_a = c.rotate_a;
 	return (mem);
 }

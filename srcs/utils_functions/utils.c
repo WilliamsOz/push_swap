@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 12:24:08 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:55:11 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_data	*get_new_end(t_data *end, t_data *a)
 	t_data	*new_end;
 
 	new_end = a;
-	if (a->next == end)
-		return (NULL);
 	while (new_end->next != end)
 		new_end = new_end->next;
 	return (new_end);

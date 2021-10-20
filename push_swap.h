@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 12:07:36 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:06:28 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,13 @@ void	do_rr(t_data **a, t_data **b, t_mem mem);
 void	do_rrotate(t_data **a, t_data **b, t_mem mem);
 void	do_rotate(t_data **a, t_data **b, t_mem mem);
 void	do_swap(t_data **a, t_data **b);
-void	sort_with_algo(t_data **a, t_data **b, t_mem mem);
-// t_check	get_all_move(t_check c);
-void	choose_best_move(t_data **a, t_data **b, t_mem mem);
+void	sort_stack(t_data **a, t_data **b, t_mem mem);
+t_mem	choose_best_algo(t_mem mem);
 t_mem	rarb_check(t_data *a, t_data *b, t_check c, t_mem mem);
 t_mem	o_rrr_check(t_data *a, t_data *b, t_check c, t_mem);
 t_mem	o_rr_check(t_data *a, t_data *b, t_check c, t_mem mem);
-t_mem	rrotate_check(t_data *a, t_data *b, t_check c, t_mem mem);
-t_mem	rotate_check(t_data *a, t_data *b, t_check c, t_mem mem);
+t_mem	rrotate_check(t_data *a, t_data *b, t_mem mem);
+t_mem	rotate_check(t_data *a, t_data *b, t_mem mem);
 t_mem	swap_check(t_data *a, t_data *b, t_mem mem);
 t_mem	multiples_check(t_data *a, t_data *b, t_check c, t_mem mem);
 t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c);
