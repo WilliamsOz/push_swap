@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/23 17:08:34 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:33:35 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_check
 	int				rarrb;
 	int				ra;
 	int				rrb;
-	int				algo_are_optimal;
 }					t_check;
 
 typedef struct s_mem
