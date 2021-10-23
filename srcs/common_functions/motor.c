@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 19:55:21 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 20:05:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void		sort_stack(t_data **a, t_data **b, t_mem mem)
 		do_rotate(&tmp_a, &tmp_b, mem);
 	else if (mem.rrotate_a < mem.rotate_a)
 		do_rrotate(&tmp_a, &tmp_b, mem);
+	else
+		rab(&tmp_a, 'a');
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
