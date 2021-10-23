@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 18:14:13 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:54:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ void	init_mem(t_mem *mem)
 	(*mem).swap = 0;
 	(*mem).rotate_a = 0;
 	(*mem).rrotate_a = 0;
-	(*mem).do_rr = 0;
-	(*mem).rr = 0;
-	(*mem).do_rrr = 0;
-	(*mem).rrr = 0;
 	(*mem).do_rarb = 0;
 	(*mem).rarb = 0;
 	(*mem).r_a = 0;
@@ -68,8 +64,6 @@ void	init_check(t_check *check)
 {
 	(*check).rotate_a = 0;
 	(*check).rrotate_a = 0;
-	(*check).o_rr = 0;
-	(*check).o_rrr = 0;
 	(*check).rarb = 0;
 	(*check).r_a = 0;
 	(*check).r_b = 1;
@@ -82,7 +76,6 @@ void	init_check(t_check *check)
 	(*check).rarrb = 0;
 	(*check).ra = 0;
 	(*check).rrb = 1;
-	(*check).algo_are_optimal = 0;
 }
 
 t_data	*finish_sorting(t_data *a, int size_of_list, int count)

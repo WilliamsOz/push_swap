@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:51:16 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/19 18:46:01 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:56:04 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ t_data	*prepare_big_stacks(t_data *a, t_data *b, int digits)
 		}
 	}
 	a = pre_sort_a(a, b, digits, digits);
-	// SB
-	// SA
-	// e
+	SB
+	SA
+	e
 	a = sort_big_stacks(a, b);
 	return (a);
 }

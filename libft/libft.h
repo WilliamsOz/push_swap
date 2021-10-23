@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/23 18:33:35 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:52:24 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct s_check
 	int				swap_a;
 	int				rotate_a;
 	int				rrotate_a;
-	int				o_rr;
-	int				o_rrr;
 	int				rarb;
 	int				r_a;
 	int				r_b;
@@ -66,10 +64,6 @@ typedef struct s_mem
 	int				swap;
 	int				rotate_a;
 	int				rrotate_a;
-	int				do_rr;
-	int				rr;
-	int				do_rrr;
-	int				rrr;
 	int				do_rarb;
 	int				rarb;
 	int				r_a;

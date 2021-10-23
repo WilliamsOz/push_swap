@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 18:32:54 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:55:21 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ void		sort_stack(t_data **a, t_data **b, t_mem mem)
 	tmp_b = (*b);
 	if (mem.swap > 0)
 		do_swap(&tmp_a, &tmp_b);
-	else if (mem.do_rr == 1)
-		do_rr(&tmp_a, &tmp_b, mem);
-	else if (mem.do_rrr == 1)
-		do_rrr(&tmp_a, &tmp_b, mem);
 	else if (mem.do_rarb == 1)
 		do_rarb(&tmp_a, &tmp_b, mem);
 	else if (mem.do_rrarrb == 1)
@@ -43,10 +39,6 @@ void		sort_stack(t_data **a, t_data **b, t_mem mem)
 
 t_mem		choose_best_algo(t_mem mem)
 {
-	if (mem.do_rr == 1)
-		mem = rr_cmp(mem);
-	if (mem.do_rr == 1)
-		mem = rrr_cmp(mem);
 	if (mem.do_rarb == 1)
 		mem = rarb_cmp(mem);
 	if (mem.do_rrarrb == 1)
@@ -63,8 +55,6 @@ t_mem		multiples_check(t_data *a, t_data *b, t_check c, t_mem mem)
 	mem = swap_check(a, b, mem);
 	mem = rotate_check(a, b, mem);
 	mem = rrotate_check(a, b, mem);
-	mem = o_rr_check(a, b, c, mem);
-	mem = o_rrr_check(a, b, c, mem);
 	mem = rarb_check(a, b->next, c, mem);
 	mem = rrarrb_check(a, b, c, mem);
 	mem = rrarb_check(a, b->next, c, mem);
@@ -95,6 +85,7 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*b) = tmp_b;
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
+	PRINTD(xd)
 	//DELETE
 	// PRINTD(xd)
 	// show_nums(*a, 'a');

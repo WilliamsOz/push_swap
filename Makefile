@@ -6,7 +6,7 @@
 #    By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 19:15:44 by user42            #+#    #+#              #
-#    Updated: 2021/10/23 14:29:03 by wiozsert         ###   ########.fr        #
+#    Updated: 2021/10/23 19:53:44 by wiozsert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,7 @@ $(PATHCALGO)rrarb_algorithm.c $(PATHCALGO)rrarrb_algorithm.c \
 $(PATHALGOCMP)rarb_comp.c $(PATHALGOCMP)rrarb_comp.c \
 $(PATHALGOCMP)rrarrb_comp.c $(PATHCALGO)rarrb_algorithm.c \
 $(PATHALGOCMP)rarrb_comp.c $(PATHPREPFCT)prepare_low_stack.c \
-$(PATHPREPFCT)prepare_big_stack.c $(PATHCOMONFCT)motor.c \
-$(PATHSALGO)rr_algorithm.c $(PATHSALGO)rrr_algorithm.c 
+$(PATHPREPFCT)prepare_big_stack.c $(PATHCOMONFCT)motor.c 
 
 FILESO = push_swap.o $(PATHUTILSF)check_errors.o $(PATHUTILSF)get_position.o \
 $(PATHCOMMANDS)push_commands.o $(PATHCOMMANDS)reverse_rotate_commands.o \
@@ -42,8 +41,7 @@ $(PATHCALGO)rrarb_algorithm.o $(PATHCALGO)rrarrb_algorithm.o \
 $(PATHALGOCMP)rarb_comp.o $(PATHALGOCMP)rrarb_comp.o \
 $(PATHALGOCMP)rrarrb_comp.o $(PATHCALGO)rarrb_algorithm.o \
 $(PATHALGOCMP)rarrb_comp.o $(PATHPREPFCT)prepare_low_stack.o \
-$(PATHPREPFCT)prepare_big_stack.o $(PATHCOMONFCT)motor.o \
-$(PATHSALGO)rr_algorithm.o $(PATHSALGO)rrr_algorithm.o 
+$(PATHPREPFCT)prepare_big_stack.o $(PATHCOMONFCT)motor.o 
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 14:00:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 16:51:37 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:52:45 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ t_mem	rrarb_basic_algo_cmp(t_mem mem)
 	if (mem.rrarb >= mem.rotate_a)
 		mem.do_rrarb = 0;
 	if (mem.rrarb >= mem.rrotate_a)
-		mem.do_rrarb = 0;
-	if (mem.do_rr == 1 && mem.rrarb <= mem.rr)
-		mem.do_rr = 0;
-	else if (mem.do_rr == 1 && mem.rrarb > mem.rr)
-		mem.do_rrarb = 0;
-	if (mem.do_rrr == 1 && mem.rrarb <= mem.rrr)
-		mem.do_rrr = 0;
-	else if (mem.do_rrr == 1 && mem.rrarrb > mem.rrr)
 		mem.do_rrarb = 0;
 	return (mem);
 }
