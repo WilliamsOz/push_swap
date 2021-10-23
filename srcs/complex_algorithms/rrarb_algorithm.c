@@ -6,79 +6,68 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:54:16 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:27:23 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	do_rrarb(t_data **a, t_data **b, t_check c)
+void	do_rrarb(t_data **a, t_data **b, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	while (c.rra-- > 0)
+	while (mem.rra-- > 0)
 		rrab(&tmp_a, 'a');
-	while (c.rb-- > 0)
+	while (mem.rb-- > 0)
 		rab(&tmp_b, 'b');
 	pa(&tmp_a, &tmp_b);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
 
-t_data	*get_pos_b(t_data *b, t_data *tmp_b, t_check *c)
+t_mem	memorise_rrarb(t_check c, t_mem mem)
 {
-	t_data	*tmp;
-
-	if ((*c).rb == 0)
+	c.rrarb = c.rra + c.rb;
+	if (mem.rrarb == 0)
 	{
-		(*c).rb += 1;
-		tmp = get_end(b);
+		mem.do_rrarb = 1;
+		mem.rrarb = c.rrarb;
+		mem.rra = c.rra;
+		mem.rb = c.rb;
 	}
-	else
+	else if (mem.rrarb > c.rrarb)
 	{
-		(*c).rb += 1;
-		tmp = b;
-		while (tmp->next != tmp_b)
-			tmp = tmp->next;
+		mem.rrarb = c.rrarb;
+		mem.rra = c.rra;
+		mem.rb = c.rb;
 	}
-	return (tmp);
+	return (mem);
 }
 
-static t_check	apply_modif(t_check c)
+t_mem	rrarb_check(t_data *a, t_data *b, t_check c, t_mem mem)
 {
-	c.rra = 0;
-	c.count--;
-	c.rb++;
-	return (c);
-}
-
-t_check	rrarb_check(t_data *a, t_data *b, t_check c, int count)
-{
-	t_data	*end;
 	t_data	*tmp_a;
+	t_data	*end;
 
-	end = get_end(a);
 	tmp_a = a;
-	while (c.count > 0 && a != NULL && b != NULL)
+	end = get_end(a);
+	while (b != NULL)
 	{
-		while (count > 0 && a != NULL && b != NULL
-			&& (b->pos < end->pos || b->pos > tmp_a->pos))
+		while (a != end	&& (b->pos < end->pos || b->pos > tmp_a->pos))
 		{
-			count--;
 			tmp_a = end;
 			end = get_new_end(end, a);
 			c.rra++;
 		}
-		if (count > 0)
-		{
-			c.do_rrarb = 1;
-			return (c);
-		}
-		c = apply_modif(c);
+		if (a != end && b->pos > end->pos && b->pos < tmp_a->pos)
+			mem = memorise_rrarb(c, mem);
+		tmp_a = a;
+		end = get_end(a);
 		b = b->next;
+		c.rb++;
 	}
-	return (c);
+	return (mem);
 }

@@ -6,36 +6,11 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:22:49 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 17:57:54 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:26:11 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-
-// static t_check	rrr_complex_algo_cmp(t_check c)
-// {
-// 	if (c.do_rrr == 1 && c.o_rrr < c.rarb && c.do_rarb == 1)
-// 		c.do_rarb = 0;
-// 	else if (c.do_rrr == 1 && c.o_rrr > c.rarb && c.do_rarb == 1)
-// 		c.do_rrr = 0;
-// 	if (c.do_rrr == 1 && c.o_rrr < c.rrarrb && c.do_rrarrb == 1)
-// 		c.do_rrarrb = 0;
-// 	else if (c.do_rrr == 1 && c.o_rrr > c.rrarrb && c.do_rrarrb == 1)
-// 		c.do_rrr = 0;
-// 	if (c.do_rrr == 1 && c.o_rrr < c.rarrb && c.do_rarrb == 1)
-// 		c.do_rarrb = 0;
-// 	else if (c.do_rrr == 1 && c.o_rrr > c.rarrb && c.do_rarrb == 1)
-// 		c.do_rrr = 0;
-// 	if (c.do_rrr == 1 && c.o_rrr < c.rrarb && c.do_rrarb == 1)
-// 		c.do_rrarb = 0;
-// 	else if (c.do_rrr == 1 && c.o_rrr > c.rrarb && c.do_rrarb == 1)
-// 		c.do_rrr = 0;
-// 	if (c.do_rrr == 1 && c.o_rrr < c.o_rr && c.o_rr == 1)
-// 		c.do_rr = 0;
-// 	else if (c.do_rrr == 1 && c.o_rrr > c.o_rr && c.o_rr == 1)
-// 		c.do_rrr = 0;
-// 	return (c);
-// }
 
 t_mem	rrr_cmp(t_mem mem)
 {
@@ -58,7 +33,6 @@ void	do_rrr(t_data **a, t_data **b, t_mem mem)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	show_nums(*a, 'a');
 	while (mem.rrr > 0)
 	{
 		rrr(&tmp_a, &tmp_b);
@@ -89,11 +63,10 @@ t_mem		o_rrr_check(t_data *a, t_data *b, t_check c, t_mem mem)
 		else
 			tmp_b = get_new_end(tmp_b, b);
 	}
-	if (tmp_b->pos > end->pos && tmp_b->pos < tmp_a->pos)
+	if (tmp_b != b && tmp_b->pos > end->pos && tmp_b->pos < tmp_a->pos)
 	{
 		mem.do_rrr = 1;
 		mem.rrr = c.o_rrr;
-		return (mem);
 	}
 	return (mem);
 }

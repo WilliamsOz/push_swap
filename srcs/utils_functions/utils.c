@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 16:55:11 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:14:13 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ void	init_mem(t_mem *mem)
 	(*mem).rarb = 0;
 	(*mem).r_a = 0;
 	(*mem).r_b = 1;
+	(*mem).do_rrarrb = 0;
+	(*mem).rrarrb = 0;
+	(*mem).rr_rra = 0;
+	(*mem).rr_rrb = 1;
+	(*mem).do_rrarb = 0;
+	(*mem).rrarb = 0;
+	(*mem).rra = 0;
+	(*mem).rb = 1;
+	(*mem).do_rarrb = 0;
+	(*mem).rarrb = 0;
+	(*mem).ra = 0;
+	(*mem).rrb = 1;
 }
 
 void	init_check(t_check *check)
@@ -58,25 +70,18 @@ void	init_check(t_check *check)
 	(*check).rrotate_a = 0;
 	(*check).o_rr = 0;
 	(*check).o_rrr = 0;
-
 	(*check).rarb = 0;
 	(*check).r_a = 0;
 	(*check).r_b = 1;
-
-
-	(*check).do_rrarrb = 0;
 	(*check).rrarrb = 0;
 	(*check).rr_rra = 0;
 	(*check).rr_rrb = 1;
-	(*check).do_rrarb = 0;
 	(*check).rrarb = 0;
 	(*check).rra = 0;
 	(*check).rb = 1;
-	(*check).do_rarrb = 0;
 	(*check).rarrb = 0;
 	(*check).ra = 0;
 	(*check).rrb = 1;
-	(*check).count = 0;
 	(*check).algo_are_optimal = 0;
 }
 

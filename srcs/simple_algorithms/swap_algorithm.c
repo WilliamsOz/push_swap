@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 17:53:09 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:24:22 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	do_swap(t_data **a, t_data **b)
 t_mem	swap_check(t_data *a, t_data *b, t_mem mem)
 {
 	if (b->pos > a->pos && b->pos < a->next->pos)
+	{
 		mem.swap = 1;
+	}
 	else
 		mem.swap = 0;
 	return (mem);

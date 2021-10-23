@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:18:59 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 18:04:06 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:27:17 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	do_rarb(t_data **a, t_data **b, t_mem mem)
 {
-	xd++;
 	t_data	*tmp_a;
 	t_data	*tmp_b;
 

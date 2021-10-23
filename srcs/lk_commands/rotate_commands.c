@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:05:40 by user42            #+#    #+#             */
-/*   Updated: 2021/10/12 10:55:36 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 16:53:24 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	rr(t_data **a, t_data **b)
 {
 	*a = rotate(*a);
 	*b = rotate(*b);
-	counter += 2;
 	write(1, "rr\n", 3);
+	counter++;
 }

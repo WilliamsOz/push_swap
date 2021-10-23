@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/20 14:05:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:08:34 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,18 @@ typedef struct s_check
 	int				rrotate_a;
 	int				o_rr;
 	int				o_rrr;
-
 	int				rarb;
 	int				r_a;
 	int				r_b;
-
-
-	int				do_rrarrb;
 	int				rrarrb;
 	int				rr_rra;
 	int				rr_rrb;
-	int				do_rrarb;
 	int				rrarb;
 	int				rra;
 	int				rb;
-	int				do_rarrb;
 	int				rarrb;
 	int				ra;
 	int				rrb;
-
-	int				count;
 	int				algo_are_optimal;
 }					t_check;
 
@@ -83,7 +75,18 @@ typedef struct s_mem
 	int				rarb;
 	int				r_a;
 	int				r_b;
-
+	int				do_rrarrb;
+	int				rrarrb;
+	int				rr_rra;
+	int				rr_rrb;
+	int				do_rrarb;
+	int				rrarb;
+	int				rra;
+	int				rb;
+	int				do_rarrb;
+	int				rarrb;
+	int				ra;
+	int				rrb;
 }					t_mem;
 
 int					ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 11:21:31 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 13:52:42 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,9 +282,6 @@ void	get_data(int ac, char **av, int count)
 	// DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 	free_data(&a);
 }
-
-// Essayer de rajouter des chunk pour < 250 et > 250
-// Compprendre pourquoi il y a autant de move pour > 250
 
 int		main(int ac, char **av)
 {

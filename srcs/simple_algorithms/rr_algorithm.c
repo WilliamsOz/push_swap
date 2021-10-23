@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:52:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 17:54:38 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:26:42 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_mem		o_rr_check(t_data *a, t_data *b, t_check c, t_mem mem)
 	t_data	*end;
 
 	end = get_end(a);
-	while (a != NULL && b != NULL
+	while (a != NULL && b != NULL && b->next != NULL
 		&& (b->pos < end->pos || b->pos > a->pos))
 	{
 		c.o_rr++;

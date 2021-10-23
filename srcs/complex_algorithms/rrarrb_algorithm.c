@@ -6,45 +6,60 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:28:49 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 18:54:27 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:27:36 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_check	get_rrarrb(t_check c)
+void	do_rrarrb(t_data **a, t_data **b, t_mem mem)
 {
-	int		tmp_a;
-	int		tmp_b;
+	t_data	*tmp_a;
+	t_data	*tmp_b;
 
-	tmp_a = c.rr_rra;
-	tmp_b = c.rr_rrb;
-	while (tmp_a > 0 && tmp_b > 0)
+	tmp_a = (*a);
+	tmp_b = (*b);
+	while (mem.rr_rra > 0 && mem.rr_rrb > 0)
 	{
-		c.rrarrb++;
-		tmp_a--;
-		tmp_b--;
+		mem.rr_rra--;
+		mem.rr_rrb--;
+		rrr(&tmp_a, &tmp_b);
 	}
-	c.rrarrb = c.rrarrb + tmp_a + tmp_b;
-	return (c);
+	while (mem.rr_rra-- > 0)
+		rrab(&tmp_a, 'a');
+	while (mem.rr_rrb-- > 0)
+		rrab(&tmp_b, 'b');
+	pa(&tmp_a, &tmp_b);
+	(*a) = tmp_a;
+	(*b) = tmp_b;
 }
 
-static t_check	apply_modif_for_b_for_rrarrb(t_check c)
+static t_mem	memorise_rrarrb(t_check c, t_mem mem, int tmp_rra, int tmp_rrb)
 {
-	c.rr_rra = 0;
-	c.count--;
-	c.rr_rrb++;
-	return (c);
+	while (tmp_rra > 0 && tmp_rrb > 0)
+	{
+		tmp_rra--;
+		tmp_rrb--;
+		c.rrarrb++;
+	}
+	c.rrarrb = c.rrarrb + tmp_rra + tmp_rrb;
+	if (mem.rrarrb == 0)
+	{
+		mem.do_rrarrb = 1;
+		mem.rrarrb = c.rrarrb;
+		mem.rr_rra = c.rr_rra;
+		mem.rr_rrb = c.rr_rrb;
+	}
+	else if (mem.rrarrb > c.rrarrb)
+	{
+		mem.rrarrb = c.rrarrb;
+		mem.rr_rra = c.rr_rra;
+		mem.rr_rrb = c.rr_rrb;
+	}
+	return (mem);
 }
 
-static t_check	apply_modif_for_a_for_rrarrb(t_check c, int *ptr_count)
-{
-	*ptr_count -= 1;
-	c.rr_rra++;
-	return (c);
-}
-
-t_check	rrarrb_check(t_data *a, t_data *b, t_check c, int count)
+t_mem	rrarrb_check(t_data *a, t_data *b, t_check c, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -53,47 +68,22 @@ t_check	rrarrb_check(t_data *a, t_data *b, t_check c, int count)
 	tmp_a = a;
 	end = get_end(a);
 	tmp_b = get_end(b);
-	while (c.count > 0 && end != a && tmp_b != b)
+	while (b != tmp_b)
 	{
-		while (count > 0 && tmp_a != end && tmp_b != b
+		while (a != end
 			&& (tmp_b->pos < end->pos || tmp_b->pos > tmp_a->pos))
 		{
-			c = apply_modif_for_a_for_rrarrb(c, &count);
 			tmp_a = end;
 			end = get_new_end(end, a);
+			c.rr_rra++;
 		}
-		if (count > 0)
-		{
-			c.do_rrarrb = 1;
-			return (c);
-		}
-		c = apply_modif_for_b_for_rrarrb(c);
+		if (a != end && tmp_b->pos > end->pos && tmp_b->pos < tmp_a->pos)
+			mem = memorise_rrarrb(c, mem, c.rr_rra, c.rr_rrb);
+		tmp_a = a;
+		end = get_end(a);
 		tmp_b = get_new_end(tmp_b, b);
+		c.rr_rra = 0;
+		c.rr_rrb++;
 	}
-	return (c);
-}
-
-void	do_rrarrb(t_data **a, t_data **b, t_check c)
-{
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-
-	tmp_a = (*a);
-	tmp_b = (*b);
-	c.rrarrb = 0;
-	while (c.rr_rra > 0 && c.rr_rrb > 0)
-	{
-		c.rrarrb++;
-		c.rr_rra--;
-		c.rr_rrb--;
-	}
-	while (c.rrarrb-- > 0)
-		rrr(&tmp_a, &tmp_b);
-	while (c.rr_rra-- > 0)
-		rrab(&tmp_a, 'a');
-	while (c.rr_rrb-- > 0)
-		rrab(&tmp_b, 'b');
-	pa(&tmp_a, &tmp_b);
-	(*a) = tmp_a;
-	(*b) = tmp_b;
+	return (mem);
 }

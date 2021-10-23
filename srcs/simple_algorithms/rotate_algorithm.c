@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:48 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/20 17:52:53 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:27:02 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	do_rotate(t_data **a, t_data **b, t_mem mem)
 
 	tmp_a = (*a);
 	tmp_b = (*b);
-	show_nums(*a, 'a');
 	while (mem.rotate_a > 0)
 	{
 		rab(&tmp_a, 'a');
