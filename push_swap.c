@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 23:20:00 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 23:36:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,32 @@ void	get_data(int ac, char **av, int count)
 	free_data(&a);
 }
 
-// rajouter un check errors pour verifier le cas sur le telephone
+/* Ecrire un programme nomme checker qui prend une liste d'entier en parametre
+
+Si aucun argument n'est passer au checker :
+le programme s'arrete et n'affiche rien
+
+Le programme va ensuite attendre de recevoir des
+instructions en entree standard, chaque instructions
+doit etre suiviees par des '\n'. Une fois les instructions
+terminees, le programme va les executer sur la liste d'entier
+recu en parametre.
+
+Si apres avoir effectuer les instructions, la pile A est triee
+et la pile B et vide, le programme doit afficher "OK" suivie d'un
+'\n' sur la sortie standard.
+Dans tout les autres ca le programme doit afficher "KO" suivie
+d'un '\n' sur la sortie standard.
+
+En cas d'erreur, le programme doit afficher "KO" suivie d'un
+'\n' sur la SORTIE D'ERREUR (ATTENTION C'EST LA SORTIE D'ERREUR).
+Les erreurs peuvents etre les suivantes :
+Certains argument ne sont pas des entiers.
+Certains argument sont plus petit ou plus grand que des int.
+Il y a des doublons.
+Une instruction n'existe pas et/ou est mal formatee.
+
+*/
 
 int		main(int ac, char **av)
 {
