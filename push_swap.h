@@ -37,7 +37,7 @@ void	show_nums(t_data *data, char c);
 
 # define SA show_nums(a, 'A');
 # define SB show_nums(b, 'B');
-# define DEBUG printf("ICI\n");
+# define D printf("ICI\n");
 # define PRINTD(x) printf("%d\n", x);
 # define PRINTC(x) printf("%c\n", x);
 # define PRINTLD(x) printf("%ld\n", x);

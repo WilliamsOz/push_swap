@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:36:00 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 20:41:45 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 23:11:11 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static long	latoi(char *str)
 	return (res);
 }
 
-static int	is_not_integer(long nbr)
+static int	more_or_less_then_int(long nbr)
 {
 	long	max_int;
 	long	min_int;
@@ -60,11 +60,9 @@ static int	is_duplicate_or_not_integer(int ac, char **av, int count)
 		while (cmp < ac)
 		{
 			tmp = latoi(av[cmp]);
-			if (is_not_integer(tmp) == -1)
-			{
-				DEBUG
+			if (more_or_less_then_int(tmp) == -1
+				|| more_or_less_then_int(tmp) == -1)
 				return (-1);
-			}
 			if (keep == tmp)
 				return (-1);
 			cmp++;
@@ -99,8 +97,13 @@ static int	is_digit(int ac, char **tab)
 
 int	check_errors(int ac, char **av)
 {
+	long	tmp;
+
+	tmp = latoi(av[1]);
+	if ((ac == 2 || ac == 3) && more_or_less_then_int(tmp) == -1)
+		return (-1);
 	if ((is_digit(ac, av) == -1)
-		|| (is_duplicate_or_not_integer(ac, av, 0) == -1))
+		|| (is_duplicate_or_not_integer(ac, av, 1) == -1))
 		return (-1);
 	return (0);
 }

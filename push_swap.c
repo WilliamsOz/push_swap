@@ -290,6 +290,8 @@ int		main(int ac, char **av)
 {
 	counter = 0;
 	xd = 0;
+	if (ac == 1)
+		return (0);
 	if (check_errors(ac, av) == -1)
 		write(1, "Error\n", 6);
 	else if (ac < 3)
