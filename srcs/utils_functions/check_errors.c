@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:36:00 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/18 11:35:51 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:41:45 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ static int	is_duplicate_or_not_integer(int ac, char **av, int count)
 		{
 			tmp = latoi(av[cmp]);
 			if (is_not_integer(tmp) == -1)
+			{
+				DEBUG
 				return (-1);
+			}
 			if (keep == tmp)
 				return (-1);
 			cmp++;
@@ -97,7 +100,7 @@ static int	is_digit(int ac, char **tab)
 int	check_errors(int ac, char **av)
 {
 	if ((is_digit(ac, av) == -1)
-		|| (is_duplicate_or_not_integer(ac, av, 1) == -1))
+		|| (is_duplicate_or_not_integer(ac, av, 0) == -1))
 		return (-1);
 	return (0);
 }

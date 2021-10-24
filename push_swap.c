@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 14:49:09 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 20:20:44 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,14 +284,16 @@ void	get_data(int ac, char **av, int count)
 	free_data(&a);
 }
 
+// rajouter un check errors pour verifier le cas sur le telephone
+
 int		main(int ac, char **av)
 {
 	counter = 0;
 	xd = 0;
-	if (ac < 3)
-		return (0);
-	else if (check_errors(ac, av) == -1)
+	if (check_errors(ac, av) == -1)
 		write(1, "Error\n", 6);
+	else if (ac < 3)
+		return (0);
 	else
 		get_data(ac, av, 1);
 	return (0);
