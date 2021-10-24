@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 23:36:00 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 23:37:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,6 +309,9 @@ Il y a des doublons.
 Une instruction n'existe pas et/ou est mal formatee.
 
 */
+
+// Verifier pour le /dev/null si ya pas de soucis :
+// (chaine de caractere NULL envoyer)
 
 int		main(int ac, char **av)
 {
