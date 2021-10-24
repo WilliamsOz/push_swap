@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 20:05:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 23:20:23 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*b) = tmp_b;
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
-	PRINTD(xd)
 	//DELETE
 	// PRINTD(xd)
 	// show_nums(*a, 'a');
