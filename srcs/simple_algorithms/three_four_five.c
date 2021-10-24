@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 13:05:57 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 16:55:48 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/24 14:47:32 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ t_data	*sort_four_digit(t_data *a, t_data *b, int digits, int count)
 {
 	t_data	*tmp;
 
-	a = init_position(a, digits, 0);
+	a = init_position(a, digits, 1);
 	tmp = a;
-	while (tmp->pos != 0)
+	while (tmp->pos != 1)
 	{
 		tmp = tmp->next;
 		count++;
 	}
 	if (count > 2)
-		while (a->pos != 0)
+		while (a->pos != 1)
 			rrab(&a, 'a');
 	else
-		while (a->pos != 0)
+		while (a->pos != 1)
 			rab(&a, 'a');
 	pb(&a, &b);
 	a = sort_three_digit(a, 0, 0, 0);
@@ -80,10 +80,10 @@ static t_data	*find_pos(t_data *a, int numbers, int position, int count)
 
 t_data	*sort_five_digit(t_data *a, t_data *b, int numbers)
 {
-	a = init_position(a, numbers, 0);
-	a = find_pos(a, numbers, 0, 0);
-	pb(&a, &b);
+	a = init_position(a, numbers, 1);
 	a = find_pos(a, numbers, 1, 0);
+	pb(&a, &b);
+	a = find_pos(a, numbers, 2, 0);
 	pb(&a, &b);
 	a = sort_three_digit(a, 0, 0, 0);
 	pa(&a, &b);
