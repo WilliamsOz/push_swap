@@ -6,7 +6,7 @@
 #    By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 19:15:44 by user42            #+#    #+#              #
-#    Updated: 2021/10/24 14:49:01 by wiozsert         ###   ########.fr        #
+#    Updated: 2021/10/25 14:46:40 by wiozsert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ PATHSALGO = ./srcs/simple_algorithms/
 PATHCALGO = ./srcs/complex_algorithms/
 PATHALGOCMP = ./srcs/algorithms_move_compare/
 PATHOBJ = ./obj/
-LIBFTFILESO = ft_atoi.o ft_isdigit.o ft_list_size.o lk_ascending_order_check.o
+LIBFTFILESO = ft_atoi.o ft_isdigit.o ft_list_size.o \
+lk_ascending_order_check.o ft_strcmp.o get_next_line.o get_next_line_utils.o
 FILESC = push_swap.c $(PATHUTILSF)check_errors.c $(PATHUTILSF)get_position.c \
 $(PATHCOMMANDS)push_commands.c $(PATHCOMMANDS)reverse_rotate_commands.c \
 $(PATHCOMMANDS)rotate_commands.c $(PATHCOMMANDS)swap_commands.c \
@@ -52,6 +53,18 @@ $(PATHOBJ)rarb_comp.o $(PATHOBJ)rrarb_comp.o $(PATHOBJ)rrarrb_comp.o \
 $(PATHOBJ)rarrb_algorithm.o $(PATHOBJ)rarrb_comp.o \
 $(PATHOBJ)prepare_low_stack.o $(PATHOBJ)prepare_big_stack.o $(PATHOBJ)motor.o 
 
+FILESCBONUS = ./srcs/bonus/checker.c ./srcs/bonus/check_bonus_errors.c \
+./srcs/bonus/unknow_move.c ./srcs/lk_commands/push_commands.c \
+./srcs/lk_commands/reverse_rotate_commands.c \
+./srcs/lk_commands/rotate_commands.c ./srcs/lk_commands/swap_commands.c
+FILESOBONUS = checker.o check_bonus_errors.o unknow_move.o \
+push_commands.o reverse_rotate_commands.o rotate_commands.o \
+swap_commands.o
+ALLBONUSOBJ = ./obj/checker.o ./obj/check_bonus_errors.o ./obj/unknow_move.o \
+./obj/push_commands.o ./obj/reverse_rotate_commands.o \
+./obj/rotate_commands.o ./obj/swap_commands.o
+
+
 all : $(NAME)
 
 $(NAME)	:
@@ -60,9 +73,14 @@ $(NAME)	:
 	gcc $(FLAGS) $(ALLOBJ) libft.a -o $(NAME)
 
 clean	:
-	rm -Rf libft.a $(ALLOBJ)
+	rm -Rf libft.a $(ALLOBJ) $(ALLBONUSOBJ)
 
 fclean : clean
-	rm -Rf $(NAME)
+	rm -Rf $(NAME) checker
 
 re : fclean all
+
+bonus : fclean
+	cd libft && make all && mv libft.a .. && mv $(LIBFTFILESO) ../obj/
+	gcc $(FLAGS) -c $(FILESCBONUS) && mv $(FILESOBONUS) ./obj/
+	gcc $(FLAGS) $(ALLBONUSOBJ) libft.a -o checker

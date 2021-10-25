@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 19:55:57 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:00:19 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	show_nums(t_data *data, char c);
 //DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 
 
+t_checker	sort_move(t_checker c, char *move);
+t_checker	*init_do_move(t_checker *c);
+t_checker	*init_move(t_checker *c);
+int		is_unknow_move(char *str, t_checker c);
+int		check_bonus_errors(int ac, char **av);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b);
 t_data	*sort_big_stacks(t_data *a, t_data *b);
@@ -81,7 +86,6 @@ void	init_mem(t_mem *mem);
 void	init_check(t_check *check);
 t_data	*init_position(t_data *stack_a, int numbers, int count);
 int		check_errors(int ac, char **av);
-void	free_data(t_data **data);
 void	rrr(t_data **a, t_data **b);
 void	rrab(t_data **data, char c);
 void	rr(t_data **a, t_data **b);

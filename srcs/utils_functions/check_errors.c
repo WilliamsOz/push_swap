@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:36:00 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 23:15:22 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:46:00 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static int	is_digit(int ac, char **tab)
 	{
 		while (tab[count][i] != '\0')
 		{
+			if (tab[count][i] == '-' && tab[count][i + 1] == '0')
+				return (-1);
 			if (ft_isdigit(tab[count][i]) == 0 && tab[count][i] != '-')
 				return (-1);
 			if (tab[count][i] == '-' && ft_isdigit(tab[count][i + 1]) == 0)
@@ -100,7 +102,7 @@ int	check_errors(int ac, char **av)
 	long	tmp;
 
 	tmp = latoi(av[1]);
-	if ((ac == 2 || ac == 3) && more_or_less_then_int(tmp) == -1)
+	if (more_or_less_then_int(tmp) == -1)
 		return (-1);
 	if ((is_digit(ac, av) == -1)
 		|| (is_duplicate_or_not_integer(ac, av, 1) == -1))

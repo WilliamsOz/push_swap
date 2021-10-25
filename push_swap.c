@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 23:37:53 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:44:11 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,21 +215,6 @@ void	show_nums(t_data *data, char c)
 	}
 }
 
-void	free_data(t_data **data)
-{
-	t_data	*tmp;
-
-	if (*data != NULL)
-	{
-		while ((*data) != NULL)
-		{
-			tmp = *data;
-			*data = (*data)->next;
-			free(tmp);
-		}
-	}
-}
-
 t_data	*treat_data(t_data *a, int digits)
 {
 	t_data	*b;
@@ -259,10 +244,10 @@ void	get_data(int ac, char **av, int count)
 	t_data	*tmp;
 
 	a = (t_data*)malloc(sizeof(t_data));
-	a->next = NULL;
-	a->nbr = ft_atoi(av[count]);
 	if (a == NULL)
 		exit (EXIT_FAILURE);
+	a->next = NULL;
+	a->nbr = ft_atoi(av[count]);
 	while (++count < ac)
 	{
 		tmp = a;
@@ -283,36 +268,6 @@ void	get_data(int ac, char **av, int count)
 	free_data(&a);
 }
 
-/* Ecrire un programme nomme checker qui prend une liste d'entier en parametre
-
-Si aucun argument n'est passer au checker :
-le programme s'arrete et n'affiche rien
-
-Le programme va ensuite attendre de recevoir des
-instructions en entree standard, chaque instructions
-doit etre suiviees par des '\n'. Une fois les instructions
-terminees, le programme va les executer sur la liste d'entier
-recu en parametre.
-
-Si apres avoir effectuer les instructions, la pile A est triee
-et la pile B et vide, le programme doit afficher "OK" suivie d'un
-'\n' sur la sortie standard.
-Dans tout les autres ca le programme doit afficher "KO" suivie
-d'un '\n' sur la sortie standard.
-
-En cas d'erreur, le programme doit afficher "KO" suivie d'un
-'\n' sur la SORTIE D'ERREUR (ATTENTION C'EST LA SORTIE D'ERREUR).
-Les erreurs peuvents etre les suivantes :
-Certains argument ne sont pas des entiers.
-Certains argument sont plus petit ou plus grand que des int.
-Il y a des doublons.
-Une instruction n'existe pas et/ou est mal formatee.
-
-*/
-
-// Verifier pour le /dev/null si ya pas de soucis :
-// (chaine de caractere NULL envoyer)
-
 int		main(int ac, char **av)
 {
 	counter = 0;
@@ -320,8 +275,11 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	if (check_errors(ac, av) == -1)
-		write(1, "Error\n", 6);
-	else if (ac < 3)
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	if (ac == 2)
 		return (0);
 	else
 		get_data(ac, av, 1);

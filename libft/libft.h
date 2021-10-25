@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/23 19:52:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:06:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "./get_next_line.h"
+
+
+//DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
+# include <stdio.h>
+# define SA show_nums(a, 'A');
+# define SB show_nums(b, 'B');
+# define D printf("ICI\n");
+# define PRINTD(x) printf("%d\n", x);
+# define PRINTC(x) printf("%c\n", x);
+# define PRINTLD(x) printf("%ld\n", x);
+# define PRINTS(x) printf("%s\n", x);
+//DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 
 typedef struct s_data
 {
@@ -39,6 +52,32 @@ typedef struct s_bskeep
 	int				d6;
 	int				d7;
 }					t_bskeep;
+
+typedef struct s_checker
+{
+	char			*sa;
+	int				do_sa;
+	char			*sb;
+	int				do_sb;
+	char			*ss;
+	int				do_ss;
+	char			*pa;
+	int				do_pa;
+	char			*pb;
+	int				do_pb;
+	char			*ra;
+	int				do_ra;
+	char			*rb;
+	int				do_rb;
+	char			*rr;
+	int				do_rr;
+	char			*rra;
+	int				do_rra;
+	char			*rrb;
+	int				do_rrb;
+	char			*rrr;
+	int				do_rrr;
+}				t_checker;
 
 typedef struct s_check
 {
@@ -82,6 +121,8 @@ typedef struct s_mem
 	int				rrb;
 }					t_mem;
 
+void				free_data(t_data **data);
+int					ft_strcmp(char *s1, char *s2, int i);
 int					ft_isdigit(int c);
 int					is_sorted(t_data *stack_a);
 int					ft_atoi(const char *nptr);
