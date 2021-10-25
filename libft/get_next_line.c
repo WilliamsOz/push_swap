@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 14:43:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 21:51:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:24:04 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*get_first(char *buffer, char *line)
 	return (line);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int		count;
 	char	buffer[1];

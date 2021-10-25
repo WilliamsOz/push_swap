@@ -6,7 +6,7 @@
 #    By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 19:15:44 by user42            #+#    #+#              #
-#    Updated: 2021/10/25 22:38:34 by wiozsert         ###   ########.fr        #
+#    Updated: 2021/10/25 23:36:45 by wiozsert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,19 +70,23 @@ LIBFTOBJ = ./obj/free_lk.o ./obj/ft_strcmp.o ./obj/ft_strlen.o \
 all : $(NAME)
 
 $(NAME)	:
-	cd libft && make all && mv libft.a .. && mv $(LIBFTFILESO) ../obj/
+	rm -Rf obj && mkdir obj && cd libft && make all && mv libft.a .. && \
+	mv $(LIBFTFILESO) ../obj/
 	gcc $(FLAGS) -c $(FILESC) && mv $(FILESO) ./obj/
 	gcc $(FLAGS) $(ALLOBJ) libft.a -o $(NAME)
+	rm libft.a
 
 clean	:
-	rm -Rf libft.a $(ALLOBJ) $(BONUSOBJ) $(LIBFTOBJ)
+	rm -Rf libft.a ./obj
 
 fclean : clean
 	rm -Rf $(NAME) checker
 
 re : fclean all
 
-bonus : fclean
-	cd libft && make all && mv libft.a .. && mv $(LIBFTFILESO) ../obj/
+bonus : clean
+	rm -Rf obj && mkdir obj && cd libft && make all && mv libft.a .. && \
+	mv $(LIBFTFILESO) ../obj/
 	gcc $(FLAGS) -c $(FILESCBONUS) && mv $(FILESOBONUS) ./obj/
 	gcc $(FLAGS) $(BONUSOBJ) libft.a -o checker
+	rm libft.a

@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:26:09 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:17:53 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:32:06 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-t_checker	sort_move(t_checker c, char *move)
+t_chker	sort_move(t_chker c, char *move)
 {
 	if (ft_strcmp(c.sa, move, 0) == 1)
 		c.do_sa = 1;
@@ -28,7 +28,7 @@ t_checker	sort_move(t_checker c, char *move)
 		c.do_ra = 1;
 	else if (ft_strcmp(c.rb, move, 0) == 1)
 		c.do_rb = 1;
-	else if (ft_strcmp(c.rr, move ,0) == 1)
+	else if (ft_strcmp(c.rr, move, 0) == 1)
 		c.do_rr = 1;
 	else if (ft_strcmp(c.rra, move, 0) == 1)
 		c.do_rra = 1;
@@ -39,7 +39,7 @@ t_checker	sort_move(t_checker c, char *move)
 	return (c);
 }
 
-t_checker	*init_do_move(t_checker *c)
+t_chker	*init_do_move(t_chker *c)
 {
 	(*c).do_sa = 0;
 	(*c).do_sb = 0;
@@ -55,7 +55,7 @@ t_checker	*init_do_move(t_checker *c)
 	return (c);
 }
 
-t_checker	*init_move(t_checker *c)
+t_chker	*init_move(t_chker *c)
 {
 	(*c).sa = "sa";
 	(*c).sb = "sb";
@@ -71,7 +71,7 @@ t_checker	*init_move(t_checker *c)
 	return (c);
 }
 
-int	is_unknow_move(char *str, t_checker c)
+int	is_unknow_move(char *str, t_chker c)
 {
 	if (ft_strcmp(str, c.sa, 0) == 1 || ft_strcmp(str, c.sb, 0) == 1
 		|| ft_strcmp(str, c.ss, 0) == 1 || ft_strcmp(str, c.pa, 0) == 1
@@ -82,4 +82,3 @@ int	is_unknow_move(char *str, t_checker c)
 		return (1);
 	return (-1);
 }
-

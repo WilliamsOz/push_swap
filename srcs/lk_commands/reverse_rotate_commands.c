@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:25:14 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 22:18:37 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:33:06 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,12 @@ void	rrab(t_data **data, char c, int ind)
 		*data = reverse_rotate(*data);
 		if (ind == 1)
 			write(1, "rra\n", 4);
-		counter++;
 	}
 	else if (c == 'b')
 	{
 		*data = reverse_rotate(*data);
 		if (ind == 1)
 			write(1, "rrb\n", 4);
-		counter++;
 	}
 }
 
@@ -56,5 +54,4 @@ void	rrr(t_data **a, t_data **b, int ind)
 	*b = reverse_rotate(*b);
 	if (ind == 1)
 		write(1, "rrr\n", 4);
-	counter++;
 }

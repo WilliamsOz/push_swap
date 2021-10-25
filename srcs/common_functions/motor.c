@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 19:54:38 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:20:49 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void		sort_stack(t_data **a, t_data **b, t_mem mem)
+void	sort_stack(t_data **a, t_data **b, t_mem mem)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -37,7 +37,7 @@ void		sort_stack(t_data **a, t_data **b, t_mem mem)
 	(*b) = tmp_b;
 }
 
-t_mem		choose_best_algo(t_mem mem)
+t_mem	choose_best_algo(t_mem mem)
 {
 	if (mem.do_rarb == 1)
 		mem = rarb_cmp(mem);
@@ -50,7 +50,7 @@ t_mem		choose_best_algo(t_mem mem)
 	return (mem);
 }
 
-t_mem		multiples_check(t_data *a, t_data *b, t_check c, t_mem mem)
+t_mem	multiples_check(t_data *a, t_data *b, t_check c, t_mem mem)
 {
 	mem = swap_check(a, b, mem);
 	mem = rotate_check(a, b, mem);
@@ -62,12 +62,12 @@ t_mem		multiples_check(t_data *a, t_data *b, t_check c, t_mem mem)
 	return (mem);
 }
 
-void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
+void	sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 {
 	t_mem	mem;
 	t_data	*end;
 	t_check	c;
-	
+
 	while (ft_lstsize(*b) > 0)
 	{
 		init_mem(&mem);
@@ -85,13 +85,4 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		(*b) = tmp_b;
 	}
 	(*a) = finish_sorting(tmp_a, ft_lstsize(*a), 1);
-	//DELETE
-	// PRINTD(xd)
-	// show_nums(*a, 'a');
-	// show_nums(*b, 'b');
-	// e
-	//STOP
 }
-
-//verifier si la fonction rr_algorithm ne marche pas ou est inutile
-//verifier si la fonction rrr_algorithm ne marche pas ou est inutile

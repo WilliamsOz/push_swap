@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 10:53:37 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:44:31 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:17:10 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_checker(int ac, char **av, int count)
 {
-	t_data  *a;
+	t_data	*a;
 	t_data	*new;
 	t_data	*tmp;
 	t_data	*b;
@@ -30,7 +30,7 @@ static void	init_checker(int ac, char **av, int count)
 		tmp = a;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
-		new = (t_data*)malloc(sizeof(t_data));
+		new = (t_data *)malloc(sizeof(t_data));
 		if (new == NULL)
 			exit (EXIT_FAILURE);
 		new->nbr = ft_atoi(av[count]);
@@ -40,7 +40,7 @@ static void	init_checker(int ac, char **av, int count)
 	get_move(a, b);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac == 1)
 		return (0);

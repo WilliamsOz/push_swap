@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:01:52 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 19:50:48 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:32:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	pa(t_data **a, t_data **b, int ind)
 	}
 	if (ind == 1)
 		write(1, "pa\n", 3);
-	counter++;
 }
 
 void	pb(t_data **a, t_data **b, int ind)
@@ -41,5 +40,4 @@ void	pb(t_data **a, t_data **b, int ind)
 	}
 	if (ind == 1)
 		write(1, "pb\n", 3);
-	counter++;
 }

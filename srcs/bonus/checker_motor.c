@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 22:24:20 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:44:19 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:31:42 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static void		do_move_next(t_data **a, t_data **b, t_checker c)
+static void	do_move_next(t_data **a, t_data **b, t_chker c)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -35,7 +35,7 @@ static void		do_move_next(t_data **a, t_data **b, t_checker c)
 	(*b) = tmp_b;
 }
 
-static void		do_move(t_data **a, t_data **b, t_checker c)
+static void	do_move(t_data **a, t_data **b, t_chker c)
 {
 	t_data	*tmp_a;
 	t_data	*tmp_b;
@@ -58,11 +58,11 @@ static void		do_move(t_data **a, t_data **b, t_checker c)
 	(*b) = tmp_b;
 }
 
-static void		find_move(t_data **a, t_data **b, char *move)
+static void	find_move(t_data **a, t_data **b, char *move)
 {
-	t_data	*tmp_a;
-	t_data	*tmp_b;
-	t_checker	c;
+	t_data		*tmp_a;
+	t_data		*tmp_b;
+	t_chker		c;
 
 	tmp_a = (*a);
 	tmp_b = (*b);
@@ -87,12 +87,11 @@ static void	is_stack_sorted_and_b_empty(t_data *a, t_data *b)
 
 void	get_move(t_data *a, t_data *b)
 {
-	t_checker	c;
-	char	*line;
-	int	eof;
+	t_chker		c;
+	char		*line;
 
 	line = NULL;
-	while ((eof = get_next_line(0, &line)) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		init_move(&c);
 		if ((line == NULL || is_unknow_move(line, c) == -1))

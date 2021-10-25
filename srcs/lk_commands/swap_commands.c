@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:53:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:43:18 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:33:15 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ void	sab(t_data **data, char c, int ind)
 		{
 			if (ind == 1)
 				write(1, "sa\n", 3);
-			counter++;
 		}
 		else if (c == 'b')
 		{
 			if (ind == 1)
 				write(1, "sb\n", 3);
-			counter++;
 		}
 	}
 }
@@ -45,5 +43,4 @@ void	ss(t_data **stack_a, t_data **stack_b, int ind)
 	sab(stack_b, '\0', 1);
 	if (ind == 1)
 		write(1, "ss\n", 3);
-	counter++;
 }

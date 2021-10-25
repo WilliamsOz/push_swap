@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:29:46 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:32:27 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,11 @@
 
 # include "./libft/libft.h"
 
-//DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
-int counter;
-int xd;
-
-#define e exit(EXIT_FAILURE);
-	
-#define KORG  printf("\033[31;1m");
-#define KNRM  printf("\033[0;30m");
-#define KRED  printf("\033[0;31m");
-#define KGRN  printf("\033[0;32m");
-#define KYEL  printf("\033[0;33m");
-#define KBLU  printf("\033[0;34m");
-#define KMAG  printf("\033[0;35m");
-#define KCYN  printf("\033[0;36m");
-#define KWHT  printf("\033[0;37m");
-#define KSTOP printf("\033[0m");
-
-# include <stdio.h>
-void	show_nums(t_data *data, char c);
-
-# define SA show_nums(a, 'A');
-# define SB show_nums(b, 'B');
-# define D printf("ICI\n");
-# define PRINTD(x) printf("%d\n", x);
-# define PRINTC(x) printf("%c\n", x);
-# define PRINTLD(x) printf("%ld\n", x);
-# define PRINTS(x) printf("%s\n", x);
-//DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
-
-
-t_checker	sort_move(t_checker c, char *move);
-t_checker	*init_do_move(t_checker *c);
-t_checker	*init_move(t_checker *c);
+t_chker	sort_move(t_chker c, char *move);
+t_chker	*init_do_move(t_chker *c);
+t_chker	*init_move(t_chker *c);
 void	get_move(t_data *a, t_data *b);
-int		is_unknow_move(char *str, t_checker c);
+int		is_unknow_move(char *str, t_chker c);
 int		check_bonus_errors(int ac, char **av);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b);

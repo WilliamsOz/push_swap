@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 19:53:09 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 23:23:32 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_mem	rrarb_check(t_data *a, t_data *b, t_check c, t_mem mem)
 	end = get_end(a);
 	while (b != NULL)
 	{
-		while (a != end	&& (b->pos < end->pos || b->pos > tmp_a->pos))
+		while (a != end && (b->pos < end->pos || b->pos > tmp_a->pos))
 		{
 			tmp_a = end;
 			end = get_new_end(end, a);
