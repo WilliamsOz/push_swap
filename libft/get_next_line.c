@@ -6,125 +6,58 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 14:43:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 15:13:10 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 21:51:59 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./get_next_line.h"
+#include "./libft.h"
 
-char	*get_line(t_node *book, char *line, int len, char *buffer)
+static char	*get_second(char *buffer, char *line, int len, int i)
 {
-	size_t	is_eof;
+	char	*final_str;
 
-	is_eof = 0;
-	while (book->s_line[len] != '\0' && book->s_line[len] != '\n')
-		len++;
-	if (!(line = (char*)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	line[len] = '\0';
-	len = 0;
-	while (book->s_line[len] != '\0' && book->s_line[len] != '\n')
+	len = ft_strlen(line) + 2;
+	final_str = (char *)malloc(sizeof(char) * len);
+	while (line[i] != '\0')
 	{
-		line[len] = book->s_line[len];
-		len++;
+		final_str[i] = line[i];
+		i++;
 	}
-	if (book->s_fd > 0)
-		is_eof = read(book->s_fd, buffer, BUFFER_SIZE);
-	if (is_eof == 0 && book->s_line[len] == '\0')
-	{
-		if (book->s_line != NULL)
-			free(book->s_line);
-		book->s_line = NULL;
-	}
-	else
-		book->s_line = get_next_rest(book, buffer, len, is_eof);
+	final_str[i] = buffer[0];
+	final_str[i + 1] = '\0';
+	free(line);
+	line = final_str;
 	return (line);
 }
 
-char	*first_node(const int fd, char *line, t_node **book)
+static char	*get_first(char *buffer, char *line)
 {
-	int		i;
-	char	buffer[BUFFER_SIZE + 1];
-
-	if (!((*book) = (t_node*)malloc(sizeof(t_node) * 1)))
-		return (NULL);
-	(*book)->next = NULL;
-	(*book)->s_fd = fd;
-	(*book)->s_line = NULL;
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	(*book)->s_line = get_rest((*book), buffer, -1);
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	line = get_line((*book), line, 0, buffer);
-	return (line);
-}
-
-char	*new_node(const int fd, char *line, t_node **book)
-{
-	char	buffer[BUFFER_SIZE + 1];
-	t_node	*new_book;
-	int		i;
-
-	if (!(new_book = (t_node*)malloc(sizeof(t_node) * 1)))
-		return (NULL);
-	new_book->s_fd = fd;
-	new_book->next = (*book);
-	new_book->s_line = NULL;
-	(*book) = new_book;
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	(*book)->s_line = get_rest((*book), buffer, -1);
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	line = get_line((*book), line, 0, buffer);
-	return (line);
-}
-
-char	*current_node(char *line, t_node *book)
-{
-	char	buffer[BUFFER_SIZE + 1];
-	int		i;
-
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	book->s_line = get_rest(book, buffer, -1);
-	i = -1;
-	while (++i < BUFFER_SIZE + 1)
-		buffer[i] = '\0';
-	line = get_line(book, line, 0, buffer);
+	line = (char *)malloc(sizeof(char) * 2);
+	line[0] = buffer[0];
+	line[1] = '\0';
 	return (line);
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static t_node	*book;
-	t_node			*temp;
+	int		count;
+	char	buffer[1];
+	int		eof;
 
-	if (!line || fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
+	if (!line || fd < 0 || read(fd, NULL, 0))
 		return (-1);
-	if (book == NULL)
-		*line = first_node(fd, *line, &book);
-	else
+	eof = read(0, buffer, 1);
+	count = 0;
+	while (eof > 0 && buffer[0] != '\n')
 	{
-		temp = book;
-		while (temp != NULL && fd != temp->s_fd)
-			temp = temp->next;
-		if (temp == NULL)
-			*line = new_node(fd, *line, &book);
-		else
+		if (count == 0 && eof > 0)
 		{
-			*line = current_node(*line, temp);
-			if (temp->s_line == NULL && (free_book(fd, &book, 0)) == 1)
-				return (0);
+			*line = get_first(buffer, *line);
+			count++;
 		}
+		else if (eof > 0 && buffer[0] != '\n')
+			*line = get_second(buffer, *line, 0, 0);
+		eof = read(0, buffer, 1);
 	}
-	if (book->s_line == NULL && (free_book(fd, &book, 0)) == 1)
-		return (0);
-	return (1);
+	return (eof);
 }

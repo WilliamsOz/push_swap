@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:05:40 by user42            #+#    #+#             */
-/*   Updated: 2021/10/23 16:53:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:50:30 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,29 @@ static t_data	*rotate(t_data *data)
 	return (data);
 }
 
-void	rab(t_data **data, char c)
+void	rab(t_data **data, char c, int ind)
 {
 	if (c == 'a')
 	{
 		*data = rotate(*data);
-		write(1, "ra\n", 3);
+		if (ind == 1)
+			write(1, "ra\n", 3);
 		counter++;
 	}
 	else if (c == 'b')
 	{
 		*data = rotate(*data);
-		write(1, "rb\n", 3);
+		if (ind == 1)
+			write(1, "rb\n", 3);
 		counter++;
 	}
 }
 
-void	rr(t_data **a, t_data **b)
+void	rr(t_data **a, t_data **b, int ind)
 {
 	*a = rotate(*a);
 	*b = rotate(*b);
-	write(1, "rr\n", 3);
+	if (ind == 1)
+		write(1, "rr\n", 3);
 	counter++;
 }

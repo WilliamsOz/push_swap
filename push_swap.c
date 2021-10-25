@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:00:35 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 14:44:11 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 22:46:13 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ t_data	*treat_data(t_data *a, int digits)
 	if (is_sorted(a) == 1)
 		free_data(&a);
 	else if (digits == 2)
-		sab(&a, 'a');
+		sab(&a, 'a', 1);
 	else if (digits == 3)
 		a = sort_three_digit(a, 0, 0, 0);
 	else if (digits == 4)
@@ -266,6 +266,7 @@ void	get_data(int ac, char **av, int count)
 	// gucci(a);
 	// DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
 	free_data(&a);
+	while (1);
 }
 
 int		main(int ac, char **av)

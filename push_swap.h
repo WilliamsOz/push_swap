@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 15:00:19 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 22:29:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	show_nums(t_data *data, char c);
 t_checker	sort_move(t_checker c, char *move);
 t_checker	*init_do_move(t_checker *c);
 t_checker	*init_move(t_checker *c);
+void	get_move(t_data *a, t_data *b);
 int		is_unknow_move(char *str, t_checker c);
 int		check_bonus_errors(int ac, char **av);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
@@ -86,13 +87,13 @@ void	init_mem(t_mem *mem);
 void	init_check(t_check *check);
 t_data	*init_position(t_data *stack_a, int numbers, int count);
 int		check_errors(int ac, char **av);
-void	rrr(t_data **a, t_data **b);
-void	rrab(t_data **data, char c);
-void	rr(t_data **a, t_data **b);
-void	rab(t_data **data, char c);
-void	pb(t_data **a, t_data **b);
-void	pa(t_data **a, t_data **b);
-void	ss(t_data **stack_a, t_data **stack_b);
-void	sab(t_data **data, char c);
+void	rrr(t_data **a, t_data **b, int ind);
+void	rrab(t_data **data, char c, int ind);
+void	rr(t_data **a, t_data **b, int ind);
+void	rab(t_data **data, char c, int ind);
+void	pb(t_data **a, t_data **b, int ind);
+void	pa(t_data **a, t_data **b, int ind);
+void	ss(t_data **stack_a, t_data **stack_b, int ind);
+void	sab(t_data **data, char c, int ind);
 
 #endif

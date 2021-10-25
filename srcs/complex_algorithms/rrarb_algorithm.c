@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:44:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 18:27:23 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:53:09 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	do_rrarb(t_data **a, t_data **b, t_mem mem)
 	tmp_a = (*a);
 	tmp_b = (*b);
 	while (mem.rra-- > 0)
-		rrab(&tmp_a, 'a');
+		rrab(&tmp_a, 'a', 1);
 	while (mem.rb-- > 0)
-		rab(&tmp_b, 'b');
-	pa(&tmp_a, &tmp_b);
+		rab(&tmp_b, 'b', 1);
+	pa(&tmp_a, &tmp_b, 1);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }

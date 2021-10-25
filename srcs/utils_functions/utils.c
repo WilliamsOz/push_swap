@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:47:50 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 12:16:44 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:55:57 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_data	*finish_sorting(t_data *a, int size_of_list, int count)
 	}
 	if (count > (size_of_list / 2))
 		while (a->pos != 1)
-			rrab(&a, 'a');
+			rrab(&a, 'a', 1);
 	else
 		while (a->pos != 1)
-			rab(&a, 'a');
+			rab(&a, 'a', 1);
 	return (a);
 }

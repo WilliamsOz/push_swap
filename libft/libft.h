@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:46:23 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 15:06:46 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 21:03:52 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "./get_next_line.h"
 
 
 //DELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDELDEL
@@ -121,6 +120,8 @@ typedef struct s_mem
 	int				rrb;
 }					t_mem;
 
+int					ft_strlen(char *str);
+int					get_next_line(const int fd, char **line);
 void				free_data(t_data **data);
 int					ft_strcmp(char *s1, char *s2, int i);
 int					ft_isdigit(int c);

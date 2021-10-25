@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:45:19 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 17:27:24 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:53:04 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	do_rrotate(t_data **a, t_data **b, t_mem mem)
 	tmp_b = (*b);
 	while (mem.rrotate_a > 0)
 	{
-		rrab(&tmp_a, 'a');
+		rrab(&tmp_a, 'a', 1);
 		mem.rrotate_a--;
 	}
-	pa(&tmp_a, &tmp_b);
+	pa(&tmp_a, &tmp_b, 1);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }

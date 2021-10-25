@@ -6,13 +6,13 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 18:01:52 by user42            #+#    #+#             */
-/*   Updated: 2021/10/23 16:53:45 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:50:48 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	pa(t_data **a, t_data **b)
+void	pa(t_data **a, t_data **b, int ind)
 {
 	t_data	*tmp;
 
@@ -23,11 +23,12 @@ void	pa(t_data **a, t_data **b)
 		(*a) = (*b);
 		(*b) = tmp;
 	}
-	write(1, "pa\n", 3);
+	if (ind == 1)
+		write(1, "pa\n", 3);
 	counter++;
 }
 
-void	pb(t_data **a, t_data **b)
+void	pb(t_data **a, t_data **b, int ind)
 {
 	t_data	*tmp;
 
@@ -38,6 +39,7 @@ void	pb(t_data **a, t_data **b)
 		(*b) = (*a);
 		(*a) = tmp;
 	}
-	write(1, "pb\n", 3);
+	if (ind == 1)
+		write(1, "pb\n", 3);
 	counter++;
 }

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:26:09 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 15:13:11 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 22:17:53 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_checker	sort_move(t_checker c, char *move)
 {
-	 if (ft_strcmp(c.sa, move, 0) == 1)
+	if (ft_strcmp(c.sa, move, 0) == 1)
 		c.do_sa = 1;
 	else if (ft_strcmp(c.sb, move, 0) == 1)
 		c.do_sb = 1;
@@ -57,43 +57,28 @@ t_checker	*init_do_move(t_checker *c)
 
 t_checker	*init_move(t_checker *c)
 {
-	(*c).sa = "sa\n";
-	(*c).sb = "sb\n";
-	(*c).ss = "ss\n";
-	(*c).pa = "pa\n";
-	(*c).pb = "pb\n";
-	(*c).ra = "ra\n";
-	(*c).rb = "rb\n";
-	(*c).rr = "rr\n";
-	(*c).rra = "rra\n";
-	(*c).rrb = "rrb\n";
-	(*c).rrr = "rrr\n";
+	(*c).sa = "sa";
+	(*c).sb = "sb";
+	(*c).ss = "ss";
+	(*c).pa = "pa";
+	(*c).pb = "pb";
+	(*c).ra = "ra";
+	(*c).rb = "rb";
+	(*c).rr = "rr";
+	(*c).rra = "rra";
+	(*c).rrb = "rrb";
+	(*c).rrr = "rrr";
 	return (c);
 }
 
 int	is_unknow_move(char *str, t_checker c)
 {
-	if (ft_strcmp(str, c.sa, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.sb, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.ss, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.pa, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.pb, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.ra, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.rb, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.rr, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.rra, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.rrb, 0) == 1)
-		return (1);
-	else if (ft_strcmp(str, c.rrr, 0) == 1)
+	if (ft_strcmp(str, c.sa, 0) == 1 || ft_strcmp(str, c.sb, 0) == 1
+		|| ft_strcmp(str, c.ss, 0) == 1 || ft_strcmp(str, c.pa, 0) == 1
+		|| ft_strcmp(str, c.pb, 0) == 1 || ft_strcmp(str, c.ra, 0) == 1
+		|| ft_strcmp(str, c.rb, 0) == 1 || ft_strcmp(str, c.rr, 0) == 1
+		|| ft_strcmp(str, c.rra, 0) == 1 || ft_strcmp(str, c.rrb, 0) == 1
+		|| ft_strcmp(str, c.rrr, 0) == 1)
 		return (1);
 	return (-1);
 }

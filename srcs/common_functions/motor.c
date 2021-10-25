@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:41:14 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/24 23:20:23 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:54:38 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void		sort_stack(t_data **a, t_data **b, t_mem mem)
 		do_rotate(&tmp_a, &tmp_b, mem);
 	else if (mem.rrotate_a < mem.rotate_a)
 		do_rrotate(&tmp_a, &tmp_b, mem);
-	else
-		rab(&tmp_a, 'a');
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
@@ -75,7 +73,7 @@ void		sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b)
 		init_mem(&mem);
 		end = get_end(*a);
 		if (tmp_b->pos < tmp_a->pos && tmp_b->pos > end->pos)
-			pa(&tmp_a, &tmp_b);
+			pa(&tmp_a, &tmp_b, 1);
 		else
 		{
 			init_check(&c);

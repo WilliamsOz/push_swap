@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:37:24 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 19:55:14 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:54:33 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_data	*pre_sort_b(t_data *b, int digits)
 {
 	digits = (digits / 2) - 1;
 	if (b->pos < digits)
-		rab(&b, 'b');
+		rab(&b, 'b', 1);
 	return (b);
 }
 
@@ -32,12 +32,12 @@ static void	divide_stack(t_data **a, t_data **b, t_keep keep, int digits)
 		if (tmp_a->pos != keep.first && tmp_a->pos != keep.mid
 			&& tmp_a->pos != keep.end)
 		{
-			pb(&tmp_a, &tmp_b);
+			pb(&tmp_a, &tmp_b, 1);
 			if (ft_lstsize(tmp_b) > 1)
 				tmp_b = pre_sort_b(tmp_b, digits);
 		}
 		else
-			rab(&tmp_a, 'a');
+			rab(&tmp_a, 'a', 1);
 	}
 	(*a) = tmp_a;
 	(*b) = tmp_b;

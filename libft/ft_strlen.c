@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_algorithm.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 15:32:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:42:17 by wiozsert         ###   ########.fr       */
+/*   Created: 2021/10/25 21:01:40 by wiozsert          #+#    #+#             */
+/*   Updated: 2021/10/25 22:16:05 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "./libft.h"
 
-void	do_swap(t_data **a, t_data **b)
+int	ft_strlen(char *str)
 {
-	t_data	*tmp_a;
-	t_data	*tmp_b;
+	int	i;
 
-	tmp_a = (*a);
-	tmp_b = (*b);
-	pa(&tmp_a, &tmp_b, 1);
-	sab(&tmp_a, 'a', 1);
-	(*a) = tmp_a;
-	(*b) = tmp_b;
-}
-
-t_mem	swap_check(t_data *a, t_data *b, t_mem mem)
-{
-	if (b->pos > a->pos && b->pos < a->next->pos)
-	{
-		mem.swap = 1;
-	}
-	else
-		mem.swap = 0;
-	return (mem);
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

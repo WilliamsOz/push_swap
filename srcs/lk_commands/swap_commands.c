@@ -6,18 +6,18 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:53:46 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/23 16:54:38 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/25 22:43:18 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	sab(t_data **data, char c)
+void	sab(t_data **data, char c, int ind)
 {
 	t_data	*tmp;
 	t_data	*keep;
 
-	if (*data != NULL)
+	if (*data != NULL && (*data)->next != NULL)
 	{
 		tmp = (*data)->next;
 		keep = tmp->next;
@@ -26,21 +26,24 @@ void	sab(t_data **data, char c)
 		*data = tmp;
 		if (c == 'a')
 		{
-			write(1, "sa\n", 3);
+			if (ind == 1)
+				write(1, "sa\n", 3);
 			counter++;
 		}
 		else if (c == 'b')
 		{
-			write(1, "sb\n", 3);
+			if (ind == 1)
+				write(1, "sb\n", 3);
 			counter++;
 		}
 	}
 }
 
-void	ss(t_data **stack_a, t_data **stack_b)
+void	ss(t_data **stack_a, t_data **stack_b, int ind)
 {
-	sab(stack_a, '\0');
-	sab(stack_b, '\0');
-	write(1, "ss\n", 3);
+	sab(stack_a, '\0', 1);
+	sab(stack_b, '\0', 1);
+	if (ind == 1)
+		write(1, "ss\n", 3);
 	counter++;
 }
