@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 19:25:14 by user42            #+#    #+#             */
-/*   Updated: 2021/10/25 23:33:06 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:38:31 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_data	*reverse_rotate(t_data *data)
 	t_data	*tmp;
 	t_data	*keep;
 
-	if (data != NULL)
+	if (data != NULL && data->next != NULL)
 	{
 		tmp = data;
 		while (tmp->next != NULL)

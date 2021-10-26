@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 10:53:37 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 23:17:10 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:54:43 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	main(int ac, char **av)
 {
 	if (ac == 1)
 		return (0);
-	if (check_bonus_errors(ac, av) == -1)
+	if (check_bonus_errors(ac, av, 1) == -1)
 	{
-		write(2, "KO\n", 3);
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	if (ac == 2)

@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 22:24:20 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 23:31:42 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:49:16 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static void	find_move(t_data **a, t_data **b, char *move)
 	init_do_move(&c);
 	c = sort_move(c, move);
 	do_move(&tmp_a, &tmp_b, c);
-	free(move);
+	if (move != NULL)
+		free(move);
 	(*a) = tmp_a;
 	(*b) = tmp_b;
 }
@@ -94,15 +95,20 @@ void	get_move(t_data *a, t_data *b)
 	while (get_next_line(0, &line) > 0)
 	{
 		init_move(&c);
-		if ((line == NULL || is_unknow_move(line, c) == -1))
+		if (line == NULL || is_unknow_move(line, c) == -1)
 		{
-			write(2, "KO\n", 3);
-			free(line);
+			write(2, "Error\n", 6);
+			if (line != NULL)
+				free(line);
 			free_data(&b);
 			free_data(&a);
 			exit (EXIT_FAILURE);
 		}
-		find_move(&a, &b, line);
+		else
+		{
+			find_move(&a, &b, line);
+			line = NULL;
+		}
 	}
 	is_stack_sorted_and_b_empty(a, b);
 }

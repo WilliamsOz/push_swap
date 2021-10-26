@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:11:57 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 22:13:59 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/26 18:01:46 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,18 @@ static int	is_not_integer(int ac, char **av, int count)
 	return (0);
 }
 
-int	check_bonus_errors(int ac, char **av)
+int	check_bonus_errors(int ac, char **av, int count)
 {
+	int		i;
+
+	i = 0;
+	while (count < ac)
+	{
+		if (av[count][i] == '\0')
+			return (-1);
+		else
+			count++;
+	}
 	if (is_not_integer(ac, av, 1) == -1
 		|| is_less_or_more_than_int(ac, av, 0, 1) == -1
 		|| is_there_duplicate(ac, av, 0, 1) == -1)

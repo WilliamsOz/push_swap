@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:30:25 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/25 23:32:27 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:54:20 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_chker	*init_do_move(t_chker *c);
 t_chker	*init_move(t_chker *c);
 void	get_move(t_data *a, t_data *b);
 int		is_unknow_move(char *str, t_chker c);
-int		check_bonus_errors(int ac, char **av);
+int		check_bonus_errors(int ac, char **av, int count);
 t_data	*finish_sorting(t_data *a, int size_of_list, int count);
 void	sort_stacks(t_data **a, t_data **b, t_data *tmp_a, t_data *tmp_b);
 t_data	*sort_big_stacks(t_data *a, t_data *b);
