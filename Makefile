@@ -6,7 +6,7 @@
 #    By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 19:15:44 by user42            #+#    #+#              #
-#    Updated: 2021/10/25 23:36:45 by wiozsert         ###   ########.fr        #
+#    Updated: 2021/10/26 18:28:05 by wiozsert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,6 @@ $(NAME)	:
 	mv $(LIBFTFILESO) ../obj/
 	gcc $(FLAGS) -c $(FILESC) && mv $(FILESO) ./obj/
 	gcc $(FLAGS) $(ALLOBJ) libft.a -o $(NAME)
-	rm libft.a
 
 clean	:
 	rm -Rf libft.a ./obj
@@ -89,4 +88,3 @@ bonus : clean
 	mv $(LIBFTFILESO) ../obj/
 	gcc $(FLAGS) -c $(FILESCBONUS) && mv $(FILESOBONUS) ./obj/
 	gcc $(FLAGS) $(BONUSOBJ) libft.a -o checker
-	rm libft.a
