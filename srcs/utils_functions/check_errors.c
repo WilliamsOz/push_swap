@@ -6,7 +6,7 @@
 /*   By: wiozsert <wiozsert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:36:00 by wiozsert          #+#    #+#             */
-/*   Updated: 2021/10/26 10:34:36 by wiozsert         ###   ########.fr       */
+/*   Updated: 2021/10/29 12:59:44 by wiozsert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int	is_digit(int ac, char **tab)
 	count = 1;
 	while (count < ac)
 	{
+		if (i == 0 && tab[count][i] == '\0')
+			return (-1);
 		while (tab[count][i] != '\0')
 		{
 			if (tab[count][i] == '-' && tab[count][i + 1] == '0')
